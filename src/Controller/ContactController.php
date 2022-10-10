@@ -6,14 +6,10 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
 use App\Services\MailerService;
-use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class ContactController extends AbstractController
 {
@@ -24,32 +20,23 @@ class ContactController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData();
+            $contactRepository->save($contact, true);
 
-            // $contactRepository->save($contact, true);
-
-            // Email
             $email = (new Email())
-                ->from('victor.weiss.be@gmail.com')
                 ->to('jauge.goa@gmail.com')
-                ->subject('test')
-                ->text('gros texte')
+                ->subject($contact->getSubject())
+                ->text($contact->getMessage())
                 // ->html('<p>See Twig integration for better HTML integration!</p>')
             ;
-            // dd($email);
 
             $mailer->sendEmail($email);
-            // dans sendEmail()    subject: $subject, content: $content
             $this->addFlash('success', 'Votre message a été envoyé');
 
-
-
             return $this->redirectToRoute('contact');
-        } {
-
-            return $this->render('contact/index.html.twig', [
-                'form' => $form->createView()
-            ]);
         }
+
+        return $this->render('contact/index.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
