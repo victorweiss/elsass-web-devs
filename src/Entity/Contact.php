@@ -25,7 +25,6 @@ class Contact
     #[ORM\Column(type: Types::STRING, length: 255)]
     #[Assert\NotBlank]
     #[Assert\Email]
-    #[Assert\Valid]
     #[Assert\Length(min: 6, max: 255)]
     private ?string $email = null;
 
