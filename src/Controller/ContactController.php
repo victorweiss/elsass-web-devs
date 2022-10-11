@@ -25,7 +25,6 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            dd($contact);
             $contact = $form->getData();
 
             // $contactRepository->save($contact, true);
@@ -38,10 +37,9 @@ class ContactController extends AbstractController
                 ->text('gros texte')
                 // ->html('<p>See Twig integration for better HTML integration!</p>')
             ;
-            // dd($email);
+
 
             $mailer->sendEmail($email);
-            // dans sendEmail()    subject: $subject, content: $content
             $this->addFlash('success', 'Votre message a été envoyé');
 
 
