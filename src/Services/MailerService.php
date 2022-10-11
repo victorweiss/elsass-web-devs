@@ -13,7 +13,6 @@ class MailerService
 
     public function sendEmail(Email $email): void
     {
-        $email->from('victor.weiss.be@gmail.com');
         $this->mailer->send($email);
     }
 }
