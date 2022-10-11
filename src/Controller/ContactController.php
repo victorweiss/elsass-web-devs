@@ -23,7 +23,7 @@ class ContactController extends AbstractController
             $contactRepository->save($contact, true);
 
             $email = (new Email())
-                ->to('jauge.goa@gmail.com')
+                ->to($this->getParameter('email_contact'))
                 ->subject($contact->getSubject())
                 ->text($contact->getMessage())
                 // ->html('<p>See Twig integration for better HTML integration!</p>')
