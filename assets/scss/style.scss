@@ -31,14 +31,14 @@ footer {
         text-decoration: none;
     }
     a:hover {
-        color: $gold;
+        color: $warning;
     }
 }
 
 .nav-link {
     color    : #FFFFFF;
     font-size: 25px;
-    &:hover {color: $gold;}
+    &:hover {color: $warning;}
 }
 
 h1 {
