@@ -1,0 +1,79 @@
+@import "./variables";
+@import "./bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+@font-face {
+    font-family: 'coolvetica';
+    src        : url('../fonts/coolvetica rg.otf') format("truetype");
+    font-weight: 400;
+    font-style : normal;
+}
+
+body {
+    margin-top : 120px;
+    font-family: coolvetica;
+}
+
+#header-nav-bar {
+    background-color: $primary;
+}
+
+#logo-header {
+    max-width: 100px;
+}
+
+footer {
+    background-color: $primary;
+    margin-top      : 30px;
+    a {
+        color          : #FFFFFF;
+        font-size      : 25px;
+        text-decoration: none;
+    }
+    a:hover {
+        color: $gold;
+    }
+}
+
+.nav-link {
+    color    : #FFFFFF;
+    font-size: 25px;
+    &:hover {color: $gold;}
+}
+
+h1 {
+    text-align   : center;
+    margin-top   : 30px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    text-align   : center;
+    margin-top   : 30px;
+    margin-bottom: 30px;
+}
+
+p {
+    text-align: justify;
+    font-size: 20px;
+}
+
+#form-contact {
+    padding  : 1em;
+    font-size: 20px;
+}
+
+.iframe-container {
+    position      : relative;
+    width         : 100%;
+    padding-bottom: 56.25%;
+    height        : 0;
+    iframe {
+        position: absolute;
+        top     : 0;
+        left    : 0;
+        width   : 100%;
+        height  : 100%;
+    }
+}
+
