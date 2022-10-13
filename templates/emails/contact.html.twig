@@ -1,0 +1,25 @@
+<h3>Bonjour Admin
+</h3>
+
+<p>
+	{{ contact.name }}
+	vous a envoyé le message suivant :
+</p>
+<h4>
+	SUJET :
+	<code>
+		{{ contact.subject }}
+	</code>
+</h4>
+
+<p>
+	<code>
+		{{ contact.message|nl2br }}
+	</code>
+</p>
+
+<a href="mailto:{{contact.email}}">Répondre à
+	<code>
+		{{ contact.email }}
+	</code>
+</a>
