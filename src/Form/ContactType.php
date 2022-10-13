@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 use Symfony\Component\Validator\Constraint as Assert;
 
@@ -38,14 +40,18 @@ class ContactType extends AbstractType
                     'placeholder' => 'Entrez le sujet de votre demande'
                 ],
                 'label' => 'Sujet',
-                'required' => false
             ])
             ->add('message', TextareaType::class, [
                 'attr' => [
                     'rows' => 6,
                     'placeholder' => 'Entrez votre message'
-                ],
-                'required' => false
+                ]
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(['message' => 'There were problems with your captcha. Please try again or contact with support and provide following code(s): {{ errorCodes }}']),
+                'action_name' => 'contact',
+                // 'script_nonce_csp' => $nonceCSP,
+                'locale' => 'fr',
             ]);
     }
 
