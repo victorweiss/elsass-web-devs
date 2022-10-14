@@ -12,34 +12,28 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
-use Symfony\Component\Validator\Constraint as Assert;
-
 class ContactType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Entrez votre nom',
                 ],
-                'label' => 'Nom',
             ])
-            ->add(
-                'email',
-                EmailType::class,
-                [
-                    'attr' => [
-                        'placeholder' => 'Entrez votre adresse email'
-                    ],
-                    'label' => 'Adresse email',
-                ]
-            )
+            ->add('email', EmailType::class, [
+                'label' => 'Adresse email',
+                'attr' => [
+                    'placeholder' => 'Entrez votre adresse email'
+                ],
+            ])
             ->add('subject', TextType::class, [
+                'label' => 'Sujet',
                 'attr' => [
                     'placeholder' => 'Entrez le sujet de votre demande'
                 ],
-                'label' => 'Sujet',
             ])
             ->add('message', TextareaType::class, [
                 'attr' => [
@@ -48,10 +42,9 @@ class ContactType extends AbstractType
                 ]
             ])
             ->add('captcha', Recaptcha3Type::class, [
-                'constraints' => new Recaptcha3(['message' => 'There were problems with your captcha. Please try again or contact with support and provide following code(s): {{ errorCodes }}']),
                 'action_name' => 'contact',
-                // 'script_nonce_csp' => $nonceCSP,
                 'locale' => 'fr',
+                'constraints' => new Recaptcha3(['message' => "Un problème est survenu avec votre Captcha. Essayez de renvoyer le formulaire ou contactez-nous sur LinkedIn en nous communicant le code d'erreur suivant: {{ errorCodes }}"]),
             ]);
     }
 

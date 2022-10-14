@@ -1,25 +1,14 @@
-<h3>Bonjour Admin
-</h3>
+{% extends "emails/base.html.twig" %}
 
-<p>
-	{{ contact.name }}
-	vous a envoyé le message suivant :
-</p>
-<h4>
-	SUJET :
-	<code>
-		{{ contact.subject }}
-	</code>
-</h4>
+{% block title "Demande de contact" %}
 
-<p>
-	<code>
-		{{ contact.message|nl2br }}
-	</code>
-</p>
+{% block body %}
+	<div>Nom : <b>{{ contact.name }}</b></div>
+	<div>Email : <b>{{ contact.email }}</b></div>
 
-<a href="mailto:{{contact.email}}">Répondre à
-	<code>
-		{{ contact.email }}
-	</code>
-</a>
+	<br>
+	<div><b>{{ contact.subject }}</b></div>
+
+	<br>
+	<div>{{ contact.message|nl2br }}</div>
+{% endblock %}
