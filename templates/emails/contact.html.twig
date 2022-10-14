@@ -1,0 +1,14 @@
+{% extends "emails/base.html.twig" %}
+
+{% block title "Demande de contact" %}
+
+{% block body %}
+	<div>Nom : <b>{{ contact.name }}</b></div>
+	<div>Email : <b>{{ contact.email }}</b></div>
+
+	<br>
+	<div><b>{{ contact.subject }}</b></div>
+
+	<br>
+	<div>{{ contact.message|nl2br }}</div>
+{% endblock %}

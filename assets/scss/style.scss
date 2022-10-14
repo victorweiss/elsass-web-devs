@@ -10,21 +10,31 @@
 }
 
 body {
-    margin-top : 120px;
-    font-family: coolvetica;
+    &, html {
+        min-height: 100%;
+    }
+    font-family: coolvetica, serif;
 }
 
-#header-nav-bar {
+header {
     background-color: $primary;
-}
-
-#logo-header {
-    max-width: 100px;
+    #logo-header {
+        max-width: 80px;
+    }
+    .navbar-toggler {
+        font-size: 2rem;
+        color: white;
+        border-color: rgba(white, .7);
+    }
+    .nav-link {
+        color    : #FFFFFF;
+        font-size: 25px;
+        &:hover {color: $warning;}
+    }
 }
 
 footer {
     background-color: $primary;
-    margin-top      : 30px;
     a {
         color          : #FFFFFF;
         font-size      : 25px;
@@ -35,10 +45,10 @@ footer {
     }
 }
 
-.nav-link {
-    color    : #FFFFFF;
-    font-size: 25px;
-    &:hover {color: $warning;}
+main#main {
+    min-height: calc(100vh - #{$footer-height-desktop});
+    padding-top: calc(#{$header-height-desktop} + 30px);
+    padding-bottom: 30px;
 }
 
 h1 {
@@ -58,11 +68,6 @@ p {
     font-size: 20px;
 }
 
-#form-contact {
-    padding  : 1em;
-    font-size: 20px;
-}
-
 .iframe-container {
     position      : relative;
     width         : 100%;
@@ -77,3 +82,8 @@ p {
     }
 }
 
+body.home {
+    section.section-text {
+        padding: map-get($spacers, 5) 0;
+    }
+}

@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
-{% block title %}Contactez nous
-{% endblock %}
+
+{% block title %}Contactez nous{% endblock %}
+
 {% block body %}
-	<div class="container-fluid">
-		<div class="container">
-			<h2 >Salu bissame !</h2>
-			<p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au Christkindelsmärik en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
-		</div>
-		<div class="container">
-			<div id="form-contact">
-				{{ form_start(form) }}
+	<div class="container">
+		<h2 class="mb-0">Contactez-nous</h2>
+		<div class="text-center mb-4">Nous vous répondrons rapidement ! 😉</div>
 
-				<div class="row">
-					<div class="col-md-6">
-						{{form_row(form.name)}}
-					</div>
-					<div class="col-md-6">
-						{{form_row(form.email)}}
-					</div>
-				</div>
-				{{form_row(form.subject)}}
-				{{form_row(form.message)}}
+		{{ form_start(form) }}
 
-				<button class="btn btn-primary">{{ button_label|default('Envoyer') }}</button>
-				{{ form_end(form) }}
+		<div class="row">
+			<div class="col-md-6">
+				{{form_row(form.name)}}
+			</div>
+			<div class="col-md-6">
+				{{form_row(form.email)}}
 			</div>
 		</div>
-		<div class="container">
-			<h4>Tiens, un rottznoz sur le comptoir</h4>
-			<p>Hopla vous savez que la mamsell Huguette, la miss Miss Dahlias du messti de Bischheim était au Christkindelsmärik en compagnie de Richard Schirmeck (celui qui a un blottkopf), le mari de Chulia Roberstau, qui lui trempait sa Nüdle dans sa Schneck ! Yo dû, Pfourtz ! Ch'espère qu'ils avaient du Kabinetpapier, Gal !</p>
+
+		{{form_row(form.subject)}}
+		{{form_row(form.message)}}
+
+		{{ form_errors(form) }}
+
+		<div class="text-end">
+			<button class="btn btn-primary" type="submit">Envoyer</button>
 		</div>
+
+		{{ form_end(form) }}
 	</div>
 {% endblock %}

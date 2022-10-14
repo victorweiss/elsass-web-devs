@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html lang="fr">
+	{% set route_name = app.request.attributes.get('_route', '') %}
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
+		<title>{% block title %}Welcome!{% endblock %}</title>
 
 		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/icon type">
+
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -19,15 +18,14 @@
 		{% endblock %}
 	</head>
 
-
-	<body class="d-flex flex-column h-100">
-
+	<body class="{{ route_name }}">
 		{% include "elements/_header.html.twig" %}
 		{% include "elements/_flash.html.twig" %}
 
-		<main class="flex-shrink-0"> {% block body %}{% endblock %}
-			</main>
-			{% include "elements/_footer.html.twig" %}
+		<main id="main">
+			{% block body %}{% endblock %}
+		</main>
 
-		</body>
-	</html>
+		{% include "elements/_footer.html.twig" %}
+	</body>
+</html>
