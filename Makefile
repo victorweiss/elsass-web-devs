@@ -18,5 +18,5 @@ stop: ## Stop coding
 
 .PHONY: install
 install: ## Start coding
-	docker-compose up -d --build
+	docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --build
 	docker-compose --profile yarn up -d --build
