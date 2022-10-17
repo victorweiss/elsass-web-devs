@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://elsass-web-devs/sitemap.xml
