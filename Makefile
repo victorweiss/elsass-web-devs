@@ -8,7 +8,6 @@ help:
 
 .PHONY: start
 start: ## Start coding
-	make infra-start
 	docker-compose up -d
 	docker-compose --profile yarn up -d
 	docker-compose logs -f
@@ -17,3 +16,8 @@ start: ## Start coding
 stop: ## Stop coding
 	make infra-stop
 	docker-compose down
+
+.PHONY: install
+install: ## Start coding
+	docker-compose up -d --build
+	docker-compose --profile yarn up -d --build
