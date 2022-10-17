@@ -4,29 +4,35 @@
 
 {% block body %}
 	<div class="container">
-		<h1 class="mb-0">Contactez-nous</h1>
-		<div class="text-center mb-4">Nous vous répondrons rapidement ! 😉</div>
-
-		{{ form_start(form) }}
-
 		<div class="row">
-			<div class="col-md-6">
-				{{form_row(form.name)}}
-			</div>
-			<div class="col-md-6">
-				{{form_row(form.email)}}
+			<div class="col-lg-8 mx-auto">
+
+				<h1 class="text-center mb-0">Contactez-nous</h1>
+				<div class="text-center mb-4">Nous vous répondrons rapidement ! 😉</div>
+
+				{{ form_start(form) }}
+
+				<div class="row">
+					<div class="col-md-6">
+						{{form_row(form.name)}}
+					</div>
+					<div class="col-md-6">
+						{{form_row(form.email)}}
+					</div>
+				</div>
+
+				{{form_row(form.subject)}}
+				{{form_row(form.message)}}
+
+				{{ form_errors(form) }}
+
+				<div class="text-end">
+					<button class="btn btn-primary" type="submit">Envoyer</button>
+				</div>
+
+				{{ form_end(form) }}
+
 			</div>
 		</div>
-
-		{{form_row(form.subject)}}
-		{{form_row(form.message)}}
-
-		{{ form_errors(form) }}
-
-		<div class="text-end">
-			<button class="btn btn-primary" type="submit">Envoyer</button>
-		</div>
-
-		{{ form_end(form) }}
 	</div>
 {% endblock %}
