@@ -6,8 +6,6 @@
 	<div class="container">
 		<section class="section-intro">
 			<h1>Les Devs Web d'Alsace</h1>
-			<h2>Wie geht's ?</h2>
-			<br>
 			<p>
 				La vocation de cette page est de rassembler les développeurs webs d'Alsace afin d'échanger autour de notre passion, de partager nos connaissance, d'apprendre des autres, de se rencontrer dans la vie réelle, de créer des liens sans attribut href et de ne pas servir que des 200 ou des 404 mais aussi quelques 1664 😎🍻
 			</p>
@@ -19,12 +17,17 @@
 		<section class="section-text">
 			<div class="row align-items-center">
 				<div class="col-md-6">
-					<img src="{{asset('build/images/apero-code1.jpg')}}" alt="test4" class="w-100 rounded-3">
+					<img src="{{asset('build/images/apero-code.jpg')}}" alt="devs web elsass apero code" class="w-100 rounded-3">
 				</div>
 				<div class="col-md-6">
-					<p>Notre première soirée Apéro-Code vendredi était une réussite ! 🔥
+					<p>
+						Une fois pas mois, nous nous retrouvons à l'occasion de notre soirée Apéro-Code 🔥
 						<br>
-						Nous étions 10 devs, réunis autour d’un apéro dans une ambiance sympa et légère, comme à la maison !						
+						On parle de code, dans une ambiance légère et décontractée.
+						<br>
+						Nous échangeons sur nos parcours, nos expériences (positives ou négatives), les langages que l’on maitrise, ceux que l’on prévoit d’apprendre, les bons plans sur le marché, etc.
+						<br>
+						La soirée se déroule en deux temps :
 					</p>
 				</div>
 			</div>
@@ -33,10 +36,16 @@
 		<section class="section-text">
 			<div class="row d-flex flex-md-row-reverse align-items-center">
 				<div class="col-md-6">
-					<img src="{{asset('build/images/apero-code2.jpg')}}" class="w-100 rounded-3" alt="test5">
+					<img src="{{asset('build/images/apero-code2.jpg')}}" class="w-100 rounded-3" alt="devs web elsass apero code">
 				</div>
 				<div class="col-md-6">
-					<p>Nous avons pu échanger sur nos parcours, nos expériences, les langages que l’on maîtrise et ceux que l’on prévoit d’apprendre.  Certains ont présenté une fonctionnalité ou une technologie qu’ils trouvent intéressante, ce qui a ouvert la porte à des discussions enrichissantes. </p>
+					<p>
+						Première partie (2h environ) :
+						<br>
+						👉 Les devs qui le souhaitent peuvent se brancher sur le rétro-projecteur et présenter une fonctionnalité cool de leur choix, c’est complètement libre ⏰ 5min chrono
+						<br>
+						👉 Puis en on parle tous ensemble, on questionne, on commente, on dit ce qu’on en pense, comment on aurait fait à sa place, etc.. Toujours de façon positive et constructive ! ⏰ 10min chrono
+					</p>
 				</div>
 			</div>
 		</section>
@@ -44,21 +53,24 @@
 		<section class="section-text">
 			<div class="row align-items-center ">
 				<div class="col-md-6">
-					<img src="{{asset('build/images/apero-code3.jpg')}}" class="w-100 rounded-3" alt="test5">
+					<img src="{{asset('build/images/apero-code1.jpg')}}" class="w-100 rounded-3" alt="devs web elsass apero code" title="devs web elsass apero code">
 				</div>
 				<div class="col-md-6">
-					<p>Nous avons eu droit à un QCM sur le JS avec des questions inattendues. Et surtout nous avons pu rencontrer d’autres développeurs et nous restons en contact via le Discord du groupe.</p>
+					<p>
+						Deuxième partie :
+						<br>
+						La soirée continue autours de discussions libres, on apprend à se connaître, on partage nos expériences, nos façons de travailler, notre veille technologique, nos bons plans, etc. Le but est de s’améliorer tous ensemble en partageant ce que l’on sait et en apprenant des autres.
+					</p>
 				</div>
 			</div>
 		</section>
 
 		<section class="section-outro">
-			<p>
-👉 On se rencontre une fois par mois à Strasbourg autour d'un apéro </br>
-👉 Ceux qui le souhaitent se branchent au vidéo-projecteur, ils ont 5 min pour présenter une fonctionnalité cool et la façon dont ils l'ont implémentée</br>
-👉 On prend 10 min pour en parler ensemble, débattre du pour et du contre, comment les autres auraient fait, etc. Uniquement des critiques positives et dans une optique d'amélioration 😉 </br>
-👉 On termine la soirée au feeling, autour de discussions libres, on réseaute, on prend des contacts, on échange les bons plans, etc.</p>
+			<p class="text-center">
+				Les rencontres ont lieux à Strasbourg. <br>
+				Abonnez-vous sur LinkedIn pour être informé des prochaines soirées Apéro-Code. <br>
+				Pour toute question, n'hésitez pas à <a href="{{ path('contact') }}" title="Contact">nous contacter</a>.
+			</p>
 		</section>
 	</div>
-
 {% endblock %}
