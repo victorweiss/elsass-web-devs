@@ -1,5 +1,7 @@
 #!make
 
+appContainer = 'ewd_app'
+
 .DEFAULT_GOAL := help
 .PHONY: help
 help:
@@ -19,4 +21,5 @@ stop: ## Stop coding
 .PHONY: install
 install: ## /!\ [SERVER] Install
 	docker-compose --env-file .env.prod.local up -d --build
+	docker exec -t $(appContainer) bash -c "bash /opt/docker-start.sh"
 	docker-compose --profile yarn up -d --build
