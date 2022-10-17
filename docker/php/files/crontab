@@ -1,0 +1,4 @@
+# * * * * * bash -c "/usr/local/bin/php /var/www/app/bin/console app:test >> /var/www/app/var/log/APP_ENV.log"
+
+# ! Leave a blank line at the bottom !
+
