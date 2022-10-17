@@ -14,7 +14,6 @@ start: ## Start coding
 
 .PHONY: stop
 stop: ## Stop coding
-	make infra-stop
 	docker-compose down
 
 .PHONY: install
