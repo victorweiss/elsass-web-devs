@@ -17,6 +17,6 @@ stop: ## Stop coding
 	docker-compose down
 
 .PHONY: install
-install: ## Start coding
-	docker-compose up -d --build
+install: ## /!\ [SERVER] Install
+	docker-compose --env-file .env.prod.local up -d --build
 	docker-compose --profile yarn up -d --build
