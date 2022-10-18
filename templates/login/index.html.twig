@@ -18,7 +18,7 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
         {# If you want to control the URL the user is redirected to on success #}
-        {# <input type="hidden" name="{{ path('home') }}" value="/account"/>  #}
+    <input type="hidden" name="_target_path" value="{{ path('admin') }}" />
 
         <button class="btn btn-primary" type="submit">Connexion</button>
     </form>
