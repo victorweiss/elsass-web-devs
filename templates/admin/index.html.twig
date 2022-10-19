@@ -5,22 +5,7 @@
 
 {% block body %}
 
-    <div class="d-flex flex-column flex-shrink-0 p-3bg-white fixed-left" style="width: 280px;">
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Demandes de contact</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Utilisateurs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{path("deconnexion")}}"> Déconnexion</a>
-            </li>
-        </ul>
-    </div>
 
+	{% include "admin/_admin_nav.html.twig" %}
 
 {% endblock %}
