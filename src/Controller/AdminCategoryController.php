@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/category')]
+#[Route('/_admin/category')]
 class AdminCategoryController extends AbstractController
 {
     #[Route('/', name: 'admin_category_index', methods: ['GET'])]
