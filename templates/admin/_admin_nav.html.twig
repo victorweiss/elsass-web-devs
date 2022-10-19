@@ -1,5 +1,5 @@
 <div class="container page-content p-5" id="content">
-  <button id="sidebarCollapse" type="button" class="btn btn-primary rounded-pill px-4"><small class="text-uppercase">Menu Admin</small></button>
+  <button id="sidebarCollapse" type="button" class="btn btn toggle btn-primary rounded-pill px-4"><small class="text-uppercase">Menu Admin</small></button>
 </div>
 <div class="vertical-nav bg-white" id="sidebar">
     <div class="flex-shrink-0 p-3 bg-white" style="width: 250px;">
@@ -8,9 +8,9 @@
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"> Blog</button>
                 <div class="collapse" id="home-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded disabled">Overview</a></li>
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Updates</a></li>
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li>
+                        <li><a href="{{path("admin_category_index")}}" class="link-dark d-inline-flex text-decoration-none rounded disabled">Catégories</a></li>
+                        {# <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Updates</a></li>
+                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li> #}
                     </ul>
                 </div>
             </li>
@@ -28,9 +28,9 @@
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">Account</button>
                 <div class="collapse" id="account-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
+                        {# <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
                         <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
+                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li> #}
                         <li><a href="{{path("deconnexion")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a></li>
                     </ul>
                 </div>
