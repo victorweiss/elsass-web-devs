@@ -31,8 +31,8 @@
                 <td>{{ contact.subject }}</td>
                 <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a class="btn btn-warning" href="{{ path('admin_contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('admin_contact_edit', {'id': contact.id}) }}">edit</a>
+                    <a class="btn btn-warning" href="{{ path('admin_user_show', {'id': contact.id}) }}">show</a>
+                    <a href="{{ path('admin_user_edit', {'id': contact.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
