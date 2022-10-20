@@ -1,0 +1,10 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title 'Dashboard' %}
+
+{% block body %}
+	Bienvenue dans l'admin
+	{% for x in 1..200 %}
+		ligne {{ x }} <br>
+	{% endfor %}
+{% endblock %}

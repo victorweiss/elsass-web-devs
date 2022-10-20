@@ -2,6 +2,9 @@
 @import './bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+$header-height: 24px;
+$sidebar-width: 280px;
+
 @font-face {
   font-family: 'coolvetica';
   src: url('../fonts/coolvetica rg.otf') format('truetype');
@@ -9,63 +12,109 @@
   font-style: normal;
 }
 
-#header {
-    background-color: $primary;
+header#header {
+  background-color: $primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 
-#sidebar{
-    background-color: $yellow;
-}
-// barre nav
-.vertical-nav {
-    padding-top: calc(#{$header-height-desktop} + 30px);
-    min-width: 17rem;
-    width: 17rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s;
-  }
-  
-  .page-content {
-    width: calc(100% - 17rem);
-    margin-left: 17rem;
-    transition: all 0.4s;
-  }
-  
-  /* for toggle behavior */
-  
-  #sidebar.active {
-    margin-left: -17rem;
-    padding-right: 17rem;
-  }
-  
-  #content.active {
-    width: 100%;
-    margin: 0;
-  }
-  
-  @media (max-width: 768px) {
+@include media-breakpoint-down(lg) {
+  #main-container {
     #sidebar {
-      margin-left: -17rem;
+      background-color: $yellow;
+      position: fixed;
+      top: 0;
+      right: -290px;
+      bottom: 0;
+      z-index: 3;
+      width: $sidebar-width;
+      transition: right .3s;
+      &.open {
+        right: 0;
+      }
     }
-    #sidebar.active {
-      margin-left: 0;
-    }
-    #content {
-      width: 100%;
-      margin: 0;
-    }
-    #content.active {
-      margin-left: 17rem;
-      width: calc(100% - 17rem);
+    main#main {
+      background: lightblue;
+      padding-top: $header-height;
     }
   }
-  
-  // bouton menu
-  #sidebarCollapse {
-    position: fixed;
+}
+
+@include media-breakpoint-up(lg) {
+  #main-container {
+    #sidebar {
+      background-color: $yellow;
+      width: $sidebar-width;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+      padding-top: $header-height;
+    }
+    main#main {
+      background: lightblue;
+      padding-top: $header-height;
+      padding-left: $sidebar-width;
+    }
   }
-  
+}
+
+
+//
+//// barre nav
+//.vertical-nav {
+//    padding-top: calc(#{$header-height-desktop} + 30px);
+//    min-width: 17rem;
+//    width: 17rem;
+//    height: 100vh;
+//    position: fixed;
+//    top: 0;
+//    left: 0;
+//    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+//    transition: all 0.4s;
+//  }
+//
+//  .page-content {
+//    width: calc(100% - 17rem);
+//    margin-left: 17rem;
+//    transition: all 0.4s;
+//  }
+//
+//  /* for toggle behavior */
+//
+//  #sidebar.active {
+//    margin-left: -17rem;
+//    padding-right: 17rem;
+//  }
+//
+//  #content.active {
+//    width: 100%;
+//    margin: 0;
+//  }
+//
+//  @media (max-width: 768px) {
+//    #sidebar {
+//      margin-left: -17rem;
+//    }
+//    #sidebar.active {
+//      margin-left: 0;
+//    }
+//    #content {
+//      width: 100%;
+//      margin: 0;
+//    }
+//    #content.active {
+//      margin-left: 17rem;
+//      width: calc(100% - 17rem);
+//    }
+//  }
+//
+//  // bouton menu
+//  #sidebarCollapse {
+//    position: fixed;
+//  }
+//
