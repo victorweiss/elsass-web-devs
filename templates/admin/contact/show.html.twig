@@ -1,10 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title "Voir contact" %}
 {% block description "Details administrateur contact" %}
 
 {% block body %}
-	{% include "admin/_admin_nav.html.twig" %}
 
 <div class="container">
     <h1>Contact</h1>
@@ -40,8 +39,6 @@
 
     <a href="{{ path('admin_contact_index') }}">back to list</a>
 
-    <a href="{{ path('admin_contact_edit', {'id': contact.id}) }}">edit</a>
-
-    {{ include('admin_contact/_delete_form.html.twig') }}
+    {{ include('admin/contact/_delete_form.html.twig') }}
 <div>
 {% endblock %}

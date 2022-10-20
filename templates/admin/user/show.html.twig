@@ -1,11 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title "Voir utilisateur" %}
 {% block description "Details administrateur utilisateur" %}
 
 {% block body %}
-	{% include "admin/_admin_nav.html.twig" %}
-
 <div class="container">
     <h1>User</h1>
 
@@ -42,6 +40,6 @@
 
     <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
 
-    {{ include('admin_user/_delete_form.html.twig') }}
+    {{ include('admin/user/_delete_form.html.twig') }}
 </div>
 {% endblock %}

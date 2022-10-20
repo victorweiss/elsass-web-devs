@@ -1,4 +1,4 @@
-import "./scss/style.scss"
+import "./scss/back.scss"
 // import "bootstrap/js/src/dropdown"
 import "bootstrap/js/src/collapse"
 
@@ -8,3 +8,4 @@ $(function() {
       $('#sidebar, #content').toggleClass('active');
     });
   });
+

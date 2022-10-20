@@ -24,7 +24,7 @@ security:
                 enable_csrf: true
 
             logout:
-                path: deconnexion
+                path: logout
                 target: home
 
 

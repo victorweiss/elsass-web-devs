@@ -1,17 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title "Modifier utilisateur" %}
 {% block description "Modification administrateur utilisateur" %}
 
 {% block body %}
-	{% include "admin/_admin_nav.html.twig" %}
 <div class="container">
     <h1>Éditer l'utilisateur</h1>
 
-    {{ include('admin_user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('admin_user_index') }}">Retour à la liste</a>
 
-    {{ include('admin_user/_delete_form.html.twig') }}
+    {{ include('admin/user/_delete_form.html.twig') }}
 </div>
 {% endblock %}

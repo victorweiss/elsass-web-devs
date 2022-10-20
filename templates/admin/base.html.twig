@@ -11,22 +11,27 @@
 		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
 
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('front') }}
+			{{ encore_entry_link_tags('back') }}
 		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('front') }}
+			{{ encore_entry_script_tags('back') }}
 		{% endblock %}
 	</head>
 
 	<body class="{{ route_name }}">
-		{% include "elements/_header.html.twig" %}
-		{% include "elements/_flash.html.twig" %}
+		{% include "admin/elements/_header.html.twig" %}
+		
+		<div class="content">
+			{% include "admin/elements/_sidebar.html.twig" %}
 
-		<main id="main">
-			{% block body %}{% endblock %}
-		</main>
+			<main id="main">
+				<div class="container">
+					{% include "elements/_flash.html.twig" %}
 
-		{% include "elements/_footer.html.twig" %}
+					{% block body %}{% endblock %}
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

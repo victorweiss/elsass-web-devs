@@ -1,0 +1,90 @@
+@import './variables';
+@import './bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+@font-face {
+  font-family: 'coolvetica';
+  src: url('../fonts/coolvetica rg.otf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  &,
+  html {
+    min-height: 100%;
+  }
+  font-family: coolvetica, serif;
+}
+
+header {
+  background-color: $primary;
+  #logo-header {
+    max-width: 80px;
+  }
+  .navbar-toggler {
+    font-size: 2rem;
+    color: white;
+    border-color: rgba(white, 0.7);
+  }
+  .nav-link {
+    color: #ffffff;
+    font-size: 25px;
+    &:hover {
+      color: $warning;
+    }
+  }
+}
+
+footer {
+  background-color: $primary;
+  a {
+    color: #ffffff;
+    font-size: 25px;
+    text-decoration: none;
+  }
+  a:hover {
+    color: $warning;
+  }
+}
+
+main#main {
+  min-height: calc(100vh - #{$footer-height-desktop});
+  padding-top: calc(#{$header-height-desktop} + 30px);
+  padding-bottom: 30px;
+}
+
+h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+p {
+  text-align: justify;
+  font-size: 20px;
+}
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+body.home {
+  section.section-text {
+    padding: map-get($spacers, 5) 0;
+  }
+}
