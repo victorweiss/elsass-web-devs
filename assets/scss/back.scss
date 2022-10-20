@@ -2,7 +2,7 @@
 @import './bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
-$header-height: 24px;
+$header-height: 70px;
 $sidebar-width: 280px;
 
 @font-face {
@@ -27,8 +27,10 @@ header#header {
   left: 0;
   right: 0;
   z-index: 2;
+  #logo-header {
+    max-height: 50px;
+  }
 }
-
 
 @include media-breakpoint-down(lg) {
   #main-container {
@@ -42,12 +44,17 @@ header#header {
       z-index: 3;
       width: $sidebar-width;
       transition: right .3s;
+      padding-top:15px;
+      #buttonCollapse{
+      position:absolute;
+      top:10px;
+      right:10px;
+      }
       &.open {
         right: 0;
       }
     }
     main#main {
-      background: lightblue;
       padding-top: $header-height;
     }
   }
@@ -65,6 +72,9 @@ header#header {
         left: 0;
         z-index: 1;
         padding-top: $header-height;
+        #buttonCollapse{
+          display:none;
+        }
     }
     main#main {
       padding-top: $header-height;

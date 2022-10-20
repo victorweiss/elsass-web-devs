@@ -1,4 +1,14 @@
-<header id="header">
-
-header
+<header id="header" id="header-nav-bar">
+<div class="container">
+		<nav class="navbar navbar-expand-lg ">
+			<div class="container-fluid">
+				<a class="nav-link" href="{{ path('home') }}">
+					<img src="{{asset('build/images/logo-test.png')}}" alt="test" id="logo-header" class="me-5">Accueil
+				</a>
+				<button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation" id="sidebarCollapse">
+					<i class="bi bi-list"></i>
+				</button>
+			</div>
+		</nav>
+	</div>
 </header>

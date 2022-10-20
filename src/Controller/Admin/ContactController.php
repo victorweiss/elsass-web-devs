@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/_admin/contact')]
-class AdminContactController extends AbstractController
+#[Route('/contact')]
+class ContactController extends AbstractController
 {
     #[Route('/', name: 'admin_contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Form\CategoryType;
@@ -9,9 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
-#[Route('/_admin/category')]
-class AdminCategoryController extends AbstractController
+#[Route('/category')]
+class CategoryController extends AbstractController
 {
     #[Route('/', name: 'admin_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
@@ -29,6 +30,10 @@ class AdminCategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugger = new AsciiSlugger();
+            $slug = $slugger->slug($category->getName());
+            $category->setName($slug);
+
             $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);

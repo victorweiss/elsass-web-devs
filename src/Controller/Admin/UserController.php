@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/_admin/user')]
-class AdminUserController extends AbstractController
+#[Route('/user')]
+class UserController extends AbstractController
 {
     #[Route('/', name: 'admin_user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response

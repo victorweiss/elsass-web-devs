@@ -5,7 +5,11 @@ import "bootstrap/js/src/collapse"
 $(function() {
     // Sidebar toggle behavior
     $('#sidebarCollapse').on('click', function() {
-      $('#sidebar, #content').toggleClass('active');
+      $('#sidebar').toggleClass('open');
+    });
+
+    $('#buttonCollapse').on('click', function() {
+      $('#sidebar').removeClass('open');
     });
   });
 
