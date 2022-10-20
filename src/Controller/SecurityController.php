@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SecurityController extends AbstractController
 {
-    #[Route('/deconnexion', name: 'deconnexion', methods: ['GET'])]
+    #[Route('/deconnexion', name: 'logout', methods: ['GET'])]
     public function logout()
     {
     }
