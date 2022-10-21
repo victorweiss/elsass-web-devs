@@ -8,7 +8,7 @@
 <div class="container">
     <h1>Contact</h1>
 
-    <table class="table">
+    <table class="table-responsive">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -27,17 +27,17 @@
                 <td>{{ contact.message }}</td>
             </tr>
             <tr>
-                <th>Subject</th>
+                <th>Sujet</th>
                 <td>{{ contact.subject }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créer à</th>
                 <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('admin_contact_index') }}">back to list</a>
+    <a href="{{ path('admin_contact_index') }}">Retour à la liste</a>
 
     {{ include('admin/contact/_delete_form.html.twig') }}
 <div>

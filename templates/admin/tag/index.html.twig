@@ -1,28 +1,30 @@
 {% extends 'admin/base.html.twig' %}
 
 {% block title "Bonjour Admin" %}
-{% block description "Gestion administrateur categorie" %}
+{% block description "Gestion administrateur tag" %}
 
 {% block body %}
 <div class="container">
-    <h1>Catégories index</h1>
+    <h1>Tag index</h1>
 
     <table class="table-responsive">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>Catégorie</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for category in categories %}
+        {% for tag in tags %}
             <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.name }}</td>
+                <td>{{ tag.category }}</td>
                 <td>
-                    <a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+                    <a href="{{ path('admin_tag_show', {'id': tag.id}) }}">show</a>
+                    <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,6 +35,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('admin_category_new') }}">Créer nouvelle</a>
-</div>
+    <a href="{{ path('admin_tag_new') }}">Créer nouveau</a>
+    </div>
 {% endblock %}

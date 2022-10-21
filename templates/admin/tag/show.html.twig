@@ -1,0 +1,33 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Voir tag" %}
+{% block description "Details administrateur tag" %}
+
+{% block body %}
+<div class="container">
+    <h1>Tag</h1>
+
+    <table class="table-responsive">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tag.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ tag.name }}</td>
+            </tr>
+            <tr>
+                <th>Catégorie</th>
+                <td>{{ tag.category }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_tag_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">Éditer</a>
+
+    {{ include('admin/tag/_delete_form.html.twig') }}
+</div>
+{% endblock %}
