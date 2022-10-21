@@ -16,18 +16,10 @@ class TagType extends AbstractType
     {
         $builder
             ->add('name')
-            //         ->add('category', CollectionType::class, [
-            //             'entry_type' => ChoiceType::class,
-            //             'mapped' => true,
-            //             'allow_add' => true,
-            //         ]);
-            // }
-            // ->add('category', CategoryType::class, []);
+            ->add('category')
         ;
     }
-    // ->add('category', ChoiceType::class, [
-    //     'choices' => TagType::class,
-    // ])
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

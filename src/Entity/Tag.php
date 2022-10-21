@@ -48,4 +48,5 @@ class Tag
 
         return $this;
     }
+
 }
