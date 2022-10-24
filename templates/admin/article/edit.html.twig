@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Modifier categorie" %}
+{% block description "Modification administrateur articles" %}
+
+{% block body %}
+	<div class="container">
+		<h1>Éditer l'article</h1>
+
+		{{ include('admin/article/_form.html.twig', {'button_label': 'Update'}, {'attr': 'btn-primary'}) }}
+
+		<a href="{{ path('admin_article_index') }}">Retour à la liste</a>
+
+		{{ include('admin/article/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

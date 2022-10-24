@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug($category->getName());
-            $category->setName($slug);
+            $category->setSluggedName($slug);
 
             $categoryRepository->save($category, true);
 
@@ -60,6 +60,10 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slugger = new AsciiSlugger();
+            $slug = $slugger->slug($category->getName());
+            $category->setSluggedName($slug);
+
             $categoryRepository->save($category, true);
 
             return $this->redirectToRoute('admin_category_index', [], Response::HTTP_SEE_OTHER);
@@ -74,7 +78,7 @@ class CategoryController extends AbstractController
     #[Route('/{id}', name: 'admin_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categoryRepository->remove($category, true);
         }
 

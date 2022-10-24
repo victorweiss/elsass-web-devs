@@ -1,0 +1,12 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Bonjour Admin" %}
+{% block description "Création administrateur article" %}
+
+{% block body %}
+    <h1>Créer nouvel article</h1>
+
+    {{ include('admin/article/_form.html.twig') }}
+
+    <a href="{{ path('admin_article_index') }}">Retour à la liste</a>
+{% endblock %}

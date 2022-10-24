@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Entity\Category;
 use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
@@ -17,8 +20,16 @@ class Tag
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'tags')]
-    private ?Category $category = null;
+    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'tags')]
+    private Collection $articles;
+
+    #[ORM\Column(type: Types::ASCII_STRING, nullable: true)]
+    private $sluggedName = null;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -37,16 +48,47 @@ class Tag
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function __toString(): string
     {
-        return $this->category;
+        return $this->name;
     }
 
-    public function setCategory(?Category $category): self
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
     {
-        $this->category = $category;
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->addTag($this);
+        }
 
         return $this;
     }
 
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            $article->removeTag($this);
+        }
+
+        return $this;
+    }
+
+    public function getSluggedName()
+    {
+        return $this->sluggedName;
+    }
+
+    public function setSluggedName($sluggedName): self
+    {
+        $this->sluggedName = $sluggedName;
+
+        return $this;
+    }
 }

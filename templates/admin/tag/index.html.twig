@@ -4,37 +4,37 @@
 {% block description "Gestion administrateur tag" %}
 
 {% block body %}
-<div class="container">
-    <h1>Tag index</h1>
-
-    <table class="table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Catégorie</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tag in tags %}
-            <tr>
-                <td>{{ tag.id }}</td>
-                <td>{{ tag.name }}</td>
-                <td>{{ tag.category }}</td>
-                <td>
-                    <a href="{{ path('admin_tag_show', {'id': tag.id}) }}">show</a>
-                    <a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_tag_new') }}">Créer nouveau</a>
-    </div>
+	<div class="container">
+		<h1>Tag index</h1>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Nom slugged</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for tag in tags %}
+						<tr>
+							<td>{{ tag.id }}</td>
+							<td>{{ tag.name }}</td>
+							<td>{{ tag.sluggedName }}</td>
+							<td>
+								<a href="{{ path('admin_tag_show', {'id': tag.id}) }}">show</a>
+								<a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">edit</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('admin_tag_new') }}">Créer nouveau</a>
+	</div>
 {% endblock %}

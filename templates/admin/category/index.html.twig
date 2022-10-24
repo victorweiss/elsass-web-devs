@@ -4,35 +4,37 @@
 {% block description "Gestion administrateur categorie" %}
 
 {% block body %}
-<div class="container">
-    <h1>Catégories index</h1>
-
-    <table class="table-responsive">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.id }}</td>
-                <td>{{ category.name }}</td>
-                <td>
-                    <a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
-                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_category_new') }}">Créer nouvelle</a>
-</div>
+	<div class="container">
+		<h1>Catégories index</h1>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Nom</th>
+						<th>Nom sluggd</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for category in categories %}
+						<tr>
+							<td>{{ category.id }}</td>
+							<td>{{ category.name }}</td>
+							<td>{{ category.sluggedName }}</td>
+							<td>
+								<a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
+								<a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('admin_category_new') }}">Créer nouvelle</a>
+	</div>
 {% endblock %}
