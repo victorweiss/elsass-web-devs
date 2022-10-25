@@ -12,7 +12,7 @@
 					<tr>
 						<th>Id</th>
 						<th>Nom</th>
-						<th>Nom sluggd</th>
+						<th>Slug</th>
 						<th>actions</th>
 					</tr>
 				</thead>
@@ -21,7 +21,7 @@
 						<tr>
 							<td>{{ category.id }}</td>
 							<td>{{ category.name }}</td>
-							<td>{{ category.sluggedName }}</td>
+							<td>{{ category.slug }}</td>
 							<td>
 								<a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
 								<a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>

@@ -8,7 +8,7 @@
 		<title>{% block title '' %}{{ route_name != 'home' ? " | Elsass Web Devs" }}</title>
 		<meta name="description" content="{% block description '' %}">
 
-		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
+		<link rel="icon" href="{{ asset('ressources/icons/favicon.ico') }}" type="image/x-icon">
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('front') }}
@@ -23,10 +23,9 @@
 		{% include "elements/_header.html.twig" %}
 		{% include "elements/_flash.html.twig" %}
 
-		<main id="main">
-			{% block body %}{% endblock %}
-		</main>
+		<main id="main"> {% block body %}{% endblock %}
+			</main>
 
-		{% include "elements/_footer.html.twig" %}
-	</body>
-</html>
+			{% include "elements/_footer.html.twig" %}
+		</body>
+	</html>

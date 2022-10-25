@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 #[ORM\Entity(repositoryClass: TagRepository::class)]
 class Tag
@@ -23,8 +25,9 @@ class Tag
     #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'tags')]
     private Collection $articles;
 
-    #[ORM\Column(type: Types::ASCII_STRING, nullable: true)]
-    private $sluggedName = null;
+    #[Gedmo\Slug(fields: ["name"])]
+    #[ORM\Column]
+    private $slug = null;
 
     public function __construct()
     {
@@ -80,14 +83,14 @@ class Tag
         return $this;
     }
 
-    public function getSluggedName()
+    public function getSlug()
     {
-        return $this->sluggedName;
+        return $this->slug;
     }
 
-    public function setSluggedName($sluggedName): self
+    public function setSlug($slug): self
     {
-        $this->sluggedName = $sluggedName;
+        $this->slug = $slug;
 
         return $this;
     }

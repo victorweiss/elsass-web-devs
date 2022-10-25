@@ -33,9 +33,9 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $slugger = new AsciiSlugger();
-            $slug = $slugger->slug($article->getTitle());
-            $article->setSlug($slug);
+            // $slugger = new AsciiSlugger();
+            // $slug = $slugger->slug($article->getTitle());
+            // $article->setSlug($slug);
 
             $articleRepository->save($article, true);
 

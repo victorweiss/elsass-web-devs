@@ -9,11 +9,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormTypeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ArticleType extends AbstractType
 {
@@ -21,12 +23,16 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('slug', TextType::class, [
+                'required' => false,
+                'help' => 'laissez vide, sera généré automatiquement'
+            ])
             ->add('subtitle')
             ->add('metaDescription')
             ->add('body')
-            // ->add('updatedAt')
-            ->add('image')
-            // ->add('countViews')
+            ->add('imageFile', VichImageType::class, [
+                'required' => false
+            ])
             ->add('marking', ChoiceType::class, [
                 'choices' => [
                     'Brouillon' => 'Brouillon',
