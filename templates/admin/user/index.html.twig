@@ -8,15 +8,16 @@
 <div class="container">
     <h1>User index</h1>
 
-    <table class="table-responsive">
+    <div class="table-responsive">
+        <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Mot de passe</th>
-                <th>FirstName</th>
-                <th>LastName</th>
+                {# <th>Mot de passe</th> #}
+                <th>Prénom</th>
+                <th>Nom</th> 
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,12 +27,12 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.firstName }}</td>
+                {# <td>{{ user.password }}</td> #}
+                <td>{{ user.firstName }}</td> 
                 <td>{{ user.lastName }}</td>
                 <td>
-                    <a class="btn btn-warning" href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                    <a class="btn btn-warning" href="{{ path('admin_user_show', {'id': user.id}) }}">Détails</a>
+                    <a class="btn btn-info" href="{{ path('admin_user_edit', {'id': user.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
@@ -40,8 +41,9 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
 
-    <a href="{{ path('admin_user_new') }}">Créer nouveau</a>
+    <a class="btn btn-primary"  href="{{ path('admin_user_new') }}">Créer nouveau</a>
 </div>
 {% endblock %}

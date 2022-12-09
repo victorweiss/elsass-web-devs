@@ -7,9 +7,9 @@
 <div class="container">
     <h1>Éditer l'utilisateur</h1>
 
-    {{ include('admin/user/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/user/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('admin_user_index') }}">Retour à la liste</a>
+    <a class="btn btn-warning" href="{{ path('admin_user_index') }}">Retour à la liste</a>
 
     {{ include('admin/user/_delete_form.html.twig') }}
 </div>

@@ -56,6 +56,9 @@
             "./config/packages/karser_recaptcha3.yaml"
         ]
     },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v6.0.0"
+    },
     "phpunit/phpunit": {
         "version": "9.5",
         "recipe": {

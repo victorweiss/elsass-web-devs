@@ -23,8 +23,8 @@
 							<td>{{ category.name }}</td>
 							<td>{{ category.slug }}</td>
 							<td>
-								<a href="{{ path('admin_category_show', {'id': category.id}) }}">show</a>
-								<a href="{{ path('admin_category_edit', {'id': category.id}) }}">edit</a>
+								<a class="btn btn-warning" href="{{ path('admin_category_show', {'id': category.id}) }}">Détails</a>
+								<a class="btn btn-info" href="{{ path('admin_category_edit', {'id': category.id}) }}">Éditer</a>
 							</td>
 						</tr>
 					{% else %}
@@ -35,6 +35,6 @@
 				</tbody>
 			</table>
 		</div>
-		<a href="{{ path('admin_category_new') }}">Créer nouvelle</a>
+		<a class="btn btn-primary" href="{{ path('admin_category_new') }}">Créer nouvelle</a>
 	</div>
 {% endblock %}

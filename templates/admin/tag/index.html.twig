@@ -23,8 +23,8 @@
 							<td>{{ tag.name }}</td>
 							<td>{{ tag.slug }}</td>
 							<td>
-								<a href="{{ path('admin_tag_show', {'id': tag.id}) }}">show</a>
-								<a href="{{ path('admin_tag_edit', {'id': tag.id}) }}">edit</a>
+								<a class="btn btn-warning" href="{{ path('admin_tag_show', {'id': tag.id}) }}">Détails</a>
+								<a class="btn btn-info" href="{{ path('admin_tag_edit', {'id': tag.id}) }}">Éditer</a>
 							</td>
 						</tr>
 					{% else %}
@@ -35,6 +35,6 @@
 				</tbody>
 			</table>
 		</div>
-		<a href="{{ path('admin_tag_new') }}">Créer nouveau</a>
+		<a class="btn btn-primary"  href="{{ path('admin_tag_new') }}">Créer nouveau</a>
 	</div>
 {% endblock %}

@@ -7,9 +7,9 @@
 <div class="container">
     <h1>Edit Tag</h1>
 
-    {{ include('admin/tag/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/tag/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('admin_tag_index') }}">Retour à la liste</a>
+    <a class="btn btn-warning" href="{{ path('admin_tag_index') }}">Retour à la liste</a>
 
     {{ include('admin/tag/_delete_form.html.twig') }}
 </div>

@@ -3,9 +3,12 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Query;
+use Doctrine\ORM\Query as ORMQuery;
 use Doctrine\Persistence\ManagerRegistry;
-
+use Doctrine\ORM\Tools\Pagination\Paginator;
 /**
  * @extends ServiceEntityRepository<Article>
  *
@@ -39,28 +42,74 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Article[] Returns an array of Article objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findForPagination(?Category $category = null): ORMQuery
+    {
+        $qb = $this->createQueryBuilder('a')
+        ->orderBy('a.createdAt', 'DESC')
+        // ->where('a.marking = Actif')
+        ;
+        // ->where($qb->expr()->eq('a.marking',':articleMarking'))
+        // ->setParameter('', )
 
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
+        if($category) {
+            $qb->leftJoin('a.categories', 'c')
+            ->where($qb->expr()->eq('c.id',':categoryId'))
+            ->setParameter('categoryId',$category->getId());
+        }
+        return $qb->getQuery();
+        
+
+    }
+
+
+
+
+
+    
+// 	private function getArticleQueryBuilder(){
+// 		$queryBuilder = $this->createQueryBuilder('a')
+//             // ->where('a.marking = Actif')
+// 			->orderBy('a.createdAt', 'DESC')
+//             ;
+
+// 		return $queryBuilder;
+// 	}
+
+//    public function getPaginatedArticles(){
+//        $queryBuilder = $this->getArticleQueryBuilder();
+//        $query = $queryBuilder->getQuery();
+//        $paginator = new Paginator($query, true);
+
+//        return $paginator;
 //    }
+  
+
+
+
+
+
+    //    /**
+    //     * @return Article[] Returns an array of Article objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Article
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

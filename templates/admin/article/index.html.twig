@@ -4,60 +4,61 @@
 {% block description "Gestion administrateur article" %}
 
 {% block body %}
-	<h1>Article index</h1>
-	<div class="table-responsive">
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Title</th>
-					<th>Subtitle</th>
-					<th>MetaDescription</th>
-					<th>Catégorie</th>
-					<th>Tags</th>
-					{# <th>Body</th> #}
-					<th>CreatedAt</th>
-					<th>UpdatedAt</th>
-					{# <th>Image</th> #}
-					<th>CountViews</th>
-					<th>Marking</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for article in articles %}
+	<div class="container">
+		<h1>Article index</h1>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
 					<tr>
-						<td>{{ article.id }}</td>
-						<td>{{ article.title }}</td>
-						<td>{{ article.subtitle }}</td>
-						<td>{{ article.metaDescription }}</td>
-						<td>{{ article.category }}</td>
-						<td>
-							<ul class="list-unstyled">
-								{% for tag in article.tags %}
-									<li>{{tag.name}}</li>
-								{% endfor %}
-							</ul>
-						</td>
-						{# <td>{{ article.body }}</td> #}
-						<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-						{# <td>{{ article.image }}</td> #}
-						<td>{{ article.countViews }}</td>
-						<td>{{ article.marking }}</td>
-						<td>
-							<a href="{{ path('admin_article_show', {'id': article.id}) }}">show</a>
-							<a href="{{ path('admin_article_edit', {'id': article.id}) }}">edit</a>
-						</td>
+						<th>Id</th>
+						<th>Title</th>
+						<th>Subtitle</th>
+						<th>MetaDescription</th>
+						<th>Catégorie</th>
+						<th>Tags</th>
+						{# <th>Body</th> #}
+						<th>CreatedAt</th>
+						<th>UpdatedAt</th>
+						{# <th>Image</th> #}
+						{# <th>CountViews</th> #}
+						<th>Marking</th>
+						<th>actions</th>
 					</tr>
-				{% else %}
-					<tr>
-						<td colspan="12">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for article in articles %}
+						<tr>
+							<td>{{ article.id }}</td>
+							<td>{{ article.title }}</td>
+							<td>{{ article.subtitle }}</td>
+							<td>{{ article.metaDescription }}</td>
+							<td>{{ article.category }}</td>
+							<td>
+								<ul class="list-unstyled">
+									{% for tag in article.tags %}
+										<li>{{tag.name}}</li>
+									{% endfor %}
+								</ul>
+							</td>
+							{# <td>{{ article.body }}</td> #}
+							<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							{# <td>{{ article.image }}</td> #}
+							{# <td>{{ article.countViews }}</td> #}
+							<td>{{ article.marking }}</td>
+							<td>
+								<a class="btn btn-warning" href="{{ path('admin_article_show', {'id': article.id}) }}">Détails</a>
+								<a class="btn btn-info" href="{{ path('admin_article_edit', {'id': article.id}) }}">Éditer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="12">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<a href="{{ path('admin_article_new') }}">Créer nouveau</a>
+	<a class="btn btn-primary" href="{{ path('admin_article_new') }}">Créer nouveau</a>
 {% endblock %}
