@@ -33,7 +33,6 @@ class BlogController extends AbstractController
 
 
 
-
     #[Route('/blog/{slug}', name: 'article_show')]
     public function show(Article $article): Response
     {

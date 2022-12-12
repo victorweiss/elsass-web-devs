@@ -9,6 +9,7 @@ use Doctrine\DBAL\Query;
 use Doctrine\ORM\Query as ORMQuery;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * @extends ServiceEntityRepository<Article>
  *
@@ -45,47 +46,18 @@ class ArticleRepository extends ServiceEntityRepository
     public function findForPagination(?Category $category = null): ORMQuery
     {
         $qb = $this->createQueryBuilder('a')
-        ->orderBy('a.createdAt', 'DESC')
-        // ->where('a.marking = Actif')
+            ->orderBy('a.createdAt', 'DESC')
+            ->where('a.marking = :marking')
+            ->setParameter('marking', 'Actif')
         ;
-        // ->where($qb->expr()->eq('a.marking',':articleMarking'))
-        // ->setParameter('', )
 
-        if($category) {
+        if ($category) {
             $qb->leftJoin('a.categories', 'c')
-            ->where($qb->expr()->eq('c.id',':categoryId'))
-            ->setParameter('categoryId',$category->getId());
+                ->where($qb->expr()->eq('c.id', ':categoryId'))
+                ->setParameter('categoryId', $category->getId());
         }
         return $qb->getQuery();
-        
-
     }
-
-
-
-
-
-    
-// 	private function getArticleQueryBuilder(){
-// 		$queryBuilder = $this->createQueryBuilder('a')
-//             // ->where('a.marking = Actif')
-// 			->orderBy('a.createdAt', 'DESC')
-//             ;
-
-// 		return $queryBuilder;
-// 	}
-
-//    public function getPaginatedArticles(){
-//        $queryBuilder = $this->getArticleQueryBuilder();
-//        $query = $queryBuilder->getQuery();
-//        $paginator = new Paginator($query, true);
-
-//        return $paginator;
-//    }
-  
-
-
-
 
 
     //    /**
