@@ -43,18 +43,27 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-    public function findForPagination(?Category $category = null): ORMQuery
+    public function findForPagination(): ORMQuery
     {
         $qb = $this->createQueryBuilder('a')
             ->orderBy('a.createdAt', 'DESC')
             ->where('a.marking = :marking')
-            ->setParameter('marking', 'Actif')
-        ;
+            ->setParameter('marking', 'Actif');
+
+        return $qb->getQuery();
+    }
+
+    public function paginateByCategory(Category $category): ORMQuery
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->where('a.marking = :marking')
+            ->setParameter('marking', 'Actif');
 
         if ($category) {
-            $qb->leftJoin('a.categories', 'c')
-                ->where($qb->expr()->eq('c.id', ':categoryId'))
-                ->setParameter('categoryId', $category->getId());
+            $qb->leftJoin('a.category', 'c')
+                ->andWhere('a.category = :category')
+                ->setParameter('category', $category);
         }
         return $qb->getQuery();
     }

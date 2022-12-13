@@ -10,6 +10,7 @@ use App\Form\ArticleType;
 use App\Services\ArticleService;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -27,11 +28,7 @@ class BlogController extends AbstractController
             'articles' => $articleService->getPaginatedArticles(),
             'categories' => $categoryRepo->findAll()
         ]);
-
-
     }
-
-
 
     #[Route('/blog/{slug}', name: 'article_show')]
     public function show(Article $article): Response
@@ -42,15 +39,16 @@ class BlogController extends AbstractController
     }
 
 
-    
-    #[Route('/blog/category/{category}', name: 'article_category')]
-    public function filter(ArticleService $articleService, Category $category, CategoryRepository $categoryRepo): Response
+    #[Route('/blog/category/{slug}', name: 'category_name', methods: ['GET'])]
+    public function showCategory(Category $category, CategoryRepository $categoryRepo, ArticleService $articleService): Response
     {
-        
         return $this->render('blog/category.html.twig', [
-            // 'articles' => $articleService->getPaginatedArticles($category),
-            'categories' => $categoryRepo->findAll()
+            'category' => $category,
+            'articles' => $articleService->getPaginatedArticles(),
+            'categoryArticles' => $articleService->getPaginatedArticlesByCategory($category),
+            'categories' => $categoryRepo->findAll(),           
         ]);
+       
     }
 
 

@@ -18,13 +18,25 @@ private PaginatorInterface $paginator,
         
     }
 
-    public function getPaginatedArticles(?Category $category = null)
+    public function getPaginatedArticles()
     {
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
         $limit = 6;
-        $articlesQuery = $this->articleRepo->findForPagination($category);
+        $articlesQuery = $this->articleRepo->findForPagination();
 
         return $this->paginator->paginate($articlesQuery, $page, $limit);
     }
+
+
+    public function getPaginatedArticlesByCategory(?Category $category = null)
+    {
+        $request = $this->requestStack->getMainRequest();
+        $page = $request->query->getInt('page', 1);
+        $limit = 6;
+        $articlesQuery = $this->articleRepo->paginateByCategory($category);
+
+        return $this->paginator->paginate($articlesQuery, $page, $limit);
+    }
+
 }

@@ -101,67 +101,59 @@ body.home {
 
 
 .card {
-    width: 18rem;
-    border: 0.5px $primary solid;
-    border-radius: 15px;
-    // height: 30rem;
+  width: 18rem;
+  border: 3px $primary solid;
+  border-radius: 15px;
 
-  //   .card-img-top {
-  //     height: 100px;
-  //   }
+  .card-img-top {
+    height: 100px;
+  }
+
   .card-body {
     display: flex;
     flex-direction: column;
     justify-content: end;
-
-  }
-
-  // .card-text {
-  //   font-size: 14px;
-  // }
-}
-
-.siders {
-  border: 3px $primary solid;
-  width: 190px;
-  height: 190px;
-
-  .siders-image {
-    width: 50px
   }
 
   &:hover {
     background-color: $primary;
-    color: #ffffff;
-    border: 3px #ffffff solid;
 
-    .siders-subtitle {
-      display: none;
-    }
-
-    .siders-image {
-      width: 100px;
-      top: 30px;
-    }
-
-    .siders-title {
-      top: 30px;
+    .card-body {
+      h4 {
+        color: #ffffff;
+      }
     }
 
     .btn {
       background-color: #ffffff;
       color: $primary;
-      // top: 30px;
+    }
 
-      &:hover {
-        background-color: $primary;
-        color: #ffffff;
+  }
+}
 
-        .siders {
-          background-color: #ffffff;
-          color: $primary;
-        }
-      }
+.siders {
+  width: 190px;
+  height: 190px;
+  border-radius: 20px;
+
+  .siders-image {
+    width: 180px;
+    max-height: 110px;
+    border-radius: 100px;
+  }
+
+  &:hover {
+    background-color: $primary;
+    color: #ffffff;
+
+    .btn {
+      background-color: #ffffff;
+      color: $primary;
+    }
+
+    .siders-image {
+      border-radius: 20px;
     }
   }
 }

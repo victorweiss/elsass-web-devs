@@ -9,15 +9,13 @@
 			<h1 class="text-center">
 				Blog
 			</h1>
-			<div class="d-flex flex-wrap">
+			<div class="d-flex flex-wrap mb-5">
 				{% for category in categories %}
 
-					<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('article_category', {'category': category.name}) }}">{{ category.name }}</a>
-					{# {{ category.url }} #}
-
+					<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_name', {'slug': category.slug}) }}">{{ category.name }}</a>
 				{% endfor %}
 			</div>
-			<main id="main">
+			<main>
 				<div class="d-flex flex-wrap">
 					{% for article in articles %}
 					
@@ -26,9 +24,6 @@
 							<div class="card-body">
 								<h4 class="card-title">{{article.title}}</h4>
 								<p class="card-text">{{ article.subtitle }}</p>
-								<p class="card-text">
-									{{ article.category }}
-								</p>
 								<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
 							</div>
 						</div>
@@ -47,19 +42,14 @@
 		<div class="col-2 align-item text-center">
 			<h2 class="text-center h4">Derniers articles</h2>
 			{% for article in articles|slice(0, 3) %}
-				<div class="siders mt-5 py-1 rounded-pill">
-					<img src="ressources/images/articles/{{article.imageName}}" class="siders-image position-relative" alt="{{article.imageName}}">
-					<div class="siders-titles position-relative">
+				<div class="siders mt-5 py-1 d-flex flex-column justify-content-evenly">
+					<img  src="ressources/images/articles/{{article.imageName}}" class="siders-image mx-auto" alt="{{article.imageName}}">
+					<div class="siders-titles ">
 						{{article.title}}
 					</div>
-					<div class="siders-subtitle position-relative">
-						{{article.subtitle}}
-					</div>
 
-
-					<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary rounded-circle position-sticky">Lire</a>
+					<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary mx-auto rounded-circle">Lire</a>
 				</div>
-				{# {{ article['href'] }} #}
 			{% endfor %}
 		</div>
 	</div>
