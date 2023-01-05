@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ArticleType extends AbstractType
 {
@@ -29,7 +30,9 @@ class ArticleType extends AbstractType
             ])
             ->add('subtitle')
             ->add('metaDescription')
-            ->add('body')
+            ->add('body', CKEditorType::class)
+// ICI POUR LIEN AVEC LE FOS_CKEDITOR.YAML
+
             ->add('imageFile', VichImageType::class, [
                 'required' => false
             ])

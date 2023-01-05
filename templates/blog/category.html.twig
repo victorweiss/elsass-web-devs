@@ -1,57 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block title "Les Devs Web d'Alsace" %}
-{% block description "Les développeurs web d'Alsace se retrouvent à Strasbourg pour échanger, partager, se challenger, progresser, se rencontrer et kiffer!" %}
+{% block description "Catégories du blog des développeurs web d'Alsace" %}
 
 {% block body %}
-	<div class="container d-flex flex-row">
-		<div class="col-10">
-			<h1 class="text-center">
-				Blog
-			</h1>
-			<div class="d-flex flex-wrap">
-				{% for category in categories %}
+	<div class="container">
+		<div class="d-flex flex-wrap">
+			<div class="col-lg-10 mb-3">
+				<div class="section intro-blog">
+					<h1 class="text-center">
+						{{category.name}}
+					</h1>
+					<div class="d-flex flex-wrap mb-5">
+						{% for category in categories %}
 
-					<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_name', {'slug': category.slug}) }}">{{ category.name }}</a>
-				{% endfor %}
-			</div>
-			<main>
-			<h2>{{category.name}}</h2>
-				<div class="d-flex flex-wrap">
-					{% for article in categoryArticles %}
-
-						<div class="card p-2 mx-1 text-center col-4 mb-2">
-							<img src="../../ressources/images/articles/{{article.imageName}}" class="card-img-top w-75 mx-auto" alt="{{article.imageName}}">
-							<div class="card-body">
-								<h4 class="card-title">{{article.title}}</h4>
-								<p class="card-text">{{ article.subtitle }}</p>
-								<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
-							</div>
-						</div>
-					{% else %}
-						<h2>Aucun article disponible</h2>
-					{% endfor %}
-				</div>
-			</main>
-			<div class="row">
-				<div
-					class="d-flex align-items-center justify-content-center">{{ knp_pagination_render(categoryArticles) }}
-				</div>
-			</div>
-		</div>
-
-		<div class="col-2 align-item text-center">
-			<h2 class="text-center h4">Derniers articles</h2>
-				{% for article in articles|slice(0, 3) %}
-				<div class="siders mt-5 py-1 d-flex flex-column justify-content-evenly">
-					<img  src="../../ressources/images/articles/{{article.imageName}}" class="siders-image mx-auto" alt="{{article.imageName}}">
-					<div class="siders-titles ">
-						{{article.title}}
+							<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_name', {'slug': category.slug}) }}">{{ category.name }}</a>
+						{% endfor %}
 					</div>
-
-					<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary mx-auto rounded-circle">Lire</a>
 				</div>
-			{% endfor %}
+
+				<div class="section articles-blog">
+					<div class="d-flex flex-wrap justify-content-evenly">
+						{% for article in categoryArticles %}
+
+							<div class="card p-2 mx-1 text-center col-4 mb-2">
+								<img src="../../ressources/images/articles/{{article.imageName}}" class="card-img-top w-75 mx-auto" alt="{{article.imageName}}">
+								<div class="card-body">
+									<h4 class="card-title">{{article.title}}</h4>
+									<p class="card-text">{{ article.subtitle }}</p>
+									<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
+								</div>
+							</div>
+						{% else %}
+							<h2>Aucun article disponible</h2>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="d-flex align-items-center justify-content-center">{{ knp_pagination_render(categoryArticles) }}
+					</div>
+				</div>
+				<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('blog') }}">Retour</a>
+			</div>
+
+
+			<div class="col-lg-2 mx-auto align-item d-flex flex-column text-center">
+				{% include "blog/elements/_sidebar.html.twig" %}
+			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

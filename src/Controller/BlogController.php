@@ -23,7 +23,7 @@ class BlogController extends AbstractController
     #[Route('/blog', name: 'blog')]
     public function index(ArticleService $articleService, CategoryRepository $categoryRepo): Response
     {
-        
+
         return $this->render('blog/index.html.twig', [
             'articles' => $articleService->getPaginatedArticles(),
             'categories' => $categoryRepo->findAll()
@@ -31,10 +31,11 @@ class BlogController extends AbstractController
     }
 
     #[Route('/blog/{slug}', name: 'article_show')]
-    public function show(Article $article): Response
+    public function show(Article $article,ArticleService $articleService): Response
     {
         return $this->render('blog/show.html.twig', [
             'article' => $article,
+            'articles' => $articleService->getPaginatedArticles(),
         ]);
     }
 
@@ -46,10 +47,7 @@ class BlogController extends AbstractController
             'category' => $category,
             'articles' => $articleService->getPaginatedArticles(),
             'categoryArticles' => $articleService->getPaginatedArticlesByCategory($category),
-            'categories' => $categoryRepo->findAll(),           
+            'categories' => $categoryRepo->findAll(),
         ]);
-       
     }
-
-
 }

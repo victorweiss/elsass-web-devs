@@ -106,13 +106,21 @@ body.home {
   border-radius: 15px;
 
   .card-img-top {
-    height: 100px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+
   }
 
   .card-body {
     display: flex;
     flex-direction: column;
     justify-content: end;
+  }
+
+  .card-text {
+    display: none;
+    text-align: center;
   }
 
   &:hover {
@@ -124,6 +132,10 @@ body.home {
       }
     }
 
+    .card-text {
+      display: block;
+    }
+
     .btn {
       background-color: #ffffff;
       color: $primary;
@@ -132,28 +144,38 @@ body.home {
   }
 }
 
+.article-intro {
+  p {
+    margin-top: 10px;
+    font-size: small;
+  }
+}
+
+
+
 .siders {
   width: 190px;
-  height: 190px;
+  height: auto;
   border-radius: 20px;
 
   .siders-image {
     width: 180px;
-    max-height: 110px;
+    height: auto;
     border-radius: 100px;
   }
 
   &:hover {
     background-color: $primary;
     color: #ffffff;
+    border-radius: 20px;
 
     .btn {
       background-color: #ffffff;
       color: $primary;
     }
 
-    .siders-image {
-      border-radius: 20px;
-    }
+    // .siders-image {
+    //   border-radius: 20px;
+    // }
   }
 }

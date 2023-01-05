@@ -2,18 +2,43 @@
 
 
 {% block body %}
-	<div class="container text-center">
-		<h1>{{article.title}}</h1>
-			<img src="../ressources/images/articles/{{article.imageName}}" class="w-50" alt="{{article.imageName}}">
-				<p>Catégorie : {{ article.category }} <br> Tags :
-					{% for tag in article.tags %}
-						#{{tag.name}}
-					{% endfor %}
-				<br>Publié le {{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour le {{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</p>
+	<div class="container">
+		<div class="d-flex flex-wrap">
+			<div class="col-lg-10 mb-3">
+				<section class="article header text-center">
+					<h1>{{article.title}}</h1>
+					<img src="../ressources/images/articles/{{article.imageName}}" class="w-25" alt="{{article.imageName}}">
+				</section>
+
+				<section class="article-intro">
+					<p>Catégorie :
+						{{ article.category }}
+						<br>
+						Tags :
+						{% for tag in article.tags %}
+							#{{tag.name}}
+						{% endfor %}
+						<br>Publié le
+						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour le
+						{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+						<br>
+						<i class="bi bi-eye"></i>
+						{{ article.countViews }}
+						vues</p>
+				</section>
+
+
 				<p class="">{{ article.subtitle }}</p>
 
-                <p> {{article.body}} </p>
-		<a class="btn btn-warning" href="{{ path('blog') }}">Retour à la liste</a>
-	</div>
+				<p>
+					{{article.body | raw}}
+				</p>
+				<a class="btn btn-primary" href="{{ path('blog') }}">Retour à la liste</a>
+			</div>
 
+			<div class="col-lg-2 mx-auto align-item d-flex flex-column text-center">
+				{% include "blog/elements/_sidebar.html.twig" %}
+			</div>
+		</div>
+	</div>
 {% endblock %}

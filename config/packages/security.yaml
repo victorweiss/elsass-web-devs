@@ -38,6 +38,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/_admin, roles: ROLE_ADMIN }
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }
+
         # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
