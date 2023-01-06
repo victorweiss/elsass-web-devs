@@ -14,7 +14,7 @@
 					<div class="d-flex flex-wrap mb-5">
 						{% for category in categories %}
 
-							<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_name', {'slug': category.slug}) }}">{{ category.name }}</a>
+							<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_index', {'slug': category.slug}) }}">{{ category.name }}</a>
 						{% endfor %}
 					</div>
 				</div>

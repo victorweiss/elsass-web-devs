@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title "Les Devs Web d'Alsace" %}
-{% block description "Blog des développeurs web d'Alsace" %}
+{% block description "Tags du blog des développeurs web d'Alsace" %}
 
 {% block body %}
 	<div class="container">
@@ -9,7 +8,7 @@
 			<div class="col-lg-10 mb-3">
 				<div class="section intro-blog">
 					<h1 class="text-center">
-						Bonne lecture 😎
+						#{{tag.name}}
 					</h1>
 					<div class="d-flex flex-wrap mb-5">
 						{% for category in categories %}
@@ -21,11 +20,11 @@
 
 				<div class="section articles-blog">
 					<div class="d-flex flex-wrap justify-content-evenly">
-						{% for article in articles %}
+						{% for article in tagArticles %}
 
 							<div class="card p-2 mx-1 text-center col-4 mb-2">
-								<img src="ressources/images/articles/{{article.imageName}}" class="card-img-top w-75 mx-auto" alt="{{article.imageName}}">
-								<div class="card-body d-flex justify-content-around">
+								<img src="../../ressources/images/articles/{{article.imageName}}" class="card-img-top w-75 mx-auto" alt="{{article.imageName}}">
+								<div class="card-body">
 									<h4 class="card-title">{{article.title}}</h4>
 									<p class="card-text">{{ article.subtitle }}</p>
 									<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
@@ -38,15 +37,16 @@
 				</div>
 
 				<div class="row">
-					<div class="d-flex align-items-center justify-content-center">
-						{{ knp_pagination_render(articles) }}
+					<div class="d-flex align-items-center justify-content-center">{{ knp_pagination_render(tagArticles) }}
 					</div>
 				</div>
+				<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('blog') }}">Retour</a>
 			</div>
+
 
 			<div class="col-lg-2 mx-auto align-item d-flex flex-column text-center">
 				{% include "blog/elements/_sidebar.html.twig" %}
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

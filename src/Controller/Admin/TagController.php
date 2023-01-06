@@ -61,9 +61,6 @@ class TagController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $slugger = new AsciiSlugger();
-            // $slug = $slugger->slug($tag->getName());
-            // $tag->setSluggedName($slug);
             $tagRepository->save($tag, true);
 
             return $this->redirectToRoute('admin_tag_index', [], Response::HTTP_SEE_OTHER);

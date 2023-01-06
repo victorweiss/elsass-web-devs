@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -35,6 +36,16 @@ private PaginatorInterface $paginator,
         $page = $request->query->getInt('page', 1);
         $limit = 6;
         $articlesQuery = $this->articleRepo->paginateByCategory($category);
+
+        return $this->paginator->paginate($articlesQuery, $page, $limit);
+    }
+
+    public function getPaginatedArticlesByTag(?Tag $tag = null)
+    {
+        $request = $this->requestStack->getMainRequest();
+        $page = $request->query->getInt('page', 1);
+        $limit = 6;
+        $articlesQuery = $this->articleRepo->paginateByTag($tag);
 
         return $this->paginator->paginate($articlesQuery, $page, $limit);
     }

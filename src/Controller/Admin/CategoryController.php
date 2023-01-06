@@ -30,9 +30,6 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $slugger = new AsciiSlugger();
-            // $slug = $slugger->slug($category->getName());
-            // $category->setSluggedName($slug);
 
             $categoryRepository->save($category, true);
 
@@ -60,9 +57,6 @@ class CategoryController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $slugger = new AsciiSlugger();
-            // $slug = $slugger->slug($category->getName());
-            // $category->setSluggedName($slug);
 
             $categoryRepository->save($category, true);
 

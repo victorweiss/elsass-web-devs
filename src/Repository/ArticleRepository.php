@@ -2,13 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\Tag;
 use App\Entity\Article;
 use App\Entity\Category;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\DBAL\Query;
 use Doctrine\ORM\Query as ORMQuery;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -68,6 +69,20 @@ class ArticleRepository extends ServiceEntityRepository
         return $qb->getQuery();
     }
 
+    public function paginateByTag(Tag $tag): ORMQuery
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->orderBy('a.createdAt', 'DESC')
+            ->where('a.marking = :marking')
+            ->setParameter('marking', 'Actif');
+
+        if (!empty($tag)) {
+            $qb->leftJoin('a.tags', 't')
+                ->andWhere('t.id IN (:tags)')
+                ->setParameter('tags', $tag);
+        }
+        return $qb->getQuery();
+    }
 
     //    /**
     //     * @return Article[] Returns an array of Article objects
