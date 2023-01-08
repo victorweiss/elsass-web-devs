@@ -1,7 +1,15 @@
 <h2 class="text-center h4">Derniers articles</h2>
 {% for article in articles|slice(0, 3) %}
 	<div class="siders mx-auto py-1 d-flex flex-column justify-content-evenly">
-		<img src="../../ressources/images/articles/{{article.imageName}}" class="siders-image mx-auto" alt="{{article.imageName}}">
+
+		<div class="img-ratio">
+			<div class="img">
+				<img src="../../ressources/images/articles/{{article.imageName}}" alt="{{article.imageName}}">
+			</div>
+		</div>
+
+		{# <img src="../../ressources/images/articles/{{article.imageName}}" class="siders-image mx-auto" alt="{{article.imageName}}"> #}
+
 		<div class="siders-titles ">
 			{{article.title}}
 		</div>

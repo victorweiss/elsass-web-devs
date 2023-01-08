@@ -24,7 +24,11 @@
 						{% for article in categoryArticles %}
 
 							<div class="card p-2 mx-1 text-center col-4 mb-2">
-								<img src="../../ressources/images/articles/{{article.imageName}}" class="card-img-top w-75 mx-auto" alt="{{article.imageName}}">
+								<div class="img-ratio">
+									<div class="img">
+										<img src="../../ressources/images/articles/{{article.imageName}}" alt="{{article.imageName}}">
+									</div>
+								</div>
 								<div class="card-body">
 									<h4 class="card-title">{{article.title}}</h4>
 									<p class="card-text">{{ article.subtitle }}</p>

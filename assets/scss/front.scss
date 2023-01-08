@@ -105,41 +105,64 @@ body.home {
   border: 3px $primary solid;
   border-radius: 15px;
 
-  .card-img-top {
-    max-width: 100%;
-    height: auto;
-    border-radius: 15px;
+  .img-ratio {
+    position: relative;
 
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: var(--ratio, 100%);
+    }
+
+    .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+
+      }
+    }
   }
 
   .card-body {
     display: flex;
     flex-direction: column;
     justify-content: end;
-  }
 
-  .card-text {
-    display: none;
-    text-align: center;
-  }
-
-  &:hover {
-    background-color: $primary;
-
-    .card-body {
-      h4 {
-        color: #ffffff;
-      }
-    }
-
-    .card-text {
-      display: block;
+    h4 {
+      -webkit-line-clamp: var(--lines, 2);
+      display: -moz-box !important;
+      display: -webkit-box !important;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .btn {
-      background-color: #ffffff;
-      color: $primary;
+      &:hover {
+        background-color: #ffffff;
+        color: $primary;
+      }
     }
+  }
+
+  .card-text {
+    text-align: center;
+    -webkit-line-clamp: var(--lines, 3);
+    display: -moz-box !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
   }
 }
@@ -158,24 +181,39 @@ body.home {
   height: auto;
   border-radius: 20px;
 
-  .siders-image {
-    width: 180px;
-    height: auto;
-    border-radius: 100px;
-  }
 
-  &:hover {
-    background-color: $primary;
-    color: #ffffff;
-    border-radius: 20px;
+  .img-ratio {
+    position: relative;
 
-    .btn {
-      background-color: #ffffff;
-      color: $primary;
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: var(--ratio, 100%);
     }
 
-    .siders-image {
-      border-radius: 50px;
+    .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 50px;
+      }
+    }
+  }
+
+  .btn {
+    &:hover {
+      border-radius: 20px;
+      background-color: #ffffff;
+      color: $primary;
     }
   }
 }

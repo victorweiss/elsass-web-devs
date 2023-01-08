@@ -7,6 +7,8 @@ fos_ck_editor:
                 uiColor:                "#ffffff"
 #                 filebrowserUploadUrl: "build/images/ckeditor"
                 # extraPlugins: ""
+                removePlugins: 'save,newpage,exportpdf,preview,print,templates,pastefromword,find,forms,div,iframe,pagebreak,language,selectall,specialchar,smiley,about,bidi,pastetext'
+                removeButtons: 'Styles,Font,Subscript,Superscript,Cut,Copy,Paste'
                 base_path: "build/ckeditor"
                 js_path: "build/ckeditor/ckeditor.js"
                 fullpage: true
