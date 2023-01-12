@@ -24,9 +24,16 @@ private PaginatorInterface $paginator,
         $request = $this->requestStack->getMainRequest();
         $page = $request->query->getInt('page', 1);
         $limit = 6;
-        $articlesQuery = $this->articleRepo->findForPagination();
+        $articlesQuery = $this->articleRepo->paginateActiveArticle();
 
         return $this->paginator->paginate($articlesQuery, $page, $limit);
+    }
+
+    public function getTopArticles()
+    {
+        return $this->articleRepo->getTopArticles(3);
+
+        
     }
 
 

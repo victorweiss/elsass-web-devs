@@ -5,8 +5,7 @@ namespace App\Repository;
 use App\Entity\Tag;
 use App\Entity\Article;
 use App\Entity\Category;
-use Doctrine\DBAL\Query;
-use Doctrine\ORM\Query as ORMQuery;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -44,40 +43,52 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-    public function findForPagination(): ORMQuery
+    private function getPublicQueryBuilder()
     {
-        $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->where('a.marking = :marking')
+        $qb = $this->createQueryBuilder('a');
+        $qb->where('a.marking = :marking')
             ->setParameter('marking', 'Actif');
+        return $qb;
+    }
+
+    public function paginateActiveArticle(): Query
+    {
+        $qb = $this->getPublicQueryBuilder();
+        $qb->orderBy('a.createdAt', 'DESC');
 
         return $qb->getQuery();
     }
 
-    public function paginateByCategory(Category $category): ORMQuery
+    public function getTopArticles(): array
     {
-        $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->where('a.marking = :marking')
-            ->setParameter('marking', 'Actif');
+        $qb = $this->getPublicQueryBuilder();
+
+        $qb ->orderBy('a.countViews', 'DESC')
+            ->setMaxResults(3);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function paginateByCategory(Category $category): Query
+    {
+        $qb = $this->getPublicQueryBuilder();
 
         if ($category) {
-            $qb->leftJoin('a.category', 'c')
+            $qb ->orderBy('a.createdAt', 'DESC')
+                ->leftJoin('a.category', 'c')
                 ->andWhere('a.category = :category')
                 ->setParameter('category', $category);
         }
         return $qb->getQuery();
     }
 
-    public function paginateByTag(Tag $tag): ORMQuery
+    public function paginateByTag(Tag $tag): Query
     {
-        $qb = $this->createQueryBuilder('a')
-            ->orderBy('a.createdAt', 'DESC')
-            ->where('a.marking = :marking')
-            ->setParameter('marking', 'Actif');
+        $qb = $this->getForPagination();
 
         if (!empty($tag)) {
-            $qb->leftJoin('a.tags', 't')
+            $qb ->orderBy('a.createdAt', 'DESC')
+                ->leftJoin('a.tags', 't')
                 ->andWhere('t.id IN (:tags)')
                 ->setParameter('tags', $tag);
         }

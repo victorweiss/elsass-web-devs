@@ -27,7 +27,8 @@ class BlogController extends AbstractController
 
         return $this->render('blog/index.html.twig', [
             'articles' => $articleService->getPaginatedArticles(),
-            'categories' => $categoryRepo->findAll()
+            'categories' => $categoryRepo->findAll(),
+            'bestArticles' => $articleService->getTopArticles()
         ]);
     }
 
@@ -40,6 +41,7 @@ class BlogController extends AbstractController
         return $this->render('blog/show.html.twig', [
             'article' => $article,
             'articles' => $articleService->getPaginatedArticles(),
+            'bestArticles' => $articleService->getTopArticles()
         ]);
     }
 
@@ -47,11 +49,12 @@ class BlogController extends AbstractController
     #[Route('/blog/category/{slug}', name: 'category_index', methods: ['GET'])]
     public function showCategory(Category $category, CategoryRepository $categoryRepo, ArticleService $articleService): Response
     {
-        return $this->render('blog/category.html.twig', [
+        return $this->render('blog/index.html.twig', [
             'category' => $category,
-            'articles' => $articleService->getPaginatedArticles(),
-            'categoryArticles' => $articleService->getPaginatedArticlesByCategory($category),
+            'articles' => $articleService->getPaginatedArticlesByCategory($category),
             'categories' => $categoryRepo->findAll(),
+            'bestArticles' => $articleService->getTopArticles()
+
         ]);
     }
 
@@ -59,11 +62,12 @@ class BlogController extends AbstractController
     #[Route('/blog/tag/{slug}', name: 'tag_index', methods: ['GET'])]
     public function showTag(Tag $tag, CategoryRepository $categoryRepo, ArticleService $articleService): Response
     {
-        return $this->render('blog/tag.html.twig', [
+        return $this->render('blog/index.html.twig', [
             'tag' => $tag,
-            'articles' => $articleService->getPaginatedArticles(),
-            'tagArticles' => $articleService->getPaginatedArticlesByTag($tag),
+            'articles' => $articleService->getPaginatedArticlesByTag($tag),
             'categories' => $categoryRepo->findAll(),
+            'bestArticles' => $articleService->getTopArticles()
+
         ]);
     }
 }

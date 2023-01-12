@@ -20,7 +20,7 @@
 						<th>CreatedAt</th>
 						<th>UpdatedAt</th>
 						{# <th>Image</th> #}
-						{# <th>CountViews</th> #}
+						<th>CountViews</th>
 						<th>Marking</th>
 						<th>actions</th>
 					</tr>
@@ -44,7 +44,7 @@
 							<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 							{# <td>{{ article.image }}</td> #}
-							{# <td>{{ article.countViews }}</td> #}
+							<td>{{ article.countViews }}</td>
 							<td>{{ article.marking }}</td>
 							<td>
 								<a class="btn btn-warning" href="{{ path('admin_article_show', {'id': article.id}) }}">Détails</a>

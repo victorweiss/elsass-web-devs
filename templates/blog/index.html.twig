@@ -3,13 +3,24 @@
 {% block title "Les Devs Web d'Alsace" %}
 {% block description "Blog des développeurs web d'Alsace" %}
 
+{% block meta %}
+	<link rel="canonical" href="{{absolute_url(path('blog'))}}">
+{% endblock %}
+
 {% block body %}
 	<div class="container">
 		<div class="d-flex flex-wrap">
 			<div class="col-lg-10 mb-3">
 				<div class="section intro-blog">
 					<h1 class="text-center">
-						Bonne lecture 😎
+						{% if tag is defined and tag %}
+							#{{tag.name}}
+						{% elseif category is defined and category %}
+							{{category.name}}
+						{% else %}
+							Bonne lecture 😎
+						{% endif %}
+
 					</h1>
 					<div class="d-flex flex-wrap mb-5">
 						{% for category in categories %}
@@ -27,7 +38,7 @@
 
 								<div class="img-ratio">
 									<div class="img">
-										<img src="ressources/images/articles/{{article.imageName}}" alt="{{article.imageName}}">
+										<img src="{{asset('ressources/images/articles/' ~ article.imageName)  | imagine_filter('normal')}}" alt="{{article.imageName}}">
 									</div>
 								</div>
 

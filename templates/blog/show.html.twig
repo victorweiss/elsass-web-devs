@@ -7,16 +7,19 @@
 			<div class="col-lg-10 mb-3">
 				<section class="article header text-center">
 					<h1>{{article.title}}</h1>
-					<img src="../ressources/images/articles/{{article.imageName}}" class="w-75" alt="{{article.imageName}}">
+					<img src="{{asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('thumb')}}" alt="{{article.imageName}}">
 				</section>
 
 				<section class="article-intro">
-					<p>Catégorie : <a href="{{path('category_index', {'slug': article.category.slug})}}"> 
-						{{ article.category }}</a>
+					<p>Catégorie :
+						<a href="{{path('category_index', {'slug': article.category.slug})}}">
+							{{ article.category }}</a>
 						<br>
 						Tags :
 						{% for tag in article.tags %}
-							<a href="{{path('tag_index', {'slug': tag.slug})}}"> #{{tag.name}} </a>
+							<a href="{{path('tag_index', {'slug': tag.slug})}}">
+								#{{tag.name}}
+							</a>
 						{% endfor %}
 						<br>Publié le
 						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour le
@@ -27,12 +30,13 @@
 						vues</p>
 				</section>
 
+				<section id="article-body">
+					<p class="">{{ article.subtitle }}</p>
 
-				<p class="">{{ article.subtitle }}</p>
-
-				<p>
-					{{article.body | raw}}
-				</p>
+					<p>
+						{{article.body | raw}}
+					</p>
+				</section>
 				<a class="btn btn-primary" href="{{ path('blog') }}">Retour à la liste</a>
 			</div>
 
