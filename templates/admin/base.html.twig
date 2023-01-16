@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+	{% set route_name = app.request.attributes.get('_route', '') %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{% block title '' %}{{ route_name != 'home' ? " | Elsass Web Devs" }}</title>
+		<meta name="description" content="{% block description '' %}">
+
+		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
+
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('back') }}
+		{% endblock %}
+
+		{% block javascripts %}
+			{{ encore_entry_script_tags('back') }}
+		{% endblock %}
+	</head>
+
+	<body class="{{ route_name }}">
+		{% include "admin/elements/_header.html.twig" %}
+
+		<div id="main-container">
+			{% include "admin/elements/_sidebar.html.twig" %}
+
+			<main id="main">
+				<div class="container">
+					{% include "elements/_flash.html.twig" %}
+
+					{% block body %}{% endblock %}
+				</div>
+			</main>
+		</div>
+	</body>
+</html>

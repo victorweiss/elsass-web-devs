@@ -1,3 +1,14 @@
 controllers:
     resource: ../src/Controller/
     type: attribute
+    
+admin:
+    resource: ../src/Controller/Admin
+    type: attribute
+    prefix: '/_admin'
+
+article:
+    path: /blog/{slug}
+    controller: App\Controller\ArticleController::show
+    requirements:
+        slug: "[a-zA-Z0-9-]+"

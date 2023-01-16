@@ -1,0 +1,79 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Bonjour Admin" %}
+{% block description "Details administrateur article" %}
+
+
+{% block body %}
+	<h1>Article</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ article.id }}</td>
+				</tr>
+				<tr>
+					<th>Title</th>
+					<td>{{ article.title }}</td>
+				</tr>
+				<tr>
+					<th>Slug</th>
+					<td>{{ article.slug }}</td>
+				</tr>
+				<tr>
+					<th>Subtitle</th>
+					<td>{{ article.subtitle }}</td>
+				</tr>
+				<tr>
+					<th>MetaDescription</th>
+					<td>{{ article.metaDescription }}</td>
+				</tr>
+				<tr>
+					<th>Body</th>
+					<td>{{ article.body | raw }}</td>
+				</tr>
+				<tr>
+					<th>CreatedAt</th>
+					<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>UpdatedAt</th>
+					<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Image</th>
+					<td><img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="w-100 rounded-3" alt="devs web elsass apero code"></td>
+
+				</tr>
+				<tr>
+					<th>Catégorie</th>
+					<td>{{ article.category }}</td>
+				</tr>
+				<tr>
+					<th>Tags</th>
+					<td>
+						<ul class="list-unstyled">
+							{% for tag in article.tags %}
+								<li>{{tag.name}}</li>
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+				<tr>
+					<th>CountViews</th>
+					<td>{{ article.countViews }}</td>
+				</tr>
+				<tr>
+					<th>Marking</th>
+					<td>{{ article.marking }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<a class="btn btn-warning" href="{{ path('admin_article_index') }}">Retour à la liste</a>
+
+	<a class="btn btn-info" href="{{ path('admin_article_edit', {'id': article.id}) }}">Éditer</a>
+
+	{{ include('admin/article/_delete_form.html.twig') }}
+{% endblock %}
