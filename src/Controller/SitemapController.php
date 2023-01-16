@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -10,7 +12,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 class SitemapController extends AbstractController
 {
     public function __construct(
-        private ArticleRepository $blogArticleRepository
+        private ArticleRepository $blogArticleRepository,
+        private LoggerInterface $logger,
     ) {}
 
     #[Route('/sitemap.xml', name: 'sitemap')]
@@ -19,9 +22,19 @@ class SitemapController extends AbstractController
         $articles = $this->blogArticleRepository->findBy(['marking' => 'Actif']);
         $urls = [];
 
-        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr'];
-        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr/contact'];
-        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr/blog'];
+        $routes = [
+            'home',
+            'contact',
+            'blog'
+        ];
+
+        foreach ($routes as $route) {
+            try {
+                $urls[] = $this->generateUrl($route, [], UrlGeneratorInterface::ABSOLUTE_URL);
+            } catch (Exception $e) {
+                $this->logger->error(sprintf("[%s l.%s] - %s", __CLASS__, __LINE__, $e->getMessage()));
+            }
+        }
 
 
         foreach ($articles as $article) {

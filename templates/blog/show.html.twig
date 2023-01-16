@@ -3,7 +3,6 @@
 {% block title article.title %}
 {% block description article.metaDescription %}
 
-
 {% block meta_og_image %}
 	<meta property="og:image" content="{{ absolute_url(asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('facebook')) }}"/>
 {% endblock meta_og_image %}

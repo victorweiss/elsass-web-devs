@@ -6,10 +6,3 @@ admin:
     resource: ../src/Controller/Admin
     type: attribute
     prefix: '/_admin'
-
-# TODO : remove
-article:
-    path: /blog/{slug}
-    controller: App\Controller\ArticleController::show
-    requirements:
-        slug: "[a-zA-Z0-9-]+"
