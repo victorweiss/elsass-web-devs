@@ -20,8 +20,8 @@
 						{% else %}
 							Bonne lecture 😎
 						{% endif %}
-
 					</h1>
+					<h2>soustitre</h2>
 					<div class="d-flex flex-wrap mb-5">
 						{% for category in categories %}
 
@@ -43,7 +43,7 @@
 								</div>
 
 								<div class="card-body d-flex justify-content-around">
-									<h4 class="card-title">{{article.title}}</h4>
+									<div class="h4 card-title">{{article.title}}</div>
 									<p class="card-text ellipsis">{{ article.subtitle }}</p>
 									<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
 								</div>
@@ -66,4 +66,4 @@
 			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

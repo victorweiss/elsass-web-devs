@@ -21,7 +21,14 @@ liip_imagine:
 
 
     filter_sets:
-        
+
+        facebook:
+            quality: 90
+            filters:
+                fixed:
+                    width: 1200
+                    height: 628
+
         normal:
             quality: 100
             filters:

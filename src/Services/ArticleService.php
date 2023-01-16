@@ -11,13 +11,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class ArticleService
 {
     public function __construct(
-private RequestStack $requestStack,
-private ArticleRepository $articleRepo,
-private PaginatorInterface $paginator,
-
-    )    {
-        
-    }
+        private RequestStack $requestStack,
+        private ArticleRepository $articleRepo,
+        private PaginatorInterface $paginator,
+    ) {}
 
     public function getPaginatedArticles()
     {
@@ -32,10 +29,7 @@ private PaginatorInterface $paginator,
     public function getTopArticles()
     {
         return $this->articleRepo->getTopArticles(3);
-
-        
     }
-
 
     public function getPaginatedArticlesByCategory(?Category $category = null)
     {
@@ -56,5 +50,4 @@ private PaginatorInterface $paginator,
 
         return $this->paginator->paginate($articlesQuery, $page, $limit);
     }
-
 }

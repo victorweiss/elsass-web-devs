@@ -8,7 +8,7 @@ docker-compose.override*.yml
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/ressources/
+/public/ressources/images
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

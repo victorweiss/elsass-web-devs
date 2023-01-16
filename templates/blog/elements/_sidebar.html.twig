@@ -1,22 +1,14 @@
 <h2 class="text-center h4">Articles les plus lus</h2>
+
 {% for article in bestArticles %}
 	<div class="siders mx-auto py-1 d-flex flex-column justify-content-evenly">
-
 		<div class="img-ratio">
 			<div class="img">
-				<img
-				{# src="{{ asset('ressources/images/articles/'~ article.imageName) | imagine_filter('my_thumb') }}" alt="{{article.imageName}}"> #}
-
-			<img src="{{asset('/ressources/images/articles/' ~ article.imageName)}}" class="siders-image mx-auto" alt="{{article.imageName}}">
-
-
+				<img src="{{asset('/ressources/images/articles/' ~ article.imageName)}}" class="siders-image mx-auto" alt="{{article.imageName}}">
 			</div>
 		</div>
 
-
-		<div class="siders-titles ">
-			{{article.title}}
-		</div>
+		<div class="siders-titles">{{article.title}}</div>
 
 		<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary mx-auto rounded-circle">Lire</a>
 	</div>
