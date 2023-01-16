@@ -1,13 +1,24 @@
 {% extends 'base.html.twig' %}
 
+{% block title "Les Devs Web d'Alsace" %}
+{% block description "Article des développeurs web d'Alsace" %}
+
+{% block meta %}
+	{# <link rel="canonical" href="{{absolute_url(path('blog'))}}"> #}
+{% endblock %}
+
 
 {% block body %}
 	<div class="container">
 		<div class="d-flex flex-wrap">
 			<div class="col-lg-10 mb-3">
-				<section class="article header text-center">
+				<section class="article-header text-center">
 					<h1>{{article.title}}</h1>
-					<img src="{{asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('thumb')}}" alt="{{article.imageName}}">
+					<div class="img-ratio">
+						<div class="img">
+							<img src="{{asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('normal')}}" alt="{{article.imageName}}">
+						</div>
+					</div>
 				</section>
 
 				<section class="article-intro">
@@ -22,7 +33,7 @@
 							</a>
 						{% endfor %}
 						<br>Publié le
-						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour le
+						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour
 						{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
 						<br>
 						<i class="bi bi-eye"></i>

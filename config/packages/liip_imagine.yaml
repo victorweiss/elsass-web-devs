@@ -26,7 +26,7 @@ liip_imagine:
             quality: 100
             filters:
                 scale:
-                    dim: [ 1200, 1200 ]
+                    dim: [ 800, 800 ]
         thumb:
             quality: 100
             filters:
