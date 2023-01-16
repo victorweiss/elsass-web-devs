@@ -18,4 +18,4 @@ fm_elfinder:
                         show_hidden: false
                         upload_allow: ['image/png', 'image/jpg', 'image/jpeg']
                         upload_deny: ['all']
-                        upload_max_size: 2M
+                        upload_max_size: 6M
