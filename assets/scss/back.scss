@@ -1,0 +1,84 @@
+@import './variables';
+@import './bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons';
+
+$header-height: 70px;
+$sidebar-width: 280px;
+
+@font-face {
+  font-family: 'coolvetica';
+  src: url('../fonts/coolvetica rg.otf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+    &,
+    html {
+      min-height: 100%;
+    }
+    font-family: coolvetica, serif;
+  }
+
+header#header {
+  background-color: $primary;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  #logo-header {
+    max-height: 50px;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  #main-container {
+    #sidebar {
+      background-color: $primary;
+      color: white;
+      position: fixed;
+      top: 0;
+      right: -290px;
+      bottom: 0;
+      z-index: 3;
+      width: $sidebar-width;
+      transition: right .3s;
+      padding-top:15px;
+      #buttonCollapse{
+      position:absolute;
+      top:10px;
+      right:10px;
+      }
+      &.open {
+        right: 0;
+      }
+    }
+    main#main {
+      padding-top: $header-height;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  #main-container {
+    #sidebar {
+        background-color: $primary;
+        color: white;
+        width: $sidebar-width;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+        padding-top: $header-height;
+        #buttonCollapse{
+          display:none;
+        }
+    }
+    main#main {
+      padding-top: $header-height;
+      padding-left: $sidebar-width;
+    }
+  }
+}

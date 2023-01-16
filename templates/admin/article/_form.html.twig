@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+{{form_row(form.title)}}
+{{form_row(form.slug)}}
+{{form_row(form.subtitle)}}
+{{form_row(form.metaDescription)}}
+{{form_row(form.body)}}
+{{form_row(form.imageFile)}}
+{{form_row(form.marking)}}
+{{form_row(form.category)}}
+{{form_row(form.tags)}}
+{{form_row(form.author)}}
+
+<button class="btn btn-success">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

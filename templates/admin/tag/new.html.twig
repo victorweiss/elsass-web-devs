@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Nouveau tag" %}
+{% block description "Creation administrateur tag" %}
+
+{% block body %}
+<div class="container">
+    <h1>Créer nouveau Tag</h1>
+
+    {{ include('admin/tag/_form.html.twig') }}
+
+    <a class="btn btn-primary"  href="{{ path('admin_tag_index') }}">Retour à la liste</a>
+</div>
+{% endblock %}

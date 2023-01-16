@@ -1,0 +1,21 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+fos_ck_editor:
+    configs:
+            my_config:
+                # toolbar: [ ["Source", "Sourcedialog", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
+                uiColor:                "#ffffff"
+#                 filebrowserUploadUrl: "build/images/ckeditor"
+                # extraPlugins: ""
+                removePlugins: 'save,newpage,exportpdf,preview,print,templates,pastefromword,find,forms,div,iframe,pagebreak,language,selectall,specialchar,smiley,about,bidi,pastetext'
+                removeButtons: 'Styles,Font,Subscript,Superscript,Cut,Copy,Paste'
+                base_path: "build/ckeditor"
+                js_path: "build/ckeditor/ckeditor.js"
+                fullpage: true
+                allowedContent: true
+                filebrowserBrowseRoute: elfinder
+                filebrowserBrowseRouteParameters: []
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+

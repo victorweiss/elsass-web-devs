@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title article.title %}
+{% block description article.metaDescription %}
+
+{% block meta_og_image %}
+	<meta property="og:image" content="{{ absolute_url(asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('facebook')) }}"/>
+{% endblock meta_og_image %}
+
+{% block body %}
+	<div class="container">
+		<div class="d-flex flex-wrap">
+			<div class="col-lg-10 mb-3">
+				<section class="article-header text-center">
+					<h1>{{article.title}}</h1>
+					<div class="img-ratio">
+						<div class="img">
+							<img src="{{asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('normal')}}" alt="{{article.imageName}}">
+						</div>
+					</div>
+				</section>
+
+				<section class="article-intro">
+					<p>Catégorie :
+						<a href="{{path('category_index', {'slug': article.category.slug})}}">
+							{{ article.category }}</a>
+						<br>
+						Tags :
+						{% for tag in article.tags %}
+							<a href="{{path('tag_index', {'slug': tag.slug})}}">
+								#{{tag.name}}
+							</a>
+						{% endfor %}
+						<br>Publié le
+						{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}, dernière mise à jour
+						{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}
+						<br>
+						<i class="bi bi-eye"></i>
+						{{ article.countViews }}
+						vues</p>
+				</section>
+
+				<section id="article-body">
+					<p class="">{{ article.subtitle }}</p>
+
+					<p>
+						{{article.body | raw}}
+					</p>
+				</section>
+				<a class="btn btn-primary" href="{{ path('blog') }}">Retour à la liste</a>
+			</div>
+
+			<div class="col-lg-2 mx-auto align-item d-flex flex-column text-center">
+				{% include "blog/elements/_sidebar.html.twig" %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

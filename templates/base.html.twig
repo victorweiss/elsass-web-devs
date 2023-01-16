@@ -8,36 +8,34 @@
 		<title>{% block title '' %}{{ route_name != 'home' ? " | Elsass Web Devs" }}</title>
 		<meta name="description" content="{% block description '' %}">
 
-		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
-
+		<link rel="icon" href="{{ asset('ressources/icons/favicon.ico') }}" type="image/x-icon"> 
+		{% block meta %}{% endblock %}
 		{% block meta_og %}
-			<meta property="og:url"         content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" />
-			<meta property="og:type"        content="website" />
-			<meta property="og:title"       content="{{ block('title') }}{{ route_name != 'home' ? " | Elsass Web Devs" }}" />
-			<meta property="og:description" content="{{ block('description') }}" />
+			<meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}"/>
+			<meta property="og:type" content="website"/>
+			<meta property="og:title" content="{{ block('title') }}{{ route_name != 'home' ? " | Elsass Web Devs" }}"/>
+			<meta property="og:description" content="{{ block('description') }}"/>
 			{% block meta_og_image %}
-				<meta property="og:image"   content="{{ absolute_url(asset('build/images/logo-facebook-feed.jpg')) }}" />
+				<meta property="og:image" content="{{ absolute_url(asset('build/images/logo-facebook-feed.jpg')) }}"/>
 			{% endblock meta_og_image %}
 		{% endblock meta_og %}
 
 		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
+			{{ encore_entry_link_tags('front') }}
 		{% endblock %}
 
 		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
+			{{ encore_entry_script_tags('front') }}
 		{% endblock %}
 	</head>
 
 	<body class="{{ route_name }}">
 		{% include "elements/_header.html.twig" %}
+		{% include "elements/_flash.html.twig" %}
 
-		<main id="main">
-			{% include "elements/_flash.html.twig" %}
+		<main id="main"> {% block body %}{% endblock %}
+			</main>
 
-			{% block body %}{% endblock %}
-		</main>
-
-		{% include "elements/_footer.html.twig" %}
-	</body>
-</html>
+			{% include "elements/_footer.html.twig" %}
+		</body>
+	</html>
