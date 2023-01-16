@@ -16,6 +16,7 @@ start: ## Start coding
 
 .PHONY: stop
 stop: ## Stop coding
+	docker-compose --profile yarn down
 	docker-compose down
 
 .PHONY: install
