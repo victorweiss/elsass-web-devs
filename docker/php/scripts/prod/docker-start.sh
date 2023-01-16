@@ -10,6 +10,8 @@ composer dump-autoload --no-dev --classmap-authoritative
 
 php bin/console doctrine:migration:migrate -n
 
-php bin/console cache:clear -n --env=$APP_ENV --no-debug
-
+php bin/console ckeditor:install
+php bin/console elfinder:install
 php bin/console assets:install --symlink public
+
+php bin/console cache:clear -n --env=$APP_ENV --no-debug
