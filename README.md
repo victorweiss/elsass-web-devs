@@ -5,7 +5,7 @@
 ```shell
 composer install
 bin/console doctrine:migrations:migrate
-bin/console ckeditor:install 
+bin/console ckeditor:install --clear=skip
 bin/console elfinder:install 
 bin/console assets:install
 
