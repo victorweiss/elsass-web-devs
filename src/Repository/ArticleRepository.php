@@ -7,7 +7,6 @@ use App\Entity\Article;
 use App\Entity\Category;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**

@@ -3,29 +3,40 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+use Exception;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class SitemapController extends AbstractController
 {
-
-    private $blogArticleRepository;
-
-    public function __construct(ArticleRepository $blogArticleRepository)
-    {
-        $this->blogArticleRepository = $blogArticleRepository;
-       
-    }
+    public function __construct(
+        private ArticleRepository $blogArticleRepository,
+        private LoggerInterface $logger,
+    ) {}
 
     #[Route('/sitemap.xml', name: 'sitemap')]
     public function index()
     {
-        // find published blog posts from db
         $articles = $this->blogArticleRepository->findBy(['marking' => 'Actif']);
         $urls = [];
-       
+
+        $routes = [
+            'home',
+            'contact',
+            'blog'
+        ];
+
+        foreach ($routes as $route) {
+            try {
+                $urls[] = $this->generateUrl($route, [], UrlGeneratorInterface::ABSOLUTE_URL);
+            } catch (Exception $e) {
+                $this->logger->error(sprintf("[%s l.%s] - %s", __CLASS__, __LINE__, $e->getMessage()));
+            }
+        }
+
+
         foreach ($articles as $article) {
             $urls[] = [
                 'loc' => $this->generateUrl(
@@ -34,17 +45,10 @@ class SitemapController extends AbstractController
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 'lastmod' => $article->getUpdatedAt()->format('Y-m-d'),
-                'changefreq' => 'daily',
-                'priority' => '0.5',
             ];
         }
-        
 
-
-        $response = new Response(
-            $this->renderView('./sitemap/sitemap.html.twig', ['urls' => $urls]),
-            200
-        );
+        $response = $this->render('sitemap/sitemap.html.twig', ['urls' => $urls]);
         $response->headers->set('Content-Type', 'text/xml');
 
         return $response;

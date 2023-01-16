@@ -2,29 +2,21 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Tag;
-use DateTimeImmutable;
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Form\ArticleType;
 use App\Services\ArticleService;
-use Doctrine\ORM\Mapping\Entity;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\AsciiSlugger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToHtml5LocalDateTimeTransformer;
 
 class BlogController extends AbstractController
 {
     #[Route('/blog', name: 'blog')]
     public function index(ArticleService $articleService, CategoryRepository $categoryRepo): Response
     {
-
         return $this->render('blog/index.html.twig', [
             'articles' => $articleService->getPaginatedArticles(),
             'categories' => $categoryRepo->findAll(),
@@ -54,7 +46,6 @@ class BlogController extends AbstractController
             'articles' => $articleService->getPaginatedArticlesByCategory($category),
             'categories' => $categoryRepo->findAll(),
             'bestArticles' => $articleService->getTopArticles()
-
         ]);
     }
 
@@ -67,7 +58,6 @@ class BlogController extends AbstractController
             'articles' => $articleService->getPaginatedArticlesByTag($tag),
             'categories' => $categoryRepo->findAll(),
             'bestArticles' => $articleService->getTopArticles()
-
         ]);
     }
 }

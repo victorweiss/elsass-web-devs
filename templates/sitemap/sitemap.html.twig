@@ -9,22 +9,7 @@
         {% if url.lastmod is defined %}
         <lastmod>{{url.lastmod}}</lastmod>
         {% endif %}
-        {% if url.changefreq is defined %}
-        <changefreq>{{url.changefreq}}</changefreq>
-        {% endif %}
-        {% if url.priority is defined %}
-        <priority>{{url.priority}}</priority>
-        {% endif %}
     </url>
-    
+
     {% endfor %}
-<url>
-		<loc>https://www.elsass-web-devs.fr</loc>
-	</url>
-	<url>
-		<loc>https://www.elsass-web-devs.fr/contact</loc>
-	</url>
-	<url>
-		<loc>https://www.elsass-web-devs.fr/blog</loc>
-	</url>
 </urlset>

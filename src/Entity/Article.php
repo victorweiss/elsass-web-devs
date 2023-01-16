@@ -12,7 +12,6 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use App\Entity\Category;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 #[Vich\Uploadable]
@@ -254,11 +253,6 @@ class Article
      * @return Collection<int, Tag>
      */
     public function getTags(): Collection
-    {
-        return $this->tags;
-    }
-
-    public function __toString()
     {
         return $this->tags;
     }
