@@ -9,15 +9,10 @@
         {% if url.lastmod is defined %}
         <lastmod>{{url.lastmod}}</lastmod>
         {% endif %}
-        {% if url.changefreq is defined %}
-        <changefreq>{{url.changefreq}}</changefreq>
-        {% endif %}
-        {% if url.priority is defined %}
-        <priority>{{url.priority}}</priority>
-        {% endif %}
     </url>
-    
+
     {% endfor %}
+{# TODO : mettre dans le controller pour générer dynamiuement #}
 <url>
 		<loc>https://www.elsass-web-devs.fr</loc>
 	</url>
