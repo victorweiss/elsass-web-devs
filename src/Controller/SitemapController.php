@@ -16,9 +16,13 @@ class SitemapController extends AbstractController
     #[Route('/sitemap.xml', name: 'sitemap')]
     public function index()
     {
-        // find published blog posts from db
         $articles = $this->blogArticleRepository->findBy(['marking' => 'Actif']);
         $urls = [];
+
+        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr'];
+        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr/contact'];
+        $urls[] = ['loc' =>'https://www.elsass-web-devs.fr/blog'];
+
 
         foreach ($articles as $article) {
             $urls[] = [

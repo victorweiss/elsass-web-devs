@@ -1,12 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{# TODO : changer le title avec le title de l'article #}
-{% block title "Les Devs Web d'Alsace" %}
-{% block description "Article des développeurs web d'Alsace" %}
+{% block title article.title %}
+{% block description article.metaDescription %}
 
-{% block meta %}
-	{# <link rel="canonical" href="{{absolute_url(path('blog'))}}"> #}
-{% endblock %}
 
 {% block meta_og_image %}
 	<meta property="og:image" content="{{ absolute_url(asset('ressources/images/articles/' ~ article.imageName) | imagine_filter('facebook')) }}"/>
