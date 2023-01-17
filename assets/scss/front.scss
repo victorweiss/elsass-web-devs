@@ -10,14 +10,16 @@
 }
 
 body {
-
   &,
   html {
     min-height: 100%;
   }
 
-  font-family: coolvetica,
-  serif;
+  font-family: coolvetica, serif;
+}
+
+.text-body {
+  color: $body-color;
 }
 
 header {
@@ -63,21 +65,6 @@ main#main {
   padding-bottom: 30px;
 }
 
-h1 {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-h2 {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-p {
-  text-align: justify;
-  font-size: 20px;
-}
-
 .iframe-container {
   position: relative;
   width: 100%;
@@ -101,9 +88,9 @@ body.home {
 
 
 .card {
-  width: 18rem;
   border: 3px $primary solid;
   border-radius: 15px;
+  overflow: hidden;
 
   .img-ratio {
     position: relative;
@@ -127,8 +114,6 @@ body.home {
         height: 100%;
         width: 100%;
         object-fit: cover;
-        border-radius: 15px;
-
       }
     }
   }
@@ -169,7 +154,7 @@ body.home {
 
 
 .article-header{
-  
+
   .img-ratio {
     position: relative;
 
@@ -201,17 +186,15 @@ body.home {
 .article-intro {
   p {
     margin-top: 10px;
-    font-size: small;
   }
 }
 
 
 
 .siders {
-  width: 190px;
-  height: auto;
   border-radius: 20px;
-
+  border: 3px $primary solid;
+  overflow: hidden;
 
   .img-ratio {
     position: relative;
@@ -235,14 +218,12 @@ body.home {
         height: 100%;
         width: 100%;
         object-fit: cover;
-        border-radius: 50px;
       }
     }
   }
 
   .btn {
     &:hover {
-      border-radius: 20px;
       background-color: #ffffff;
       color: $primary;
     }

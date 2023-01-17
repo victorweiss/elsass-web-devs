@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title "Blog des Devs Web d'Alsace" %}
-{% block description "Bienvenue sur le blog des Devs Web d'Alsace" %}
+{% block title "Blog" %}
+{% block description "Retrouvez l'actialité, les dernières infos, les profils de développeurs web et les soirées apéro-code organisées par les Devs Web Alsace" %}
 
 {% block meta %}
 	<link rel="canonical" href="{{absolute_url(path('blog'))}}">
@@ -9,8 +9,8 @@
 
 {% block body %}
 	<div class="container">
-		<div class="d-flex flex-wrap">
-			<div class="col-lg-10 mb-3">
+		<div class="row">
+			<div class="col-lg-9 col-xl-10 mb-3">
 				<div class="section intro-blog">
 					<h1 class="text-center">
 						{% if tag is defined and tag %}
@@ -18,38 +18,35 @@
 						{% elseif category is defined and category %}
 							{{category.name}}
 						{% else %}
-							Bonne lecture 😎
+							S'Blog
 						{% endif %}
 					</h1>
-					<h2>soustitre</h2>
-					<div class="d-flex flex-wrap mb-5">
+					<h2 class="h4 text-body">{{ block('description') }}</h2>
+					<div class="d-flex flex-wrap mt-3 mb-5">
 						{% for category in categories %}
-
-							<a class="btn btn-primary rounded-pill mx-auto mt-2" href="{{ path('category_index', {'slug': category.slug}) }}">{{ category.name }}</a>
+							<a class="btn btn-primary rounded-pill mb-2 me-2" href="{{ path('category_index', {'slug': category.slug}) }}">{{ category.name }}</a>
 						{% endfor %}
 					</div>
 				</div>
 
 				<div class="section articles-blog">
-					<div class="d-flex flex-wrap justify-content-evenly">
+					<div class="row">
 						{% for article in articles %}
+							<div class="col-md-6 col-lg-4 mb-3">
+								<div class="card text-center">
+									<div class="img-ratio">
+										<div class="img">
+											<img src="{{asset('ressources/images/articles/' ~ article.imageName)  | imagine_filter('normal')}}" alt="{{article.imageName}}">
+										</div>
+									</div>
 
-							<div class="card p-2 mx-1 text-center col-4 mb-2">
-
-								<div class="img-ratio">
-									<div class="img">
-										<img src="{{asset('ressources/images/articles/' ~ article.imageName)  | imagine_filter('normal')}}" alt="{{article.imageName}}">
+									<div class="card-body d-flex justify-content-around">
+										<div class="h4 card-title">{{article.title}}</div>
+										<p class="card-text ellipsis">{{ article.subtitle }}</p>
+										<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
 									</div>
 								</div>
-
-								<div class="card-body d-flex justify-content-around">
-									<div class="h4 card-title">{{article.title}}</div>
-									<p class="card-text ellipsis">{{ article.subtitle }}</p>
-									<a href="{{ path('article_show', {'slug': article.slug}) }}" class="btn btn-primary">Lire l'article</a>
-								</div>
 							</div>
-						{% else %}
-							<h2>Aucun article disponible</h2>
 						{% endfor %}
 					</div>
 				</div>
@@ -61,7 +58,7 @@
 				</div>
 			</div>
 
-			<div class="col-lg-2 mx-auto align-item d-flex flex-column text-center">
+			<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
 				{% include "blog/elements/_sidebar.html.twig" %}
 			</div>
 		</div>
