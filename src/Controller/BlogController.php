@@ -27,8 +27,10 @@ class BlogController extends AbstractController
     #[Route('/blog/{slug}', name: 'article_show')]
     public function show(Article $article, ArticleService $articleService, ArticleRepository $articleRepository): Response
     {
-        $article->setCountViews($article->getCountViews() + 1);
-        $articleRepository->save($article, true);
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            $article->setCountViews($article->getCountViews() + 1);
+            $articleRepository->save($article, true);
+        }
 
         return $this->render('blog/show.html.twig', [
             'article' => $article,
