@@ -70,7 +70,7 @@ when@prod:
                 type: symfony_mailer
                 from_email: '%email_contact%'
                 to_email: '%email_developer%'
-                subject: '%project_name% (%app_env%) - Error %%channel%%.%%level_name%%'
+                subject: 'Elsass Web Devs (%app_env%) - Error %%channel%%.%%level_name%%'
                 level: error
                 formatter: monolog.formatter.html
                 content_type: text/html
