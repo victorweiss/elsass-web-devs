@@ -10,7 +10,7 @@ help:
 
 .PHONY: start
 start: ## Start coding
-	docker-compose up -d
+	docker-compose --env-file .env.local up -d
 	docker-compose --profile yarn up -d
 	docker-compose logs -f
 
