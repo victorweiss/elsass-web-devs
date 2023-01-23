@@ -40,7 +40,7 @@ class SitemapController extends AbstractController
         foreach ($articles as $article) {
             $urls[] = [
                 'loc' => $this->generateUrl(
-                    'article',
+                    'article_show',
                     ['slug' => $article->getSlug()],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),

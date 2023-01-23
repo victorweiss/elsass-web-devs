@@ -29,7 +29,7 @@ class Article
     private ?string $title = null;
 
     #[Gedmo\Slug(unique: true, updatable: false, fields: ['title'])]
-    #[ORM\Column()]
+    #[ORM\Column]
     private $slug = null;
 
     #[ORM\Column(length: 255)]
@@ -45,7 +45,7 @@ class Article
     #[ORM\Column]
     private ?DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(name: 'content_changed', type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column]
     #[Gedmo\Timestampable(on: 'change', field: ['title', 'subtitle', 'body', 'marking', 'image'])]
     private ?DateTime $updatedAt = null;
 
