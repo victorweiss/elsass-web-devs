@@ -68,8 +68,8 @@ when@prod:
                 handler: symfony_mailer
             symfony_mailer:
                 type: symfony_mailer
-                from_email: '%admin_email%'
-                to_email: '%developer_email%'
+                from_email: '%email_contact%'
+                to_email: '%email_developer%'
                 subject: '%project_name% (%app_env%) - Error %%channel%%.%%level_name%%'
                 level: error
                 formatter: monolog.formatter.html
