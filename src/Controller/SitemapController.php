@@ -19,7 +19,6 @@ class SitemapController extends AbstractController
     #[Route('/sitemap.xml', name: 'sitemap')]
     public function index()
     {
-        $articles = $this->blogArticleRepository->findBy(['marking' => 'Actif']);
         $urls = [];
 
         $routes = [
@@ -30,13 +29,13 @@ class SitemapController extends AbstractController
 
         foreach ($routes as $route) {
             try {
-                $urls[] = $this->generateUrl($route, [], UrlGeneratorInterface::ABSOLUTE_URL);
+                $urls[]['loc'] = $this->generateUrl($route, [], UrlGeneratorInterface::ABSOLUTE_URL);
             } catch (Exception $e) {
                 $this->logger->error(sprintf("[%s l.%s] - %s", __CLASS__, __LINE__, $e->getMessage()));
             }
         }
 
-
+        $articles = $this->blogArticleRepository->findBy(['marking' => 'Actif']);
         foreach ($articles as $article) {
             $urls[] = [
                 'loc' => $this->generateUrl(
