@@ -49,6 +49,7 @@
 							<td>
 								<a class="btn btn-warning" href="{{ path('admin_article_show', {'id': article.id}) }}">Détails</a>
 								<a class="btn btn-info" href="{{ path('admin_article_edit', {'id': article.id}) }}">Éditer</a>
+								<a class="btn btn-primary" href="{{ path('article_show', {'slug': article.slug}) }}">Voir</a>
 							</td>
 						</tr>
 					{% else %}
