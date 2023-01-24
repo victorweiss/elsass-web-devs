@@ -15,3 +15,5 @@ php bin/console elfinder:install
 php bin/console assets:install
 
 php bin/console cache:clear -n --env=$APP_ENV --no-debug
+
+chmod 777 -R var/cache/*
