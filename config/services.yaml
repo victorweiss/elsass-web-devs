@@ -29,3 +29,8 @@ services:
     App\Services\MailerService:
         arguments:
             $emailContact: "%email_contact%"
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - '%env(DATABASE_URL)%'
+            - { db_table: 'user_session' }
