@@ -28,7 +28,7 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[Gedmo\Slug(unique: true, updatable: false, fields: ['title'])]
+    #[Gedmo\Slug(unique: true, updatable: true, fields: ['title'])]
     #[ORM\Column]
     private $slug = null;
 

@@ -18,13 +18,12 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('slug', TextType::class, [
-                'required' => false,
-                'help' => 'laissez vide, sera généré automatiquement'
+                'required' => true,
+                'help' => 'Sera généré automatiquement, ne pas toucher même en cas de modification du titre'
             ])
             ->add('subtitle')
             ->add('metaDescription')
             ->add('body', CKEditorType::class)
-// ICI POUR LIEN AVEC LE FOS_CKEDITOR.YAML
 
             ->add('imageFile', VichImageType::class, [
                 'required' => false

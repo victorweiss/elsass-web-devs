@@ -82,3 +82,11 @@ header#header {
     }
   }
 }
+
+.vich-image {
+  a {
+    img {
+      max-width: 800px;
+    }
+  }
+}
