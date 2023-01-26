@@ -19,7 +19,7 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('slug', TextType::class, [
                 'required' => false,
-                'help' => 'Sera généré automatiquement, ne pas toucher même en cas de modification du titre'
+                'help' => 'Sera généré automatiquement, sinon slug généré par cet input'
             ])
             ->add('subtitle')
             ->add('metaDescription')
