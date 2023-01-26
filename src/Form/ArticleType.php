@@ -18,7 +18,7 @@ class ArticleType extends AbstractType
         $builder
             ->add('title')
             ->add('slug', TextType::class, [
-                'required' => true,
+                'required' => false,
                 'help' => 'Sera généré automatiquement, ne pas toucher même en cas de modification du titre'
             ])
             ->add('subtitle')
