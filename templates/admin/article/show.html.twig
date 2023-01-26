@@ -10,6 +10,8 @@
 			<i class="bi bi-arrow-left me-2"></i>
 			Retour à la liste</a>
 	</div>
+	<a class="btn btn-success" href="{{ path('article_show', {'slug': article.slug}) }}">Voir</a>
+
 	<h1>Article</h1>
 	<div class="table-responsive">
 		<table class="table">
@@ -48,7 +50,7 @@
 				</tr>
 				<tr>
 					<th>Image</th>
-					<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('normal') }}"  alt="{{article.title}}"></td>
+					<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('normal') }}" alt="{{article.title}}"></td>
 
 				</tr>
 				<tr>
