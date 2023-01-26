@@ -10,7 +10,9 @@
 {% block body %}
 	<div class="container">
 		<div class="mb-3">
-			<a href="{{ path('blog') }}"><i class="bi bi-arrow-left me-2"></i> Retour à la liste</a>
+			<a href="{{ path('blog') }}">
+				<i class="bi bi-arrow-left me-2"></i>
+				Retour à la liste</a>
 		</div>
 
 		<div class="row">
@@ -31,12 +33,14 @@
 						<a href="{{path('category_index', {'slug': article.category.slug})}}">
 							{{ article.category }}</a>
 						<br>
-						Tags :
-						{% for tag in article.tags %}
-							<a href="{{path('tag_index', {'slug': tag.slug})}}">
-								#{{tag.name}}
-							</a>
-						{% endfor %}
+						{% if article.tags|length %}
+							<div class="tags">
+								<strong>Tags:</strong>
+								{% for tag in article.tags %}
+									<a href="{{path('tag_index', {'slug': tag.slug})}}">#{{tag.name}}</a>
+								{% endfor %}
+							</div>
+						{% endif %}
 						<br>Publié le
 						{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}, mis à jour le
 						{{ article.updatedAt ? article.updatedAt|date('d/m/Y') : '' }}

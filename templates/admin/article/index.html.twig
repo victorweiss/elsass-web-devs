@@ -24,7 +24,7 @@
 				<tbody>
 					{% for article in articles %}
 						<tr>
-							<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb')}}" class="h-50" alt="{{article.title}}"></td>
+							<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb')}}" alt="{{article.title}}"></td>
 							<td>{{ article.id }}</td>
 							<td>{{ article.category }}</td>
 							<td>{{ article.title|u.truncate(50, '...') }}</td>
