@@ -18,8 +18,12 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'admin_article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository): Response
     {
+        $query = $articleRepository->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->getQuery();
+        $articles = $query->getResult();
         return $this->render('admin/article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
         ]);
     }
 

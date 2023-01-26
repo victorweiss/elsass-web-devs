@@ -18,8 +18,12 @@ class TagController extends AbstractController
     #[Route('/', name: 'admin_tag_index', methods: ['GET'])]
     public function index(TagRepository $tagRepository): Response
     {
+        $query = $tagRepository->createQueryBuilder('t')
+            ->orderBy('t.id', 'DESC')
+            ->getQuery();
+        $tags = $query->getResult();
         return $this->render('admin/tag/index.html.twig', [
-            'tags' => $tagRepository->findAll(),
+            'tags' => $tags,
         ]);
     }
 
