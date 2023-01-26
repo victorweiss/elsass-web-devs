@@ -32,7 +32,6 @@ class ArticleType extends AbstractType
                 'choices' => [
                     'Brouillon' => 'Brouillon',
                     'Actif' => 'Actif',
-                    'Inactif' => 'Inactif',
                 ]
             ])
             ->add('category')
