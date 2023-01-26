@@ -48,7 +48,7 @@
 				</tr>
 				<tr>
 					<th>Image</th>
-					<td><img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="w-100 rounded-3" alt="devs web elsass apero code"></td>
+					<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('normal') }}"  alt="{{article.title}}"></td>
 
 				</tr>
 				<tr>
