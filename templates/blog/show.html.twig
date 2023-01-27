@@ -10,7 +10,9 @@
 {% block body %}
 	<div class="container">
 		<div class="mb-3">
-			<a href="{{ path('blog') }}"><i class="bi bi-arrow-left me-2"></i> Retour à la liste</a>
+			<a href="{{ path('blog') }}">
+				<i class="bi bi-arrow-left me-2"></i>
+				Retour à la liste</a>
 		</div>
 
 		<div class="row">
@@ -27,33 +29,38 @@
 				</section>
 
 				<section class="article-intro bg-light px-3 py-2 rounded border my-4">
-					<p>Catégorie :
-						<a href="{{path('category_index', {'slug': article.category.slug})}}">
-							{{ article.category }}</a>
-						<br>
-						Tags :
-						{% for tag in article.tags %}
-							<a href="{{path('tag_index', {'slug': tag.slug})}}">
-								#{{tag.name}}
-							</a>
-						{% endfor %}
-						<br>Publié le
-						{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}, mis à jour le
-						{{ article.updatedAt ? article.updatedAt|date('d/m/Y') : '' }}
-						<br>
-						<i class="bi bi-eye"></i>
+					{% if article.category|length %}
+						<div class="category">
+							<strong>Catégorie : </strong>
+								<a href="{{path('category_index', {'slug': article.category.slug})}}">
+									{{ article.category }}</a>
+						</div>
+					{% endif %}
+					{% if article.tags|length %}
+						<div class="tags">
+							<strong>Tags:</strong>
+							{% for tag in article.tags %}
+								<a href="{{path('tag_index', {'slug': tag.slug})}}">#{{tag.name}}</a>
+							{% endfor %}
+						</div>
+					{% endif %}
+					Publié le
+					{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}, mis à jour le
+					{{ article.updatedAt ? article.updatedAt|date('d/m/Y') : '' }}
+					{% if article.countViews|length %}
+						<br><i class="bi bi-eye"></i>
 						{{ article.countViews }}
-						vues</p>
-				</section>
+						vues
+				{% endif %}
+			</section>
 
-				<section id="article-body">
-					{{article.body | raw}}
-				</section>
-			</div>
+			<section id="article-body">
+				{{article.body | raw}}
+			</section>
+		</div>
 
-			<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
-				{% include "blog/elements/_sidebar.html.twig" %}
-			</div>
+		<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
+			{% include "blog/elements/_sidebar.html.twig" %}
 		</div>
 	</div>
-{% endblock %}
+</div>{% endblock %}

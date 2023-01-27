@@ -19,12 +19,11 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('slug', TextType::class, [
                 'required' => false,
-                'help' => 'laissez vide, sera généré automatiquement'
+                'help' => 'Sera généré automatiquement, sinon slug généré par cet input'
             ])
             ->add('subtitle')
             ->add('metaDescription')
             ->add('body', CKEditorType::class)
-// ICI POUR LIEN AVEC LE FOS_CKEDITOR.YAML
 
             ->add('imageFile', VichImageType::class, [
                 'required' => false
@@ -33,7 +32,6 @@ class ArticleType extends AbstractType
                 'choices' => [
                     'Brouillon' => 'Brouillon',
                     'Actif' => 'Actif',
-                    'Inactif' => 'Inactif',
                 ]
             ])
             ->add('category')

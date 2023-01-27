@@ -16,8 +16,12 @@ class CategoryController extends AbstractController
     #[Route('/', name: 'admin_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
+        $query = $categoryRepository->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->getQuery();
+        $categories = $query->getResult();
         return $this->render('admin/category/index.html.twig', [
-            'categories' => $categoryRepository->findAll(),
+            'categories' => $categories,
         ]);
     }
 
