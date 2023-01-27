@@ -1,10 +1,21 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title "Bonjour Admin" %}
+{% block title "Détails article" %}
 {% block description "Details administrateur article" %}
 
 
 {% block body %}
+<<<<<<< Updated upstream
+=======
+<div class="container">
+	<div class="mb-3">
+		<a href="{{ path('admin_article_index') }}">
+			<i class="bi bi-arrow-left me-2"></i>
+			Retour à la liste</a>
+	</div>
+	<a class="btn btn-success" href="{{ path('article_show', {'slug': article.slug}) }}">Voir</a>
+
+>>>>>>> Stashed changes
 	<h1>Article</h1>
 	<div class="table-responsive">
 		<table class="table">
@@ -76,4 +87,5 @@
 	<a class="btn btn-info" href="{{ path('admin_article_edit', {'id': article.id}) }}">Éditer</a>
 
 	{{ include('admin/article/_delete_form.html.twig') }}
+</div>
 {% endblock %}

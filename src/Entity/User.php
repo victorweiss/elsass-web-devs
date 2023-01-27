@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -40,9 +41,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private Collection $articles;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: EventBooking::class)]
+    private Collection $eventBookings;
+
+    #[ORM\Column(nullable:true)]
+    private ?\DateTimeImmutable $createdAt = null;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->eventBookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -170,6 +178,48 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $article->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EventBooking>
+     */
+    public function getEventBookings(): Collection
+    {
+        return $this->eventBookings;
+    }
+
+    public function addEventBooking(EventBooking $eventBooking): self
+    {
+        if (!$this->eventBookings->contains($eventBooking)) {
+            $this->eventBookings->add($eventBooking);
+            $eventBooking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventBooking(EventBooking $eventBooking): self
+    {
+        if ($this->eventBookings->removeElement($eventBooking)) {
+            // set the owning side to null (unless already changed)
+            if ($eventBooking->getUser() === $this) {
+                $eventBooking->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
