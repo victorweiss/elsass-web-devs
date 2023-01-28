@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Services\MailerService;
+use App\Controller\BaseController;
 use App\Repository\ContactRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3Validator;
 
-class ContactController extends AbstractController
+class ContactController extends BaseController
 {
     #[Route('/contact', name: 'contact')]
     public function index(Request $request, MailerService $mailer, ContactRepository $contactRepository, Recaptcha3Validator $recaptcha3Validator)
@@ -39,6 +40,7 @@ class ContactController extends AbstractController
         }
 
         return $this->render('contact/index.html.twig', [
+            'userStatus' => $this->getUserStatus(),
             'form' => $form->createView()
         ]);
     }

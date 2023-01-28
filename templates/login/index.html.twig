@@ -21,7 +21,7 @@
                         <input type="password" id="password" name="_password"/>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                 </div>
-                    <input type="hidden" name="_target_path" value="{{ path('admin') }}" />
+                    <input type="hidden" name="_target_path" value="{{ path('login_redirect') }}" />
                 <div class="row mt-4">
                     <div class="col">
                     <button class="btn btn-primary mt-3" type="submit">Connexion</button>
