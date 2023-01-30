@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends BaseController
@@ -30,18 +31,27 @@ class SecurityController extends BaseController
     #[Route('/redirect', name: 'login_redirect')]
     public function dispatch(): Response
     {
-        if ($this->isGranted("ROLE_ADMIN")) {
-            return $this->render('admin/dashboard.html.twig', [
-                'userStatus' => $this->getUserStatus()
-            ]);
-        } elseif ($this->isGranted("ROLE_USER")) {
-            return $this->render('user/index.html.twig', [
-                'userStatus' => $this->getUserStatus()
-            ]);
+        $user = $this->getUser();
+        if (!$user->isVerified('true')) {
+            throw new AccessDeniedException('User is not verified');
         } else {
-            return $this->render('home/index.html.twig', [
-                'userStatus' => $this->getUserStatus()
-            ]);
+
+            if ($this->isGranted("ROLE_ADMIN")) {
+                return $this->render('admin/dashboard.html.twig', [
+                    'userStatus' => $this->getUserStatus(),
+                    'user' => $user
+                ]);
+            } elseif ($this->isGranted("ROLE_USER")) {
+                return $this->render('user/index.html.twig', [
+                    'userStatus' => $this->getUserStatus(),
+                    'user' => $user
+                ]);
+            } else {
+                return $this->render('home/index.html.twig', [
+                    'userStatus' => $this->getUserStatus(),
+                    'user' => $user
+                ]);
+            }
         }
     }
 
