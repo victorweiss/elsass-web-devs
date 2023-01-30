@@ -17,7 +17,8 @@ class UserType extends AbstractType
             ->add('roles', CollectionType::class)
             ->add('password')
             ->add('firstName')
-            ->add('lastName');
+            ->add('lastName')
+            ->add('isBlocked');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -32,25 +32,31 @@ class SecurityController extends BaseController
     public function dispatch(): Response
     {
         $user = $this->getUser();
-        if (!$user->isVerified('true')) {
-            throw new AccessDeniedException('User is not verified');
+        if ($user->isBlocked('true')) {
+            throw new AccessDeniedException('Utilisateur bloqué. Raus !');
         } else {
 
-            if ($this->isGranted("ROLE_ADMIN")) {
-                return $this->render('admin/dashboard.html.twig', [
-                    'userStatus' => $this->getUserStatus(),
-                    'user' => $user
-                ]);
-            } elseif ($this->isGranted("ROLE_USER")) {
-                return $this->render('user/index.html.twig', [
-                    'userStatus' => $this->getUserStatus(),
-                    'user' => $user
-                ]);
+
+            if (!$user->isVerified('true')) {
+                throw new AccessDeniedException('Utilisateur non vérifié, regardez voitre boîte mail');
             } else {
-                return $this->render('home/index.html.twig', [
-                    'userStatus' => $this->getUserStatus(),
-                    'user' => $user
-                ]);
+
+                if ($this->isGranted("ROLE_ADMIN")) {
+                    return $this->render('admin/dashboard.html.twig', [
+                        'userStatus' => $this->getUserStatus(),
+                        'user' => $user
+                    ]);
+                } elseif ($this->isGranted("ROLE_USER")) {
+                    return $this->render('user/index.html.twig', [
+                        'userStatus' => $this->getUserStatus(),
+                        'user' => $user
+                    ]);
+                } else {
+                    return $this->render('home/index.html.twig', [
+                        'userStatus' => $this->getUserStatus(),
+                        'user' => $user
+                    ]);
+                }
             }
         }
     }
