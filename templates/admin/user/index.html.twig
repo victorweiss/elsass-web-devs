@@ -27,7 +27,12 @@
 							<td>{{ user.id }}</td>
 							<td>{{ user.email }}</td>
 							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-							<td>{% if user.isBlocked == true %}Bloqué ❌{% elseif user.isVerified == true %} Vérifié ✅{% endif %}</td>
+							<td>
+								{% if user.isBlocked == true %}❌ Bloqué
+								{% elseif user.isVerified == true %}
+									✅ Vérifié 
+								{% elseif user.isVerified == false %} 📩 À confirmer{% endif %}
+							</td>
 							<td>{{ user.firstName }}</td>
 							<td>{{ user.lastName }}</td>
 							<td>
