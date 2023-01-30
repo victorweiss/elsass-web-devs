@@ -1,48 +1,49 @@
-<div id="sidebar" >
-    <button class="btn btn-primary justify-content-end" id="buttonCollapse">
+<div id="sidebar">
+	<button class="btn btn-primary justify-content-end" id="buttonCollapse">
 		<i class="bi bi-x-lg"></i>
 	</button>
 
-    <ul class="list-unstyled ps-3">
-<<<<<<< Updated upstream
-        <li>    
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#blog-collapse" aria-expanded="true"> Blog</button>
-            <div class="collapse" id="blog-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="{{path("admin_category_index")}}" class="link-dark d-inline-flex text-decoration-none rounded">Catégories</a></li>
-                    <li><a href="{{path("admin_tag_index")}}" class="link-dark d-inline-flex text-decoration-none rounded">Tags</a></li>
-                    <li><a href="{{path("admin_article_index")}}" class="link-dark d-inline-flex text-decoration-none rounded">Articles</a></li>
-                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reports</a></li> 
-=======
-                <ul class="list-unstyled ps-3">Blog
-                
-                    <li><a href="{{path("admin_category_index")}}" class="btn flex-shrink-1 text-decoration-none">Catégories</a></li>
-                    <li><a href="{{path("admin_tag_index")}}" class="btn flex-shrink-1">Tags</a></li>
-                    <li><a href="{{path("admin_article_index")}}" class="btn flex-shrink-1">Articles</a></li>
->>>>>>> Stashed changes
-                </ul>
-            </div>
-        </li>
-        <li class="mb-1">
-            <a class="nav-link" href="{{path("admin_event_index")}}"> Gestion des événements</a>
-        </li>
-        <li class="mb-1">
-            <a class="nav-link" href="{{path("admin_user_index")}}"> Gestion des utilisateurs</a>
-        </li>
-        <li class="mb-1">
-            <a class="nav-link" href="{{path("admin_contact_index")}}"> Demandes de contact</a>
-        </li>
-        <li class="border-top my-3"></li>
-            <li class="mb-1">
-                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">Compte</button>
-                <div class="collapse" id="account-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
-                        <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li> 
-                        <li><a href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a></li>
-                    </ul>
-                </div>
-            </li>
-    </ul>
-</div>
+	<ul class="list-unstyled ps-3">
+		<ul class="list-unstyled ps-3">Blog
 
+			<li>
+				<a href="{{path("admin_category_index")}}" class="btn flex-shrink-1 text-decoration-none">Catégories</a>
+			</li>
+			<li>
+				<a href="{{path("admin_tag_index")}}" class="btn flex-shrink-1">Tags</a>
+			</li>
+			<li>
+				<a href="{{path("admin_article_index")}}" class="btn flex-shrink-1">Articles</a>
+			</li>
+		</ul>
+	</li>
+	<li class="mb-1">
+		<a class="nav-link" href="{{path("admin_event_index")}}">
+			Gestion des événements</a>
+	</li>
+	<li class="mb-1">
+		<a class="nav-link" href="{{path("admin_user_index")}}">
+			Gestion des utilisateurs</a>
+	</li>
+	<li class="mb-1">
+		<a class="nav-link" href="{{path("admin_contact_index")}}">
+			Demandes de contact</a>
+	</li>
+	<li class="border-top my-3"></li>
+	<li class="mb-1">
+		<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">Compte</button>
+		<div class="collapse" id="account-collapse">
+			<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+				<li>
+					<a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a>
+				</li>
+				<li>
+					<a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a>
+				</li>
+				<li>
+					<a href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a>
+				</li>
+			</ul>
+		</div>
+	</li>
+</ul></div>
