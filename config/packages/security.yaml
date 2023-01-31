@@ -15,6 +15,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            user_checker: App\Security\UserChecker
+            custom_authenticator: App\Security\FormAuthenticator
+            entry_point: form_login
             lazy: true
             provider: app_user_provider
             form_login:

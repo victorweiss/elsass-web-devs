@@ -8,8 +8,7 @@
 		<title>{% block title '' %}{{ route_name != 'home' ? " | Elsass Web Devs" }}</title>
 		<meta name="description" content="{% block description '' %}">
 
-		<link rel="icon" href="{{ asset('ressources/icons/favicon.ico') }}" type="image/x-icon"> 
-		{% block meta %}{% endblock %}
+		<link rel="icon" href="{{ asset('ressources/icons/favicon.ico') }}" type="image/x-icon"> {% block meta %}{% endblock %}
 		{% block meta_og %}
 			<meta property="og:url" content="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}"/>
 			<meta property="og:type" content="website"/>
@@ -31,11 +30,12 @@
 
 	<body class="{{ route_name }}">
 		{% include "elements/_header.html.twig" %}
-		{% include "elements/_flash.html.twig" %}
 
-		<main id="main"> {% block body %}{% endblock %}
-			</main>
+		<main id="main">
+			{% include "elements/_flash.html.twig" %}
+			{% block body %}{% endblock %}
+		</main>
 
-			{% include "elements/_footer.html.twig" %}
-		</body>
-	</html>
+		{% include "elements/_footer.html.twig" %}
+	</body>
+</html>

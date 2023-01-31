@@ -10,19 +10,15 @@
 			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
 		{% endfor %}
 
-		<h1>S'inscrire</h1>
+		<h1 class="text-center mb-0">S'inscrire</h1>
 
 		{{ form_start(registrationForm) }}
 		{{ form_row(registrationForm.email) }}
-		{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        
+		{{ form_row(registrationForm.plainPassword) }}
 		{{ form_row(registrationForm.firstName) }}
 		{{ form_row(registrationForm.lastName) }}
-		{{ form_row(registrationForm.agreeTerms) }}
 
-		<button type="submit" class="btn btn-primary">S'inscrire</button>
+		<button type="submit" class="btn btn-primary mx-auto">S'inscrire</button>
 		{{ form_end(registrationForm) }}
 	</div>
 {% endblock %}
