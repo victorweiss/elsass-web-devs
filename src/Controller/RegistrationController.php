@@ -20,6 +20,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegistrationController extends BaseController
 {
@@ -81,7 +82,9 @@ class RegistrationController extends BaseController
         }
 
         $user = $userRepository->find($id);
-        // $email = $userRepository->find($email);
+        if ($user->isBlocked('true')) {
+            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué. Raus !');
+        }
         if (null === $user) {
             return $this->redirectToRoute('register');
         }
