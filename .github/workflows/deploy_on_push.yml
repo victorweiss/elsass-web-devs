@@ -3,11 +3,13 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
+    types: ['closed']
     branches: [ "main" ]
 
 jobs:
   deploy:
     name: Deploy on push
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     environment: main
     steps:
