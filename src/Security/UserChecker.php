@@ -11,7 +11,7 @@ class UserChecker implements UserCheckerInterface
     public function checkPreAuth(UserInterface $user)
     {
         if ($user->isBlocked('true')){
-            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué. Raus !');
+            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué.');
         }
         elseif (!$user->isVerified('true')) {
             throw new CustomUserMessageAuthenticationException('Utilisateur non vérifié, regardez voitre boîte mail');

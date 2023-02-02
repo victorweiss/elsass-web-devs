@@ -24,10 +24,14 @@
 						</li>
 					</ul>
 					<ul class="navbar-nav">
-						{% if userStatus == 'authenticated' %}
-							<li class="nav-item">
-								<a class="nav-link" aria-current="page" href="{{ path('user') }}">Profil</a>
-							</li>
+
+						{% if get_user() %}
+							{% if get_user().isVerified %}
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="{{ path('user') }}">Profil</a>
+								</li>
+							{% endif %}
+
 						{% else %}
 							<li class="nav-item">
 								<a class="nav-link" aria-current="page" href="{{ path('register') }}">S'inscrire</a>
@@ -36,6 +40,7 @@
 								<a class="nav-link" aria-current="page" href="{{path('login')}}">Se connecter</a>
 							</li>
 						{% endif %}
+
 					</ul>
 				</div>
 			</div>

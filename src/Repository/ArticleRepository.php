@@ -83,7 +83,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     public function paginateByTag(Tag $tag): Query
     {
-        $qb = $this->getForPagination();
+        $qb = $this->getPublicQueryBuilder();
 
         if (!empty($tag)) {
             $qb ->orderBy('a.createdAt', 'DESC')

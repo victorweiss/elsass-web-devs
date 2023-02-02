@@ -5,10 +5,13 @@ twig:
         linkedin_url: https://www.linkedin.com/company/elsass-web-devs/
         youtube_url: https://www.youtube.com/channel/UCgxn75QTd4AJWl4Lq1BZVLw
 
+
 when@test:
     twig:
         strict_variables: true
     paths:
         '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator
+    extensions:
+        - App\Twig\AppExtension
 
 

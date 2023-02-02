@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Security\EmailVerifier;
-use App\Controller\BaseController;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use App\Security\FormAuthenticator;
@@ -16,13 +15,14 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
-class RegistrationController extends BaseController
+class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
 
@@ -34,7 +34,6 @@ class RegistrationController extends BaseController
     #[Route('/register', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $userStatus = $this->getUserStatus();
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -68,7 +67,6 @@ class RegistrationController extends BaseController
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
-            'userStatus' => $userStatus,
         ]);
     }
 
@@ -76,14 +74,13 @@ class RegistrationController extends BaseController
     public function verifyUserEmail(FormAuthenticator $formAuthenticator, Request $request, TranslatorInterface $translator, UserRepository $userRepository, TokenStorageInterface $tokenStorage): Response
     {
         $id = $request->get('id');
-        $email = $request->get('email');
         if (null === $id) {
             return $this->redirectToRoute('register');
         }
 
         $user = $userRepository->find($id);
         if ($user->isBlocked('true')) {
-            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué. Raus !');
+            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué');
         }
         if (null === $user) {
             return $this->redirectToRoute('register');
