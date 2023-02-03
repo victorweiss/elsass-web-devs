@@ -50,17 +50,16 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
+            $emailAddress = getenv('EMAIL_CONTACT');
             $this->emailVerifier->sendEmailConfirmation(
                 'verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address('jauge.goa@gmail.com', 'Elsass Web Devs Mail Bot'))
-                    ->to($user->getEmail())
+                    ->from(new Address($emailAddress, 'Elsass Web Devs'))
+                    ->to(new Address($user->getEmail(), $user->getLastName() . ' ' . $user->getFirstName()))
                     ->subject('Veuillez confirmer votre adresse email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')->context(['firstName' => $user->getFirstName()])
             );
-            // do anything else you need here, like send an email
             $this->addFlash('success', 'Un e-mail de confirmation vous a été envoyé.');
             return $this->redirectToRoute('register');
         }
@@ -74,14 +73,21 @@ class RegistrationController extends AbstractController
     public function verifyUserEmail(FormAuthenticator $formAuthenticator, Request $request, TranslatorInterface $translator, UserRepository $userRepository, TokenStorageInterface $tokenStorage): Response
     {
         $id = $request->get('id');
+
         if (null === $id) {
             return $this->redirectToRoute('register');
         }
 
         $user = $userRepository->find($id);
-        if ($user->isBlocked('true')) {
-            throw new CustomUserMessageAuthenticationException('Utilisateur bloqué');
+        if ($user->isBlocked()) {
+            return $this->redirectToRoute('login');
         }
+
+        if ($user->isVerified()) {
+            $this->addFlash('success', 'Votre adresse e-mail a déjà été vérifiée.');
+            return $this->redirectToRoute('user');
+        }
+
         if (null === $user) {
             return $this->redirectToRoute('register');
         }

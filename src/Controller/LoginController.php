@@ -30,17 +30,17 @@ class LoginController extends AbstractController
         $user = $this->getUser();
 
         if ($this->isGranted("ROLE_ADMIN")) {
-            return $this->render('admin/dashboard.html.twig', [
+            return $this->redirectToRoute('admin', [
                 'user' => $user,
 
             ]);
         } elseif ($this->isGranted("ROLE_USER")) {
-            return $this->render('user/index.html.twig', [
+            return $this->redirectToRoute('user', [
                 'user' => $user,
 
             ]);
         } else {
-            return $this->render('home/index.html.twig', [
+            return $this->redirectToRoute('home', [
                 'user' => $user,
 
             ]);

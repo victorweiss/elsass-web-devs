@@ -12,11 +12,7 @@ class UserController extends AbstractController
     #[Route('/user', name: 'user')]
     public function index(): Response
     {
-        $user = $this->getUser();
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-            'user' => $user
-        ]);
+        return $this->render('user/index.html.twig');
     }
     #[Route('/deconnexion', name: 'logout', methods: ['GET'])]
     public function logout()
