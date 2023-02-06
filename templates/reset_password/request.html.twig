@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Demande de réinitialisation de mot de passe" %}
+{% block description "Demande de réinitialisation" %}
+
+{% block body %}
+	<div class="container text-center">
+		<h1>Réinitialiser votre mot de passe</h1>
+
+		{{ form_start(requestForm) }}
+		{{ form_row(requestForm.email) }}
+		<p>
+			Entrez votre adresse email et nous vous enverrons un lien de réinitialisation
+		</p>
+
+		<button class="btn btn-primary">Réinitialiser</button>
+		{{ form_end(requestForm) }}
+	</div>
+{% endblock %}
