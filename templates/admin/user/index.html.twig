@@ -5,45 +5,50 @@
 
 
 {% block body %}
-<div class="container">
-    <h1>User index</h1>
+	<div class="container">
+		<h1>User index</h1>
 
-    <div class="table-responsive">
-        <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                {# <th>Mot de passe</th> #}
-                <th>Prénom</th>
-                <th>Nom</th> 
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                {# <td>{{ user.password }}</td> #}
-                <td>{{ user.firstName }}</td> 
-                <td>{{ user.lastName }}</td>
-                <td>
-                    <a class="btn btn-warning" href="{{ path('admin_user_show', {'id': user.id}) }}">Détails</a>
-                    <a class="btn btn-info" href="{{ path('admin_user_edit', {'id': user.id}) }}">Éditer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-        </table>
-    </div>
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Email</th>
+						<th>Roles</th>
+						<th>Statut</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.email }}</td>
+							<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+							<td>
+								{% if user.isBlocked == true %}❌ Bloqué
+								{% elseif user.isVerified == true %}
+									✅ Vérifié 
+								{% elseif user.isVerified == false %} 📩 À confirmer{% endif %}
+							</td>
+							<td>{{ user.firstName }}</td>
+							<td>{{ user.lastName }}</td>
+							<td>
+								<a class="btn btn-warning" href="{{ path('admin_user_show', {'id': user.id}) }}">Détails</a>
+								<a class="btn btn-info" href="{{ path('admin_user_edit', {'id': user.id}) }}">Éditer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="7">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 
-    <a class="btn btn-primary"  href="{{ path('admin_user_new') }}">Créer nouveau</a>
-</div>
+		<a class="btn btn-primary" href="{{ path('admin_user_new') }}">Créer nouveau</a>
+	</div>
 {% endblock %}

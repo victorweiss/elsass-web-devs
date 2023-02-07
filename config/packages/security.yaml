@@ -15,6 +15,9 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            user_checker: App\Security\UserChecker
+            custom_authenticator: App\Security\FormAuthenticator
+            entry_point: form_login
             lazy: true
             provider: app_user_provider
             form_login:
@@ -37,6 +40,7 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        - { path: ^/user, roles: ROLE_USER }
         - { path: ^/_admin, roles: ROLE_ADMIN }
         - { path: ^/efconnect, role: ROLE_ADMIN }
         - { path: ^/elfinder, role: ROLE_ADMIN }
