@@ -1,10 +1,10 @@
 {% extends "emails/base.html.twig" %}
 
-{% block title "Confirmation email" %}
+{% block title %}
+    Bonjour {{firstName}}, merci de confirmer votre adresse email
+{% endblock %}
 
 {% block body %}
-<h1>Bonjour {{firstName}}, merci de confirmer votre adresse email</h1>
-
 <p>
     Veuillez confirmer votre adresse email en cliquant sur le lien suivant <br><br>
     <a href="{{ signedUrl|raw }}">Confirmer mon adresse email</a>.

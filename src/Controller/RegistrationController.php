@@ -11,7 +11,6 @@ use Symfony\Component\Mime\Address;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -20,7 +19,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class RegistrationController extends AbstractController
 {
@@ -50,12 +48,11 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $emailAddress = getenv('EMAIL_CONTACT');
             $this->emailVerifier->sendEmailConfirmation(
                 'verify_email',
                 $user,
                 (new TemplatedEmail())
-                    ->from(new Address($emailAddress, 'Elsass Web Devs'))
+                    ->from(new Address($this->getParameter('email_contact'), 'Elsass Web Devs'))
                     ->to(new Address($user->getEmail(), $user->getLastName() . ' ' . $user->getFirstName()))
                     ->subject('Veuillez confirmer votre adresse email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')->context(['firstName' => $user->getFirstName()])
