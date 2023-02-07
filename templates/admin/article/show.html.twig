@@ -5,9 +5,8 @@
 
 
 {% block body %}
-<<<<<<< Updated upstream
-=======
 <div class="container">
+
 	<div class="mb-3">
 		<a href="{{ path('admin_article_index') }}">
 			<i class="bi bi-arrow-left me-2"></i>
@@ -15,7 +14,6 @@
 	</div>
 	<a class="btn btn-success" href="{{ path('article_show', {'slug': article.slug}) }}">Voir</a>
 
->>>>>>> Stashed changes
 	<h1>Article</h1>
 	<div class="table-responsive">
 		<table class="table">
@@ -54,7 +52,7 @@
 				</tr>
 				<tr>
 					<th>Image</th>
-					<td><img src="{{ vich_uploader_asset(article, 'imageFile') }}" class="w-100 rounded-3" alt="devs web elsass apero code"></td>
+					<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('normal') }}" alt="{{article.title}}"></td>
 
 				</tr>
 				<tr>

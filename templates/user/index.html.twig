@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Profil" %}
+{% block description "Profil utilisateur" %}
+
+
+{% block body %}
+	<div class="container">
+		<div class="d-flex flex-column">
+			<p>Prénom : {{app.user.firstName}}</p>
+			<p>Nom : {{app.user.lastName}}</p>
+			<p>Profil créé le : {{app.user.createdAt|date('Y-m-d H:i:s')}}</p>
+		</div>
+		<a class="btn btn-primary" href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a>
+	</div>
+{% endblock %}

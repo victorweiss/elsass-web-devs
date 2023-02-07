@@ -10,45 +10,32 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>Image</th>
 						<th>Id</th>
-						<th>Title</th>
-						<th>Subtitle</th>
-						<th>MetaDescription</th>
 						<th>Catégorie</th>
-						<th>Tags</th>
-						{# <th>Body</th> #}
+						<th>Title</th>
 						<th>CreatedAt</th>
 						<th>UpdatedAt</th>
-						{# <th>Image</th> #}
 						<th>CountViews</th>
 						<th>Marking</th>
-						<th>actions</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for article in articles %}
 						<tr>
+							<td><img src="{{ vich_uploader_asset(article, 'imageFile') | imagine_filter('thumb')}}" alt="{{article.title}}"></td>
 							<td>{{ article.id }}</td>
-							<td>{{ article.title }}</td>
-							<td>{{ article.subtitle }}</td>
-							<td>{{ article.metaDescription }}</td>
 							<td>{{ article.category }}</td>
-							<td>
-								<ul class="list-unstyled">
-									{% for tag in article.tags %}
-										<li>{{tag.name}}</li>
-									{% endfor %}
-								</ul>
-							</td>
-							{# <td>{{ article.body }}</td> #}
+							<td>{{ article.title|u.truncate(50, '...') }}</td>
 							<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-							{# <td>{{ article.image }}</td> #}
 							<td>{{ article.countViews }}</td>
 							<td>{{ article.marking }}</td>
 							<td>
 								<a class="btn btn-warning" href="{{ path('admin_article_show', {'id': article.id}) }}">Détails</a>
 								<a class="btn btn-info" href="{{ path('admin_article_edit', {'id': article.id}) }}">Éditer</a>
+								<a class="btn btn-primary" href="{{ path('article_show', {'slug': article.slug}) }}">Voir</a>
 							</td>
 						</tr>
 					{% else %}
