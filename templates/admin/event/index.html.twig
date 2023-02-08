@@ -11,12 +11,13 @@
 				<thead>
 					<tr>
 						<th>Image</th>
-						<th>Title</th>
+						<th>Titre</th>
 						<th>Inscription ouverte</th>
-						<th>TotalSeats</th>
-						<th>StartAt</th>
-						<th>AdminNote</th>
-						<th>actions</th>
+						<th>Total places</th>
+						<th>Places disponibles</th>
+						<th>Début</th>
+						<th>Notes Admin</th>
+						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -26,6 +27,7 @@
 							<td>{{ event.title }}</td>
 							<td>{{ event.isBookingAvailable ? 'Oui' : 'Non' }}</td>
 							<td>{{ event.totalSeats }}</td>
+							<td>{{event.totalSeats - event.bookings|length }}</td>
 							<td>{{ event.startAt ? event.startAt|date('d-m-Y H:i:s') : '' }}</td>
 							<td>{{ event.adminNote ? 'Oui' : 'Non'}}</td>
 							<td>

@@ -18,11 +18,11 @@
 					<td>{{ event.id }}</td>
 				</tr>
 				<tr>
-					<th>Title</th>
+					<th>Titre</th>
 					<td>{{ event.title }}</td>
 				</tr>
 				<tr>
-					<th>slug</th>
+					<th>Slug</th>
 					<td>{{ event.slug }}</td>
 				</tr>
 				<tr>
@@ -34,45 +34,48 @@
 					<td><img src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('normal') }}" alt="{{event.title}}"></td>
 				</tr>
 				<tr>
-					<th>CreatedAt</th>
+					<th>Créé le</th>
 					<td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 				</tr>
 				<tr>
-					<th>UpdatedAt</th>
+					<th>Mis à jour le</th>
 					<td>{{ event.updatedAt ? event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
 				</tr>
-				{# <tr>
-								<th>ImageName</th>
-								<td>{{ event.imageName }}</td>
-							</tr>
-							<tr>
-								<th>ImageSize</th>
-								<td>{{ event.imageSize }}</td>
-							</tr> #}
 				<tr>
-					<th>IsBookingAvailable</th>
-					<td>{{ event.isBookingAvailable ? 'Yes' : 'No' }}</td>
+					<th>Inscription ouverte</th>
+					<td>{{ event.isBookingAvailable ? 'Oui' : 'Non' }}</td>
 				</tr>
 				<tr>
-					<th>TotalSeats</th>
+					<th>Total places</th>
 					<td>{{ event.totalSeats }}</td>
 				</tr>
 				<tr>
-					<th>StartAt</th>
-					<td>{{ event.startAt ? event.startAt|date('Y-m-d H:i:s') : '' }}</td>
+					<th>Places disponibles</th>
+					<td>{{ event.totalSeats - event.bookings|length }}</td>
+				</tr>
+
+				<tr>
+					<th>Début</th>
+					<td>{{ event.startAt ? event.startAt|date('d:m:Y H:i:s') : '' }}</td>
 				</tr>
 				<tr>
-					<th>EndAt</th>
-					<td>{{ event.endAt ? event.endAt|date('Y-m-d H:i:s') : '' }}</td>
+					<th>Fin</th>
+					<td>{{ event.endAt ? event.endAt|date('d:m:Y H:i:s') : '' }}</td>
 				</tr>
 				<tr>
-					<th>AdminNote</th>
+					<th>Notes Admin</th>
 					<td>{{ event.adminNote }}</td>
 				</tr>
 			</tbody>
 		</table>
-
 	</div>
+	<p>Membres inscrits à l'événement :</p>
+	{% for booking in event.bookings %}
+
+		<p>{{booking.user.firstName}}
+			{{booking.user.lastName}}</p>
+	{% endfor %}
+
 	<a class="btn btn-warning" href="{{ path('admin_event_index') }}">Retour à la liste</a>
 
 	<a class="btn btn-info" href="{{ path('admin_event_edit', {'id': event.id}) }}">Éditer</a>

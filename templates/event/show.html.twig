@@ -10,7 +10,7 @@
 {% block body %}
 	<div class="container">
 		<div class="mb-3">
-			<a href="{{ path('blog') }}">
+			<a href="{{ path('event') }}">
 				<i class="bi bi-arrow-left me-2"></i>
 				Retour à la liste</a>
 		</div>
@@ -27,19 +27,21 @@
 					</div>
 				</section>
 
-				<section id="event-intro" class="bg-light px-3 py-2 rounded border my-4">					
+				<section id="event-intro" class="bg-light px-3 py-2 rounded border my-4">
 					Publié le
 					{{ event.createdAt ? event.createdAt|date('d/m/Y') : '' }}, mis à jour le
 					{{ event.updatedAt ? event.updatedAt|date('d/m/Y') : '' }}
-			</section>
+				</section>
 
-			<section id="event-body">
-				{{event.body | raw}}
-			</section>
-		</div>
+				<section id="event-body">
+					<p>Nombre de places : {{event.totalSeats }}</p>
+					{{event.body | raw}}
+				</section>
+			</div>
 
-		<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
-			{% include "event/elements/_sidebar.html.twig" %}
+			<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
+				{% include "event/elements/_sidebar.html.twig" %}
+			</div>
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

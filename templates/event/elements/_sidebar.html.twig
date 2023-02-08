@@ -2,8 +2,8 @@
 	<h2 class="text-center h4 mb-3">Réserver sa place</h2>
 
 	<p>Places disponibles :
-		{{event.totalSeats}}</p>
-
+		{{event.totalSeats - event.bookings|length }}</p>
+		
 	{% if app.user %}
 		{{ form_start(bookingForm) }}
 		{{ form_row(bookingForm.isPresenting) }}
