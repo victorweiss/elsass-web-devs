@@ -17,7 +17,7 @@
 
 		<div class="row">
 			<div class="col-lg-9 col-xl-10 mb-3">
-				<section class="event-header">
+				<section id="event-header">
 					<h1>{{event.title}}</h1>
 
 					<div class="img-ratio">
@@ -27,7 +27,7 @@
 					</div>
 				</section>
 
-				<section class="event-intro bg-light px-3 py-2 rounded border my-4">					
+				<section id="event-intro" class="bg-light px-3 py-2 rounded border my-4">					
 					Publié le
 					{{ event.createdAt ? event.createdAt|date('d/m/Y') : '' }}, mis à jour le
 					{{ event.updatedAt ? event.updatedAt|date('d/m/Y') : '' }}
@@ -39,7 +39,7 @@
 		</div>
 
 		<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
-			{# {% include "blog/elements/_sidebar.html.twig" %} #}
+			{% include "event/elements/_sidebar.html.twig" %}
 		</div>
 	</div>
 </div>{% endblock %}

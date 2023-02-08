@@ -1,0 +1,12 @@
+<div class="right" id="event-side-bar">
+	<h2 class="text-center h4 mb-3">Réserver sa place</h2>
+
+<p>Places disponibles : {{event.totalSeats}}</p>
+
+	{% if app.user %}
+    <a class="btn btn-primary"> Réserver</a>
+		{% else %}
+        <p>Vous devez être inscrit pour réserver votre place </p>
+        <a class="btn btn-primary" href="{{path('register')}}">S'inscrire</a>
+	{% endif %}
+</div>

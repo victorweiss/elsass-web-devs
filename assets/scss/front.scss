@@ -153,7 +153,7 @@ body.home {
 }
 
 
-.article-header{
+#article-header{
 
   .img-ratio {
     position: relative;
@@ -183,7 +183,7 @@ body.home {
   }
 }
 
-.article-intro {
+#article-intro {
   p {
     margin-top: 10px;
   }
@@ -229,3 +229,36 @@ body.home {
     }
   }
 }
+
+#event-header{
+  .img-ratio {
+    position: relative;
+
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: var(--ratio, 50%);
+    }
+
+    .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit:contain;
+
+      }
+    }
+  }
+}
+
+// #event-side-bar{
+//   margin-top: 50px;
+// }

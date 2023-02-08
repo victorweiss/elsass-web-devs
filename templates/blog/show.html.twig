@@ -17,7 +17,7 @@
 
 		<div class="row">
 			<div class="col-lg-9 col-xl-10 mb-3">
-				<section class="article-header">
+				<section id="article-header">
 					<h1>{{article.title}}</h1>
 					<h2 class="h4 text-body mb-3">{{ article.subtitle }}</h2>
 
@@ -28,7 +28,7 @@
 					</div>
 				</section>
 
-				<section class="article-intro bg-light px-3 py-2 rounded border my-4">
+				<section id="article-intro" class="bg-light px-3 py-2 rounded border my-4">
 					{% if article.category|length %}
 						<div class="category">
 							<strong>Catégorie : </strong>
