@@ -22,8 +22,16 @@
 					<td>{{ event.title }}</td>
 				</tr>
 				<tr>
+					<th>slug</th>
+					<td>{{ event.slug }}</td>
+				</tr>
+				<tr>
 					<th>Body</th>
 					<td>{{ event.body }}</td>
+				</tr>
+				<tr>
+					<th>Image</th>
+					<td><img src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('normal') }}" alt="{{event.title}}"></td>
 				</tr>
 				<tr>
 					<th>CreatedAt</th>

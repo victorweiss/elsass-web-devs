@@ -63,6 +63,10 @@ class Event
     #[ORM\OneToMany(mappedBy: 'event', targetEntity: EventBooking::class)]
     private Collection $bookings;
 
+    #[Gedmo\Slug(unique: true, updatable: true, fields: ['title'])]
+    #[ORM\Column]
+    private $slug = null;
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -243,6 +247,18 @@ class Event
                 $booking->setEvent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

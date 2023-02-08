@@ -7,46 +7,40 @@
 	<div class="container">
 		<h1>Evénements index</h1>
 		<div class="table-responsive">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Title</th>
-					<th>Body</th>
-					<th>CreatedAt</th>
-					<th>UpdatedAt</th>
-					<th>IsBookingAvailable</th>
-					<th>TotalSeats</th>
-					<th>StartAt</th>
-					<th>AdminNote</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for event in events %}
+			<table class="table">
+				<thead>
 					<tr>
-						<td>{{ event.id }}</td>
-						<td>{{ event.title }}</td>
-						<td>{{ event.body }}</td>
-						<td>{{ event.createdAt ? event.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ event.updatedAt ? event.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ event.isBookingAvailable ? 'Yes' : 'No' }}</td>
-						<td>{{ event.totalSeats }}</td>
-						<td>{{ event.startAt ? event.startAt|date('Y-m-d H:i:s') : '' }}</td>
-						<td>{{ event.adminNote }}</td>
-						<td>
-							<a class="btn btn-warning" href="{{ path('admin_event_show', {'id': event.id}) }}">Détails</a>
-							<a class="btn btn-info" href="{{ path('admin_event_edit', {'id': event.id}) }}">Éditer</a>
-						</td>
+						<th>Image</th>
+						<th>Title</th>
+						<th>Inscription ouverte</th>
+						<th>TotalSeats</th>
+						<th>StartAt</th>
+						<th>AdminNote</th>
+						<th>actions</th>
 					</tr>
-				{% else %}
-					<tr>
-						<td colspan="13">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{% for event in events %}
+						<tr>
+							<td><img src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('thumb')}}" alt="{{event.title}}"></td>
+							<td>{{ event.title }}</td>
+							<td>{{ event.isBookingAvailable ? 'Oui' : 'Non' }}</td>
+							<td>{{ event.totalSeats }}</td>
+							<td>{{ event.startAt ? event.startAt|date('d-m-Y H:i:s') : '' }}</td>
+							<td>{{ event.adminNote ? 'Oui' : 'Non'}}</td>
+							<td>
+								<a class="btn btn-warning" href="{{ path('admin_event_show', {'id': event.id}) }}">Détails</a>
+								<a class="btn btn-info" href="{{ path('admin_event_edit', {'id': event.id}) }}">Éditer</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="13">Aucune donnée trouvée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
-		<a class="btn btn-primary" href="{{ path('admin_event_new') }}">Créer nouveau</a>
-	</div>
-{% endblock %}
+			<a class="btn btn-primary" href="{{ path('admin_event_new') }}">Créer nouveau</a>
+		</div>
+	{% endblock %}

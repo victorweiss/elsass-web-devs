@@ -5,11 +5,12 @@ namespace App\Form;
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class EventType extends AbstractType
@@ -18,9 +19,13 @@ class EventType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('slug', TextType::class, [
+                'required' => false,
+                'help' => 'Sera généré automatiquement, sinon slug généré par cet input'
+            ])
             ->add('body', CKEditorType::class)
             ->add('imageFile', VichImageType::class, [
-                'required' => true
+                'required' => false
             ])
             ->add('isBookingAvailable')
             ->add('totalSeats', NumberType::class)
