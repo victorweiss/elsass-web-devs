@@ -40,7 +40,7 @@ class EventType extends AbstractType
             ->add('adminNote', TextareaType::class, [
                 'attr' => [
                     'rows' => 6,
-                    'placeholder' => 'Informations suplémentaires'
+                    'placeholder' => 'Informations supplémentaires'
                 ]
             ]);
     }
