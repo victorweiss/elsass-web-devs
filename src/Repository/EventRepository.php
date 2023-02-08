@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -39,6 +40,21 @@ class EventRepository extends ServiceEntityRepository
         }
     }
 
+    private function getPublicQueryBuilder()
+    {
+        $qb = $this->createQueryBuilder('e');
+        $qb->where('e.isBookingAvailable = :isBookingAvailable')
+            ->setParameter('isBookingAvailable', true );
+        return $qb;
+    }
+
+    public function paginateActiveEvent(): Query
+    {
+        $qb = $this->getPublicQueryBuilder();
+        $qb->orderBy('e.createdAt', 'DESC');
+
+        return $qb->getQuery();
+    }
 //    /**
 //     * @return Event[] Returns an array of Event objects
 //     */

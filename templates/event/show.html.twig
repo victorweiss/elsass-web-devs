@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title event.title %}
+{% block description event.title %}
+
+{% block meta_og_image %}
+	<meta property="og:image" content="{{ absolute_url(asset('ressources/images/events/' ~ event.imageName) | imagine_filter('facebook')) }}"/>
+{% endblock meta_og_image %}
+
+{% block body %}
+	<div class="container">
+		<div class="mb-3">
+			<a href="{{ path('blog') }}">
+				<i class="bi bi-arrow-left me-2"></i>
+				Retour à la liste</a>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-9 col-xl-10 mb-3">
+				<section class="event-header">
+					<h1>{{event.title}}</h1>
+
+					<div class="img-ratio">
+						<div class="img">
+							<img src="{{asset('ressources/images/events/' ~ event.imageName) | imagine_filter('normal')}}" alt="{{event.imageName}}">
+						</div>
+					</div>
+				</section>
+
+				<section class="event-intro bg-light px-3 py-2 rounded border my-4">					
+					Publié le
+					{{ event.createdAt ? event.createdAt|date('d/m/Y') : '' }}, mis à jour le
+					{{ event.updatedAt ? event.updatedAt|date('d/m/Y') : '' }}
+			</section>
+
+			<section id="event-body">
+				{{event.body | raw}}
+			</section>
+		</div>
+
+		<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
+			{# {% include "blog/elements/_sidebar.html.twig" %} #}
+		</div>
+	</div>
+</div>{% endblock %}
