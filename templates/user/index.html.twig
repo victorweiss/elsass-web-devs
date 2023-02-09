@@ -15,18 +15,23 @@
 				{{app.user.createdAt|date(default_date_format)}}</p>
 		</div>
 
-		<div class="d-flex flex-column">
-			<p>Inscriptions aux événements :</p>
-			{% for booking in app.user.eventBookings %}
-				<div class="mx-auto p-3 border border-primary">
-					<p>{{booking.event.title}}</p>
-					<p>{{booking.event.startAt|date(default_date_format)}}</p>
-					<p>{{booking.event.totalSeats}}</p>
-					{{ include('user/elements/_delete_booking_form.html.twig') }}
-
-				</div>
-			{% endfor %}
-
+		<div>
+			<p>Inscrit aux événements :</p>
+			<div class="d-flex flex-wrap">
+				{% for booking in app.user.eventBookings %}
+					{% if booking.event.startAt|date('Y-m-d') > ('now'|date('Y-m-d')) %}
+						<div class="m-5 p-3 border border-primary rounded text-center">
+							<p>{{booking.event.title}}</p>
+							<p>{{booking.event.startAt|date(default_date_format)}}</p>
+							<p>
+								Places restantes :
+								{{booking.event.totalSeats - booking.event.bookings|length }}</p>
+							<a class="btn btn-warning my-2">Voir</a>
+							{{ include('user/elements/_delete_booking_form.html.twig') }}
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 		<a class="btn btn-primary" href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a>
 	</div>

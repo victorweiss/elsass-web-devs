@@ -38,6 +38,7 @@ class EventType extends AbstractType
                 'time_widget' => 'single_text'
                 ])
             ->add('adminNote', TextareaType::class, [
+                'required' => false,
                 'attr' => [
                     'rows' => 6,
                     'placeholder' => 'Informations supplémentaires'
