@@ -19,6 +19,7 @@ class EventController extends AbstractController
     {
         return $this->render('event/index.html.twig', [
             'events' => $eventService->getPaginatedEvents(),
+            'pastEvents' => $eventService->getPaginatePastEvent(),
         ]);
     }
 

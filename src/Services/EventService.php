@@ -24,4 +24,14 @@ class EventService
         return $this->paginator->paginate($eventsQuery, $page, $limit);
     }
 
+    public function getPaginatePastEvent()
+    {
+        $request = $this->requestStack->getMainRequest();
+        $page = $request->query->getInt('page', 1);
+        $limit = 6;
+        $eventsQuery = $this->eventRepo->paginatePastEvent();
+
+        return $this->paginator->paginate($eventsQuery, $page, $limit);
+    }
+
 }

@@ -1,19 +1,20 @@
 <div class="right" id="event-side-bar">
-	<h2 class="text-center h4 mb-3">Réserver sa place</h2>
-
-	<p>Places disponibles :
-		{{event.totalSeats - event.bookings|length }}</p>
-		
-	{% if app.user %}
-		{{ form_start(bookingForm) }}
-		{{ form_row(bookingForm.isPresenting) }}
-		{{ form_row(bookingForm.message) }}
-		{{ form_row(bookingForm.Envoyer) }}
-		{{ form_end(bookingForm) }}
-
+	{% if event.isBookingAvailable %}
+		<h2 class="text-center h4 mb-3">Réserver sa place</h2>
+		<p>Places disponibles :
+			{{event.totalSeats - event.bookings|length }}</p>
+		{% if app.user %}
+			{{ form_start(bookingForm) }}
+			{{ form_row(bookingForm.isPresenting) }}
+			{{ form_row(bookingForm.message) }}
+			{{ form_row(bookingForm.Envoyer) }}
+			{{ form_end(bookingForm) }}
+		{% else %}
+			<p>Vous devez être inscrit pour réserver votre place
+			</p>
+			<a class="btn btn-primary" href="{{path('register')}}">S'inscrire</a>
+		{% endif %}
 	{% else %}
-		<p>Vous devez être inscrit pour réserver votre place
-		</p>
-		<a class="btn btn-primary" href="{{path('register')}}">S'inscrire</a>
+		<h2 class="text-center h4 mb-3">Inscription fermée</h2>
 	{% endif %}
 </div>

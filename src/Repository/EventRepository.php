@@ -2,10 +2,11 @@
 
 namespace App\Repository;
 
+use DateTime;
 use App\Entity\Event;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\Query;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Event>
@@ -44,39 +45,52 @@ class EventRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('e');
         $qb->where('e.isBookingAvailable = :isBookingAvailable')
-            ->setParameter('isBookingAvailable', true );
+            ->setParameter('isBookingAvailable', true);
         return $qb;
     }
 
     public function paginateActiveEvent(): Query
     {
         $qb = $this->getPublicQueryBuilder();
-        $qb->orderBy('e.createdAt', 'DESC');
+        $qb->andWhere('e.startAt > :now')
+            ->setParameter('now', new DateTime());
+        $qb->orderBy('e.startAt', 'ASC');
 
         return $qb->getQuery();
     }
-//    /**
-//     * @return Event[] Returns an array of Event objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Event
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function paginatePastEvent(): Query
+    {
+        $qb = $this->getPublicQueryBuilder();
+        $qb->andWhere('e.endAt <= :now')
+            ->setParameter('now', new DateTime());
+        $qb->orderBy('e.endAt', 'DESC');
+
+
+        return $qb->getQuery();
+    }
+    //    /**
+    //     * @return Event[] Returns an array of Event objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('e.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Event
+    //    {
+    //        return $this->createQueryBuilder('e')
+    //            ->andWhere('e.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
