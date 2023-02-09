@@ -7,9 +7,25 @@
 {% block body %}
 	<div class="container">
 		<div class="d-flex flex-column">
-			<p>Prénom : {{app.user.firstName}}</p>
-			<p>Nom : {{app.user.lastName}}</p>
-			<p>Profil créé le : {{app.user.createdAt|date('Y-m-d H:i:s')}}</p>
+			<p>Prénom :
+				{{app.user.firstName}}</p>
+			<p>Nom :
+				{{app.user.lastName}}</p>
+			<p>Profil créé le :
+				{{app.user.createdAt|date(default_date_format)}}</p>
+		</div>
+
+		<div class="d-flex flex-column">
+			<p>Inscriptions aux événements :</p>
+			{% for booking in app.user.eventBookings %}
+				<div class="mx-auto p-3 border border-primary">
+					<p>{{booking.event.title}}</p>
+					<p>{{booking.event.startAt|date(default_date_format)}}</p>
+					<p>{{booking.event.totalSeats}}</p>
+					<a class="btn btn-primary">Se désinscrire</a>
+				</div>
+			{% endfor %}
+
 		</div>
 		<a class="btn btn-primary" href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a>
 	</div>

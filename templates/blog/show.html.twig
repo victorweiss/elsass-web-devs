@@ -45,8 +45,8 @@
 						</div>
 					{% endif %}
 					Publié le
-					{{ article.createdAt ? article.createdAt|date('d/m/Y') : '' }}, mis à jour le
-					{{ article.updatedAt ? article.updatedAt|date('d/m/Y') : '' }}
+					{{ article.createdAt ? article.createdAt|date(default_date_format) : '' }}, mis à jour le
+					{{ article.updatedAt ? article.updatedAt|date(default_date_format) : '' }}
 					{% if article.countViews|length %}
 						<br><i class="bi bi-eye"></i>
 						{{ article.countViews }}

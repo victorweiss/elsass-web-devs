@@ -30,7 +30,7 @@
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.message }}</td>
                 <td>{{ contact.subject }}</td>
-                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contact.createdAt ? contact.createdAt|date(default_date_format) : '' }}</td>
                 <td>
                     <a class="btn btn-warning" href="{{ path('admin_contact_show', {'id': contact.id}) }}">Détails</a>
                 </td>

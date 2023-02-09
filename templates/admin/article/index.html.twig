@@ -28,8 +28,8 @@
 							<td>{{ article.id }}</td>
 							<td>{{ article.category }}</td>
 							<td>{{ article.title|u.truncate(50, '...') }}</td>
-							<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-							<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>{{ article.createdAt ? article.createdAt|date(default_date_format) : '' }}</td>
+							<td>{{ article.updatedAt ? article.updatedAt|date(default_date_format) : '' }}</td>
 							<td>{{ article.countViews }}</td>
 							<td>{{ article.marking }}</td>
 							<td>

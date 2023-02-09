@@ -44,11 +44,11 @@
 				</tr>
 				<tr>
 					<th>CreatedAt</th>
-					<td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ article.createdAt ? article.createdAt|date(default_date_format) : '' }}</td>
 				</tr>
 				<tr>
 					<th>UpdatedAt</th>
-					<td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ article.updatedAt ? article.updatedAt|date(default_date_format) : '' }}</td>
 				</tr>
 				<tr>
 					<th>Image</th>

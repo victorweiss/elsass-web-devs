@@ -21,7 +21,7 @@
 
 					<div class="card-body d-flex justify-content-around">
 						<div class="h4 card-title">{{event.title}}</div>
-						{# <p class="card-text ellipsis">{{ event.subtitle }}</p> #}
+						<p>Le {{event.startAt|date(default_date_format)}}</p>
 						<a href="{{ path('event_show', {'slug': event.slug}) }}" class="btn btn-primary">Voir l'événement</a>
 					</div>
 				</div>

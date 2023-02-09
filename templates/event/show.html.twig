@@ -29,8 +29,8 @@
 
 				<section id="event-intro" class="bg-light px-3 py-2 rounded border my-4">
 					Publié le
-					{{ event.createdAt ? event.createdAt|date('d/m/Y') : '' }}, mis à jour le
-					{{ event.updatedAt ? event.updatedAt|date('d/m/Y') : '' }}
+					{{ event.createdAt ? event.createdAt|date(default_date_format) : '' }}, mis à jour le
+					{{ event.updatedAt ? event.updatedAt|date(default_date_format) : '' }}
 				</section>
 
 				<section id="event-body">

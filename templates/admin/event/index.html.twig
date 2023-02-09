@@ -28,7 +28,7 @@
 							<td>{{ event.isBookingAvailable ? 'Oui' : 'Non' }}</td>
 							<td>{{ event.totalSeats }}</td>
 							<td>{{event.totalSeats - event.bookings|length }}</td>
-							<td>{{ event.startAt ? event.startAt|date('d-m-Y H:i:s') : '' }}</td>
+							<td>{{ event.startAt ? event.startAt|date(default_date_format) : '' }}</td>
 							<td>{{ event.adminNote ? 'Oui' : 'Non'}}</td>
 							<td>
 								<a class="btn btn-warning" href="{{ path('admin_event_show', {'id': event.id}) }}">Détails</a>
