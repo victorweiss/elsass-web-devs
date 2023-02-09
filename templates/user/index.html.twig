@@ -22,7 +22,8 @@
 					<p>{{booking.event.title}}</p>
 					<p>{{booking.event.startAt|date(default_date_format)}}</p>
 					<p>{{booking.event.totalSeats}}</p>
-					<a class="btn btn-primary">Se désinscrire</a>
+					{{ include('user/elements/_delete_booking_form.html.twig') }}
+
 				</div>
 			{% endfor %}
 
