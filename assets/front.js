@@ -2,21 +2,15 @@ import "./scss/front.scss";
 // import "bootstrap/js/src/dropdown"
 import "bootstrap/js/src/collapse";
 
-
 import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 
-// var rdvs = JSON.parse("{{ data|raw }}");
 var events = $("#calendar").data("events");
 console.log(events);
 const calendarEl = document.getElementById("calendar");
 const calendar = new Calendar(calendarEl, {
-  plugins: [
-    dayGridPlugin,
-    listPlugin,
-    // any other plugins
-  ],
+  plugins: [dayGridPlugin, listPlugin],
   headerToolbar: {
     initialView: "dayGridMonth",
     left: "dayGridMonth,listMonth",
@@ -26,13 +20,19 @@ const calendar = new Calendar(calendarEl, {
   locale: "fr",
   buttonText: {
     today: "Aujourd'hui",
-    month: "mois",
-    week: "semaine",
-    day: "jour",
-    list: "liste",
+    month: "Mois",
+    week: "Semaine",
+    day: "Jour",
+    list: "Liste",
   },
   events: events,
+  eventColor: "#D50000",
   navLinks: true,
+
+  eventClick: function() {
+    // alert('Event: ' + info.event.title);
+
+  }
 });
 
 calendar.render();

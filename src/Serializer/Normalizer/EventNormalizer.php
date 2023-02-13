@@ -13,7 +13,7 @@ class EventNormalizer implements NormalizerInterface
             'title' => $event->getTitle(),
             'start' => $event->getStartAt()->format('Y-m-d'),
             'end' => $event->getEndAt()?->format('Y-m-d'),
-            'slug' => $event->getSlug(),
+            'url' => 'evenement/'.($event->getSlug()),
         ];
     }
 
