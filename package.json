@@ -23,10 +23,13 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@fullcalendar/core": "^6.1.4",
+        "@fullcalendar/daygrid": "^6.1.4",
         "@popperjs/core": "^2.11.6",
         "bootstrap": "^5.2.3",
         "bootstrap-icons": "^1.9.1",
         "ckeditor4": "^4.13.0",
+        "fullcalendar": "^6.1.4",
         "jquery": "^3.6.1"
     }
 }

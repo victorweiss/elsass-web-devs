@@ -11,18 +11,23 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 #[Vich\Uploadable]
 class Event
 {
+const GROUP_CALENDAR = 'event-calendar';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(self::GROUP_CALENDAR)]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(self::GROUP_CALENDAR)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

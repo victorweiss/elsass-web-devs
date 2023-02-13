@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class EventController extends AbstractController
 {
-    #[Route('/event', name: 'event')]
+    #[Route('/evenement', name: 'event')]
     public function index(EventService $eventService): Response
     {
         return $this->render('event/index.html.twig', [
@@ -23,7 +23,7 @@ class EventController extends AbstractController
         ]);
     }
 
-    #[Route('/event/{slug}', name: 'event_show')]
+    #[Route('/evenement/{slug}', name: 'event_show')]
     public function show(Event $event, EventBookingRepository $eventBookingRepository, Request $request): Response
     {
         $booking = new EventBooking;
