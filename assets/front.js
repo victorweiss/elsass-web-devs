@@ -25,14 +25,14 @@ const calendar = new Calendar(calendarEl, {
     day: "Jour",
     list: "Liste",
   },
+  noEventsContent: 'Aucun événement à afficher',
+  allDayContent: function(arg) {
+    // return "void" instead of "all-day"
+    return '';
+  },
   events: events,
   eventColor: "#D50000",
   navLinks: true,
-
-  eventClick: function() {
-    // alert('Event: ' + info.event.title);
-
-  }
 });
 
 calendar.render();

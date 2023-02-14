@@ -35,7 +35,7 @@
 
 				<section id="event-body">
 					<p>Nombre total de places : {{event.totalSeats }}</p>
-					<p>Événement prévu le {{event.startAt ? event.createdAt|date(default_date_format) : ''}}</p>
+					<p>Événement prévu le {{event.startAt ? event.startAt|date(default_date_format) : ''}}</p>
 					{{event.body | raw}}
 				</section>
 			</div>
