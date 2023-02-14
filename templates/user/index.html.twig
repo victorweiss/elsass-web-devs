@@ -6,6 +6,8 @@
 
 {% block body %}
 	<div class="container">
+
+	<section class="user-intro">
 		<div class="d-flex flex-column">
 			<p>Prénom :
 				{{app.user.firstName}}</p>
@@ -14,9 +16,14 @@
 			<p>Profil créé le :
 				{{app.user.createdAt|date(default_date_format)}}</p>
 		</div>
+	</section>
 
+	<section class="user-booking">
 		<div>
-			<p>Inscrit aux événements :</p>
+		{% if app.user.eventBookings|length == 0 %}
+			<p>Inscrit à aucun événement</p>
+		{% else %}
+			<p>Inscrit aux prochains événements :</p>
 			<div class="d-flex flex-wrap">
 				{% for booking in app.user.eventBookings %}
 					{% if booking.event.startAt|date('Y-m-d') > ('now'|date('Y-m-d')) %}
@@ -25,14 +32,42 @@
 							<p>{{booking.event.startAt|date(default_date_format)}}</p>
 							<p>
 								Places restantes :
-								{{booking.event.totalSeats - booking.event.bookings|length }}</p>
-							<a class="btn btn-warning my-2">Voir</a>
-							{{ include('user/elements/_delete_booking_form.html.twig') }}
+								{{booking.event.totalSeats - booking.event.bookings|length }}
+							</p>
+							<a class="btn btn-warning my-2" href="{{ path('event_show', {'slug': booking.event.slug}) }}">Voir</a>
+							<form method="post" action="{{ path('event_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre réservation ?');">
+    							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+   							 	<button class="btn btn-primary">Se désinscrire</button>
+							</form>
 						</div>
 					{% endif %}
 				{% endfor %}
 			</div>
+
+			<p>Inscrit aux précédents événements :</p>
+			<div class="d-flex flex-wrap">
+				{% for booking in app.user.eventBookings %}
+					{% if booking.event.startAt|date('Y-m-d') < ('now'|date('Y-m-d')) %}
+						<div class="m-5 p-3 border border-primary rounded text-center">
+							<p>{{booking.event.title}}</p>
+							<p>{{booking.event.startAt|date(default_date_format)}}</p>
+							<p>
+								Places restantes :
+								{{booking.event.totalSeats - booking.event.bookings|length }}</p>
+							<a class="btn btn-warning my-2" href="{{ path('event_show', {'slug': booking.event.slug}) }}">Voir</a>
+							<form method="post" action="{{ path('event_booking_delete', {'id': booking.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre réservation ?');">
+    							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+   							 	<button class="btn btn-primary">Supprimer</button>
+							</form>
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+
+		{% endif %}
 		</div>
+
+	</section>
 		<a class="btn btn-primary" href="{{path("logout")}}" class="link-dark d-inline-flex text-decoration-none rounded">Déconnexion</a>
 	</div>
 {% endblock %}
