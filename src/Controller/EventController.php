@@ -6,7 +6,10 @@ use App\Entity\Event;
 use App\Entity\EventBooking;
 use App\Form\EventBookingType;
 use App\Services\EventService;
+use App\Services\MailerService;
+use Symfony\Component\Mime\Address;
 use App\Repository\EventBookingRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +27,7 @@ class EventController extends AbstractController
     }
 
     #[Route('/evenement/{slug}', name: 'event_show')]
-    public function show(Event $event, EventBookingRepository $eventBookingRepository, Request $request): Response
+    public function show(Event $event, EventBookingRepository $eventBookingRepository, Request $request, MailerService $mailer): Response
     {
         $booking = new EventBooking;
         $bookingForm = $this->createForm(EventBookingType::class, $booking);
@@ -50,7 +53,22 @@ class EventController extends AbstractController
                 $booking->setEvent($event);
 
                 $eventBookingRepository->save($booking, true);
-                $this->addFlash('success', 'Votre inscription a bien été enregistrée');
+
+                $email = (new TemplatedEmail())
+                    ->from(new Address($this->getParameter('email_contact'), 'Elsass Web Devs'))
+                    ->to(new Address($user->getEmail(), $user->getLastName() . ' ' . $user->getFirstName()))
+                    ->subject('Confirmation inscription événement')
+                    ->htmlTemplate('emails/booking_confirmation.html.twig')
+                    ->context([
+                        'firstName' => $user->getFirstName(),
+                        'title' => $event->getTitle(),
+                        'startAt' => $event->getStartAt()->format('d-m-Y')
+                    ]);
+
+                $mailer->sendEmail($email);
+
+
+                $this->addFlash('success', 'Votre inscription a bien été enregistrée et un email de confirmation vous a été envoyé');
             }
         }
         return $this->render('event/show.html.twig', [

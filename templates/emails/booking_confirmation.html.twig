@@ -1,0 +1,21 @@
+{% extends "emails/base.html.twig" %}
+
+{% block title %}
+    Bonjour {{firstName}}, voici votre confirmation de réservation
+{% endblock %}
+
+{% block body %}
+<p>
+Vous avez réservé une place pour l'événement {{title}}
+</p>
+
+<p>
+Celui-ci aura lieu le {{startAt}}
+</p>
+
+<p>Vous pouvez annuler à tout moment votre réservation dans <a href="https://www.elsass-web-devs.fr/user">votre espace personnel</a> </p>
+
+<p>
+    Santé 🥂
+</p>
+{% endblock %}
