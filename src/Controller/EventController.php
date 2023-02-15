@@ -62,6 +62,7 @@ class EventController extends AbstractController
                     ->context([
                         'firstName' => $user->getFirstName(),
                         'title' => $event->getTitle(),
+                        'slug' => $event->getSlug(),
                         'startAt' => $event->getStartAt()->format('d-m-Y')
                     ]);
 
