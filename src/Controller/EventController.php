@@ -78,4 +78,19 @@ class EventController extends AbstractController
             'slug' => $event->getSlug(),
         ]);
     }
+
+    #[Route('/evenement/{slug}/login', name: 'event_login')]
+    public function eventLogin(Event $event, Request $request): Response
+    {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('event_show', ['slug' => $event->getSlug()]);
+        } else {
+            $request->getSession()->set('_security.main.target_path', $request->getRequestUri());
+            $redirectPath = match($request->query->get('type')) {
+                'login' => $this->generateUrl('login'),
+                'register' => $this->generateUrl('register'),
+            };
+            return $this->redirect($redirectPath);
+        }
+    }
 }

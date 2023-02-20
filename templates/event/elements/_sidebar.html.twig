@@ -12,7 +12,8 @@
 		{% else %}
 			<p>Vous devez être inscrit pour réserver votre place
 			</p>
-			<a class="btn btn-primary" href="{{path('register')}}">S'inscrire</a>
+			<a href="{{path('event_login', {slug:event.slug, type: 'login'})}}">Se connecter</a> ou
+			<a href="{{path('event_login', {slug:event.slug, type: 'register'})}}">S'inscrire</a> 
 		{% endif %}
 	{% else %}
 		<h2 class="text-center h4 mb-3">Inscription fermée</h2>
