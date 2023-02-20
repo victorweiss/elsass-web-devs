@@ -8,8 +8,7 @@
 		<title>{% block title '' %}{{ route_name != 'home' ? " | Elsass Web Devs" }}</title>
 		<meta name="description" content="{% block description '' %}">
 
-		<link rel="icon" href="{{ asset('icons/favicon.ico') }}" type="image/x-icon">
-
+		<link rel="icon" href="{{ asset('ressources/icons/favicon.ico') }}" type="image/x-icon"> {% block meta %}{% endblock %}
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('back') }}
 		{% endblock %}

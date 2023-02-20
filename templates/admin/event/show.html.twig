@@ -74,8 +74,14 @@
 		{% for booking in event.bookings %}
 			<div class="d-flex">
 				<p>{{booking.user.firstName}}
-					{{booking.user.lastName}}</p>
-				<a class="btn btn-warning mx-auto" href="{{ path('admin_user_show', {'id': booking.user.id}) }}">Détails</a>
+					{{booking.user.lastName}}
+					{% if booking.isPresenting %}
+						-- Fait une présentation -- {{booking.message}}
+					{% else %}
+						-- Ne présente pas
+					{% endif %}
+				</p>
+				<a class="btn btn-warning my-auto" href="{{ path('admin_user_show', {'id': booking.user.id}) }}">Détails</a>
 			</div>
 		{% endfor %}
 
