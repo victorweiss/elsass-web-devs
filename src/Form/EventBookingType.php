@@ -29,7 +29,8 @@ class EventBookingType extends AbstractType
                 ],
                 'required' => false,
             ])
-            ->add('Envoyer', SubmitType::class, [
+            ->add('submit', SubmitType::class, [
+                'label' => "Réserver",
                 'attr' => [
                     'class' => 'btn-primary'
                 ]

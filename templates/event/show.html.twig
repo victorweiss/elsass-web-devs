@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title event.title %}
-{% block description event.title %}
+{% block description "Découvrez l'évènement : " ~ event.title %}
 
 {% block meta_og_image %}
 	<meta property="og:image" content="{{ absolute_url(asset('ressources/images/events/' ~ event.imageName) | imagine_filter('facebook')) }}"/>
@@ -16,7 +16,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-9 col-xl-10 mb-3">
+			<div class="col-lg-9 mb-3">
 				<section id="event-header">
 					<h1>{{event.title}}</h1>
 
@@ -40,7 +40,7 @@
 				</section>
 			</div>
 
-			<div class="col-md-4 col-lg-3 col-xl-2 mx-auto align-item d-flex flex-column text-center">
+			<div class="col-md-4 col-lg-3 mx-auto align-item d-flex flex-column text-center">
 				{% include "event/elements/_sidebar.html.twig" %}
 			</div>
 		</div>

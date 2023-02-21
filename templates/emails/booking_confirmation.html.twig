@@ -1,19 +1,21 @@
 {% extends "emails/base.html.twig" %}
+{# @var user \App\Entity\User #}
+{# @var event \App\Entity\Event #}
 
 {% block title %}
-    Bonjour {{firstName}}, voici votre confirmation de réservation
+    Bonjour {{ user.firstName }}, voici votre confirmation de réservation
 {% endblock %}
 
 {% block body %}
 <p>
-Vous avez réservé une place pour l'événement <a href="https://www.elsass-web-devs.fr/evenement/{{slug}}"> {{title}} </a>
+Vous avez réservé une place pour l'événement <a href="{{ absolute_url(path('event_show', {slug: event.slug})) }}"> {{event.title}} </a>
 </p>
 
 <p>
-Celui-ci aura lieu le {{startAt}}
+Celui-ci aura lieu le {{ event.startAt|date(default_date_format) }}
 </p>
 
-<p>Vous pouvez annuler à tout moment votre réservation dans <a href="https://www.elsass-web-devs.fr/user">votre espace personnel</a> </p>
+<p>Vous pouvez annuler à tout moment votre réservation dans <a href="{{ absolute_url(path('user')) }}">votre espace personnel</a> </p>
 
 <p>
     Santé 🥂
