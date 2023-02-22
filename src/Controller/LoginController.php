@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class LoginController extends AbstractController
 {
@@ -27,23 +26,12 @@ class LoginController extends AbstractController
     #[Route('/redirect', name: 'login_redirect')]
     public function dispatch(): Response
     {
-        $user = $this->getUser();
-
         if ($this->isGranted("ROLE_ADMIN")) {
-            return $this->redirectToRoute('admin', [
-                'user' => $user,
-
-            ]);
+            return $this->redirectToRoute('admin');
         } elseif ($this->isGranted("ROLE_USER")) {
-            return $this->redirectToRoute('user', [
-                'user' => $user,
-
-            ]);
+            return $this->redirectToRoute('user');
         } else {
-            return $this->redirectToRoute('home', [
-                'user' => $user,
-
-            ]);
+            return $this->redirectToRoute('home');
         }
     }
 
