@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Article::class)]
     private Collection $articles;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: EventBooking::class)]
+    private Collection $eventBookings;
+
     #[Gedmo\Timestampable(on: 'create')]
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -57,6 +60,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->articles = new ArrayCollection();
+        $this->eventBookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -194,6 +198,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($article->getAuthor() === $this) {
                 $article->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EventBooking>
+     */
+    public function getEventBookings(): Collection
+    {
+        return $this->eventBookings;
+    }
+
+    public function addEventBooking(EventBooking $eventBooking): self
+    {
+        if (!$this->eventBookings->contains($eventBooking)) {
+            $this->eventBookings->add($eventBooking);
+            $eventBooking->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEventBooking(EventBooking $eventBooking): self
+    {
+        if ($this->eventBookings->removeElement($eventBooking)) {
+            // set the owning side to null (unless already changed)
+            if ($eventBooking->getUser() === $this) {
+                $eventBooking->setUser(null);
             }
         }
 

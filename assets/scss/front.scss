@@ -1,10 +1,10 @@
-@import './variables';
-@import './bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
+@import "./variables";
+@import "./bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
 
 @font-face {
-  font-family: 'coolvetica';
-  src: url('../fonts/coolvetica rg.otf') format('truetype');
+  font-family: "coolvetica";
+  src: url("../fonts/coolvetica rg.otf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
@@ -86,6 +86,44 @@ body.home {
   }
 }
 
+.fc-header-toolbar {
+  .fc-toolbar-chunk {
+      text-align: center;
+    .fc-button-group {
+      .fc-button {
+        background-color: $primary;
+        &.fc-button-active {
+          background-color: #fff;
+          color: #000;
+        }
+      }
+    }
+    .fc-today-button {
+      background-color: $primary;
+      &:disabled {
+        background-color: #fff;
+        color: #000;
+      }
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .fc-header-toolbar {
+    .fc-toolbar-chunk {
+      .fc-button-group {
+        .fc-button {
+          font-size: 12px;
+          padding: 5px 8px;
+        }
+      }
+      .fc-today-button {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+    }
+  }
+}
 
 .card {
   border: 3px $primary solid;
@@ -148,13 +186,10 @@ body.home {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-
   }
 }
 
-
-.article-header{
-
+#article-header {
   .img-ratio {
     position: relative;
 
@@ -176,20 +211,17 @@ body.home {
       img {
         height: 100%;
         width: 100%;
-        object-fit:contain;
-
+        object-fit: contain;
       }
     }
   }
 }
 
-.article-intro {
+#article-intro {
   p {
     margin-top: 10px;
   }
 }
-
-
 
 .siders {
   border-radius: 20px;
@@ -226,6 +258,34 @@ body.home {
     &:hover {
       background-color: #ffffff;
       color: $primary;
+    }
+  }
+}
+
+#event-header {
+  .img-ratio {
+    position: relative;
+
+    &:before {
+      display: block;
+      content: "";
+      width: 100%;
+      padding-top: var(--ratio, 50%);
+    }
+
+    .img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
     }
   }
 }

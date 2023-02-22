@@ -1,0 +1,24 @@
+<div class="right" id="event-side-bar">
+	{% if not event.isBookingAvailable %}
+		<div class="text-center h4 mb-3">Inscription fermée</div>
+	{% elseif hasAlreadyBooked %}
+		<div class="text-center h4 mb-3">Vous avez déjà réservé</div>
+		<a href="{{ path('user') }}" title="Mes réservations">Voir mes réservations</a>
+	{% else %}
+		<h2 class="text-center h4 mb-3">Réserver sa place</h2>
+		<p>Places disponibles :
+			{{event.totalSeats - event.bookings|length }}</p>
+		{% if app.user %}
+			{{ form_start(bookingForm) }}
+			{{ form_row(bookingForm.isPresenting) }}
+			{{ form_row(bookingForm.message) }}
+			{{ form_row(bookingForm.submit) }}
+			{{ form_end(bookingForm) }}
+		{% else %}
+			<p>Vous devez être inscrit pour réserver votre place
+			</p>
+			<a href="{{path('event_login', {slug:event.slug, type: 'login'})}}">Se connecter</a> ou
+			<a href="{{path('event_login', {slug:event.slug, type: 'register'})}}">S'inscrire</a>
+		{% endif %}
+	{% endif %}
+</div>

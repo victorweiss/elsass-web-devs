@@ -9,7 +9,8 @@
 			<h1 class="text-center">Les Devs Web d'Alsace</h1>
 			<p>Nous sommes un groupe de Développeurs Web d'Alsace, nous nous retrouvons afin d'échanger autour de notre passion, de partager nos connaissances, d'apprendre des autres, de se rencontrer dans la vie réelle, de créer des liens sans attribut href et de ne pas servir que des 200 ou des 404 mais aussi quelques 1664 😎🍻</p>
 			<p>Dans une ambiance légère et sympathique, d'entraide et de partage, nous nous retrouvons régulièrement autours d'un seul sujet : Le DEV ! C'est-à-dire : le Développement ET le Développeur.</p>
-			<p>Tu es développeur web ? Sois le bienvenu et rejoins la communauté des <a href="{{ linkedin_url }}" title="Linkedin Page" target="_blank" rel="noopener noreferrer">Développeurs Web d'Alsace sur Linkedin</a>.</p>
+			<p>Tu es développeur web ? Sois le bienvenu et rejoins la communauté des
+				<a href="{{ linkedin_url }}" title="Linkedin Page" target="_blank" rel="noopener noreferrer">Développeurs Web d'Alsace sur Linkedin</a>.</p>
 			<div class="row my-5">
 				<div class="col-lg-10 col-xl-9 mx-auto">
 					<div class="iframe-container">
@@ -69,13 +70,21 @@
 			</div>
 		</section>
 
+		<section class="section-calendar">
+			<h3 class="h4 text-center my-4">📅 Calendrier des événements</h3>
+			<div id='calendar' data-events="{{events|json_encode}}"></div>
+		</section>
+
 		<section class="section-outro">
 			<hr>
 			<h2 class="h4 text-center">Rejoignez-nous</h2>
 			<p class="text-center">
-				Les rencontres ont lieu à Strasbourg. <br>
-				Abonnez-vous sur LinkedIn pour être informé des prochaines soirées Apéro-Code. <br>
-				Pour toute question, n'hésitez pas à <a href="{{ path('contact') }}" title="Contact">nous contacter</a>.
+				Les rencontres ont lieu à Strasbourg.
+				<br>
+				Abonnez-vous sur LinkedIn pour être informé des prochaines soirées Apéro-Code.
+				<br>
+				Pour toute question, n'hésitez pas à
+				<a href="{{ path('contact') }}" title="Contact">nous contacter</a>.
 			</p>
 		</section>
 	</div>
