@@ -4,6 +4,8 @@
 	{% elseif hasAlreadyBooked %}
 		<div class="text-center h4 mb-3">Vous avez déjà réservé</div>
 		<a href="{{ path('user') }}" title="Mes réservations">Voir mes réservations</a>
+	{% elseif event.endAt|date('Y-m-d') < ('now'|date('Y-m-d')) %}
+	<div class="text-center h4 mb-3">Evénement terminé</div>
 	{% else %}
 		<h2 class="text-center h4 mb-3">Réserver sa place</h2>
 		<p>Places disponibles :

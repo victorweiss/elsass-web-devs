@@ -29,7 +29,8 @@ class EventType extends AbstractType
                 'required' => false
             ])
             ->add('isBookingAvailable', CheckboxType::class, [
-                'label' => 'Inscription ouverte'
+                'label' => 'Inscription ouverte ?',
+                'required' => false,
             ])
             ->add('totalSeats', NumberType::class)
             ->add('startAt', DateTimeType::class, [
