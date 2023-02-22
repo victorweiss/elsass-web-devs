@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\ArticleRepository;
+use App\Repository\EventRepository;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +14,7 @@ class SitemapController extends AbstractController
 {
     public function __construct(
         private ArticleRepository $blogArticleRepository,
+        private EventRepository $eventRepository,
         private LoggerInterface $logger,
     ) {}
 
@@ -24,7 +26,8 @@ class SitemapController extends AbstractController
         $routes = [
             'home',
             'contact',
-            'blog'
+            'blog',
+            'evenements',
         ];
 
         foreach ($routes as $route) {
@@ -46,6 +49,19 @@ class SitemapController extends AbstractController
                 'lastmod' => $article->getUpdatedAt()->format('Y-m-d'),
             ];
         }
+
+        $events = $this->eventRepository->findAll();
+        foreach ($events as $event) {
+            $urls[] = [
+                'loc' => $this->generateUrl(
+                    'event_show',
+                    ['slug' => $event->getSlug()],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                'lastmod' => $event->getUpdatedAt()->format('Y-m-d'),
+            ];
+        }
+
 
         $response = $this->render('sitemap/sitemap.html.twig', ['urls' => $urls]);
         $response->headers->set('Content-Type', 'text/xml');
