@@ -2,6 +2,7 @@ twig:
     default_path: "%kernel.project_dir%/templates"
     form_themes: ["bootstrap_5_layout.html.twig"]
     globals:
+        default_date_format: 'd/m/Y \à H\hi'
         linkedin_url: https://www.linkedin.com/company/elsass-web-devs/
         youtube_url: https://www.youtube.com/channel/UCgxn75QTd4AJWl4Lq1BZVLw
 

@@ -32,7 +32,7 @@
             </tr>
             <tr>
                 <th>Créer à</th>
-                <td>{{ contact.createdAt ? contact.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contact.createdAt ? contact.createdAt|date(default_date_format) : '' }}</td>
             </tr>
         </tbody>
     </table>

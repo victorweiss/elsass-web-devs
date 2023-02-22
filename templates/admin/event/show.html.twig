@@ -1,0 +1,94 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title "Détails événement" %}
+{% block description "Details administrateur événement" %}
+
+{% block body %}
+	<div class="container">
+		<div class="mb-3">
+			<a href="{{ path('admin_article_index') }}">
+				<i class="bi bi-arrow-left me-2"></i>
+				Retour à la liste</a>
+		</div>
+		<h1>Evénement</h1>
+		<div class="table-responsive">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ event.id }}</td>
+					</tr>
+					<tr>
+						<th>Titre</th>
+						<td>{{ event.title }}</td>
+					</tr>
+					<tr>
+						<th>Slug</th>
+						<td>{{ event.slug }}</td>
+					</tr>
+					<tr>
+						<th>Body</th>
+						<td>{{ event.body }}</td>
+					</tr>
+					<tr>
+						<th>Image</th>
+						<td><img src="{{ vich_uploader_asset(event, 'imageFile') | imagine_filter('normal') }}" alt="{{event.title}}"></td>
+					</tr>
+					<tr>
+						<th>Créé le</th>
+						<td>{{ event.createdAt ? event.createdAt|date(default_date_format) : '' }}</td>
+					</tr>
+					<tr>
+						<th>Mis à jour le</th>
+						<td>{{ event.updatedAt ? event.updatedAt|date(default_date_format) : '' }}</td>
+					</tr>
+					<tr>
+						<th>Inscription ouverte</th>
+						<td>{{ event.isBookingAvailable ? 'Oui' : 'Non' }}</td>
+					</tr>
+					<tr>
+						<th>Total places</th>
+						<td>{{ event.totalSeats }}</td>
+					</tr>
+					<tr>
+						<th>Places disponibles</th>
+						<td>{{ event.totalSeats - event.bookings|length }}</td>
+					</tr>
+
+					<tr>
+						<th>Début</th>
+						<td>{{ event.startAt ? event.startAt|date(default_date_format) : '' }}</td>
+					</tr>
+					<tr>
+						<th>Fin</th>
+						<td>{{ event.endAt ? event.endAt|date(default_date_format) : '' }}</td>
+					</tr>
+					<tr>
+						<th>Notes Admin</th>
+						<td>{{ event.adminNote }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<p>Membres inscrits à l'événement :</p>
+		{% for booking in event.bookings %}
+			<div class="d-flex">
+				<p>{{booking.user.firstName}}
+					{{booking.user.lastName}}
+					{% if booking.isPresenting %}
+						-- Fait une présentation -- {{booking.message}}
+					{% else %}
+						-- Ne présente pas
+					{% endif %}
+				</p>
+				<a class="btn btn-warning my-auto" href="{{ path('admin_user_show', {'id': booking.user.id}) }}">Détails</a>
+			</div>
+		{% endfor %}
+
+		<a class="btn btn-warning" href="{{ path('admin_event_index') }}">Retour à la liste</a>
+
+		<a class="btn btn-info" href="{{ path('admin_event_edit', {'id': event.id}) }}">Éditer</a>
+
+		{{ include('admin/event/_delete_form.html.twig') }}
+	</div>
+{% endblock %}

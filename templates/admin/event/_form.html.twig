@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+
+{{form_row(form.title)}}
+{{form_row(form.slug)}}
+{{form_row(form.body)}}
+{{form_row(form.imageFile)}}
+{{form_row(form.isBookingAvailable)}}
+{{form_row(form.totalSeats)}}
+
+<div class="d-flex justify-content-evenly">
+	{{form_row(form.startAt)}}
+	{{form_row(form.endAt)}}
+</div>
+{{form_row(form.adminNote)}}
+<button class="btn btn-success">
+	{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Événements" %}
+{% block description "Retrouvez les événements organisés par les Devs Web Alsace" %}
+
+{% block meta %}
+	<link rel="canonical" href="{{absolute_url(path('event'))}}">
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-9 col-xl-10 mb-3">
+				<div class="section intro-blog">
+					<h1 class="text-center">
+						Les évènements
+					</h1>
+					<h2 class="h4 text-body">{{ block('description') }}</h2>
+				</div>
+
+				<div class="section upcoming-event">
+					<div class="row">
+						<h3>Événéments à venir</h3>
+						{% for event in events %}
+							<div class="col-md-6 col-lg-4 mb-3">
+								<div class="card text-center">
+									<div class="img-ratio">
+										<div class="img">
+											<img src="{{asset('ressources/images/events/' ~ event.imageName) | imagine_filter('normal')}}" alt="{{event.imageName}}">
+										</div>
+									</div>
+
+									<div class="card-body d-flex justify-content-around">
+										<div class="h4 card-title">{{event.title}}</div>
+										<p>Le
+											{{event.startAt|date(default_date_format)}}</p>
+										<a href="{{ path('event_show', {'slug': event.slug}) }}" class="btn btn-primary">Voir l'événement</a>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="d-flex align-items-center justify-content-center">
+						{{ knp_pagination_render(events) }}
+					</div>
+				</div>
+				<hr>
+
+				<div class="section past-event">
+					<div class="row">
+						<h3>Événéments passés</h3>
+						{% for event in pastEvents %}
+							<div class="col-md-6 col-lg-4 mb-3">
+								<div class="card text-center">
+									<div class="img-ratio">
+										<div class="img">
+											<img src="{{asset('ressources/images/events/' ~ event.imageName) | imagine_filter('normal')}}" alt="{{event.imageName}}">
+										</div>
+									</div>
+
+									<div class="card-body d-flex justify-content-around">
+										<div class="h4 card-title">{{event.title}}</div>
+										<p>Le
+											{{event.startAt|date(default_date_format)}}</p>
+										<a href="{{ path('event_show', {'slug': event.slug}) }}" class="btn btn-primary">Voir l'événement</a>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="d-flex align-items-center justify-content-center">
+						{{ knp_pagination_render(pastEvents) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
