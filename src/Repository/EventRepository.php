@@ -52,7 +52,7 @@ class EventRepository extends ServiceEntityRepository
     public function paginateActiveEvent(): Query
     {
         $qb = $this->getPublicQueryBuilder();
-        $qb->andWhere('e.startAt > :now')
+        $qb->andWhere('e.endAt > :now')
             ->setParameter('now', new DateTime());
         $qb->orderBy('e.startAt', 'ASC');
 

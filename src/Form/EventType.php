@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Event;
 use Symfony\Component\Form\AbstractType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -27,16 +28,19 @@ class EventType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'required' => false
             ])
-            ->add('isBookingAvailable')
+            ->add('isBookingAvailable', CheckboxType::class, [
+                'label' => 'Inscription ouverte ?',
+                'required' => false,
+            ])
             ->add('totalSeats', NumberType::class)
             ->add('startAt', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
-                ])
+            ])
             ->add('endAt', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text'
-                ])
+            ])
             ->add('adminNote', TextareaType::class, [
                 'required' => false,
                 'attr' => [
