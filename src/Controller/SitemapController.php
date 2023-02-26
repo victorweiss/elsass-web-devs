@@ -27,7 +27,7 @@ class SitemapController extends AbstractController
             'home',
             'contact',
             'blog',
-            'evenements',
+            'event',
         ];
 
         foreach ($routes as $route) {
