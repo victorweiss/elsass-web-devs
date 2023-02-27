@@ -2,14 +2,17 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Article;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class ArticleType extends AbstractType
 {
@@ -36,7 +39,15 @@ class ArticleType extends AbstractType
             ])
             ->add('category')
             ->add('tags')
-            ->add('author');
+            ->add('author', EntityType::class, [
+                'class' => User::class,
+                'query_builder' => function (UserRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where('u.roles LIKE :role')
+                        ->setParameter('role', '%"ROLE_ADMIN"%')
+                        ->orderBy('u.id', 'ASC');
+                },
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
