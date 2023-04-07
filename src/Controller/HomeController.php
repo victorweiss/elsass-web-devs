@@ -29,6 +29,7 @@ class HomeController extends AbstractController
     #[Route('test-ip', name: 'test_ip')]
     public function testIp(Request $request): Response
     {
+
         $ip = $request->getClientIp();
 
         return new Response($ip);
