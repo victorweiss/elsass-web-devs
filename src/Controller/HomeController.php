@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Repository\EventRepository;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,14 +23,5 @@ class HomeController extends AbstractController
                 'events' => $normalizer->normalize($events, null, [AbstractNormalizer::GROUPS => [Event::GROUP_CALENDAR] ])
             ]
         );
-    }
-
-    #[Route('test-ip', name: 'test_ip')]
-    public function testIp(Request $request): Response
-    {
-
-        $ip = $request->getClientIp();
-
-        return new Response($ip);
     }
 }
